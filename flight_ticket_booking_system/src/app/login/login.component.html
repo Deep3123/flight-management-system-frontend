@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h3>Login</h3>
+          </div>
+          <div class="card-body">
+            <form #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm)" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" ngModel required email #email="ngModel" />
+                <div *ngIf="email.invalid && email.touched" class="text-danger">
+                  <small>Email is required and must be a valid email.</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" ngModel required #password="ngModel" />
+                <div *ngIf="password.invalid && password.touched" class="text-danger">
+                  <small>Password is required.</small>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
