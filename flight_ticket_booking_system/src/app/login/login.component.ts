@@ -7,13 +7,8 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-
 export class LoginComponent {
-  onLoginSubmit(loginForm: NgForm) {
-    if (loginForm.valid) {
-      console.log('Login Form Submitted!', loginForm.value);
-    } else {
-      console.log('Login Form Invalid!');
-    }
+  onSubmit(_t11: NgForm) {
+    throw new Error('Method not implemented.');
   }
 }
