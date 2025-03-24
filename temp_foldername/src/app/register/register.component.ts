@@ -46,7 +46,7 @@ export class RegisterComponent {
           Swal.fire({
             icon: 'error',
             title: 'Registration Failed!',
-            text: error.error.message,
+            text: error.message,
             confirmButtonText: 'OK',
           });
         }

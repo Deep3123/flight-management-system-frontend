@@ -37,6 +37,7 @@ export class LoginComponent {
           });
           // console.log(response.token)
           localStorage.setItem('token', response.token)
+          
         },
         (error) => {
           // Display error pop-up if registration fails
