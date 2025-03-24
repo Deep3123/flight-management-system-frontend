@@ -34,18 +34,19 @@ export class RegisterComponent {
           Swal.fire({
             icon: 'success',
             title: 'Registration Successful!',
-            text: 'You have successfully registered.',
+            text: response.message,
             confirmButtonText: 'OK',
           }).then(() => {
             form.reset(); // Reset the form after successful registration
           });
         },
         (error) => {
+          console.log(error)
           // Display error pop-up if registration fails
           Swal.fire({
             icon: 'error',
             title: 'Registration Failed!',
-            text: 'There was an error during registration. Please try again.',
+            text: error.error.message,
             confirmButtonText: 'OK',
           });
         }
