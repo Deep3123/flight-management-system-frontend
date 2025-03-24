@@ -1,57 +1,47 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { LoginReq } from "../dtoClasses/login-req";
-import Swal from "sweetalert2";
-import { UserAuthServiceService } from "../services/user-auth-service.service";
 import { Router } from "@angular/router";
+import { UserAuthServiceService } from "../services/user-auth-service.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: "app-login",
+  selector: "app-forgot-password",
   standalone: false,
-  templateUrl: "./login.component.html",
-  styleUrl: "./login.component.css",
+  templateUrl: "./forgot-password.component.html",
+  styleUrls: ["./forgot-password.component.css"],
 })
-export class LoginComponent {
+export class ForgotPasswordComponent {
   constructor(
     private router: Router,
     private userAuthService: UserAuthServiceService
   ) {}
-
-  login = new LoginReq();
-  onSubmit(form: any) {
-    if (form.valid) {
-      console.log(form.value);
-
-      this.login.username = form.value.username;
-      this.login.password = form.value.password;
-
-      console.log(this.login);
+  // This method will be called when the form is submitted
+  onSubmit(forgotPasswordForm: any) {
+    if (forgotPasswordForm.valid) {
+      const email = forgotPasswordForm.value.email;
 
       // Call the service to save the user data
-      this.userAuthService.userLogin(this.login).subscribe(
+      this.userAuthService.forgotPassword(email).subscribe(
         (response) => {
-          // console.log(response);
           // Display success pop-up on successful registration
           Swal.fire({
             icon: "success",
-            title: "Login Successful!",
-            text: "You have successfully logged in.",
+            title: "Email Sent Successfully!",
+            text: response.message,
             confirmButtonText: "OK",
           }).then(() => {
-            form.reset(); // Reset the form after successful registration
+            forgotPasswordForm.reset(); // Reset the form after successful registration
           });
-          // console.log(response.token)
-          localStorage.setItem("token", response.token);
         },
         (error) => {
+          console.log(error);
           // Display error pop-up if registration fails
           Swal.fire({
             icon: "error",
-            title: "Login Failed!",
+            title: "Email has not been sent!",
             text: error.error.message,
             confirmButtonText: "OK",
           });
-          console.log(error);
         }
       );
     } else {

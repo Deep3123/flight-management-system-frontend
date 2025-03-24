@@ -1,4 +1,4 @@
-<div class="mt-5" style="padding-bottom: 100px;">
+<div class="mt-5" style="padding-bottom: 300px;">
     <section class="vh-100">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -86,10 +86,10 @@
                             <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
                                 class="error">
                                 <div *ngIf="confirmPassword.errors?.['required']">Please confirm your password.</div>
-                                <div *ngIf="confirmPassword.touched && (password.value != confirmPassword.value)"
-                                    class="error">
-                                    Passwords do not match.
-                                </div>
+                            </div>
+                            <div *ngIf="confirmPassword.touched && (password.value !== confirmPassword.value)"
+                                class="error">
+                                Passwords do not match.
                             </div>
                         </div>
 
