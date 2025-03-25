@@ -1,35 +1,116 @@
-.divider:after,
-.divider:before {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #eee;
+/* Flex layout for the entire section */
+section.vh-100 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure section takes up full height of the viewport */
+  margin-bottom: 100px;
+  margin-top: 80px;
 }
 
-.h-custom {
-    height: calc(100% - 73px);
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow the container to grow to fill the available space */
+  padding-bottom: 20px; /* Padding to ensure no overlap with footer */
 }
 
-@media (max-width: 450px) {
-    .h-custom {
-        height: 100%;
-    }
+.row {
+  flex-grow: 1; /* Ensure the row takes the available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 40px; /* Add space at the bottom of the form */
+}
+
+/* Error styles */
 .error {
-    color: red;
-    font-size: 0.875rem;
-    border-radius: 5px;
-    margin-top: 5px;
-    padding-left: 5px;
-    background-color: rgb(253, 226, 226);
+  color: red;
+  font-size: 0.875rem;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  background-color: rgb(253, 226, 226);
 }
 
+/* Button disabled state */
 button:disabled {
-    cursor: not-allowed;
-    /* Display the not-allowed cursor */
-    background-color: gray;
-    border-color: gray;
-    opacity: 0.6;
-    /* Optional: Make the disabled button look less prominent */
+  cursor: not-allowed;
+  background-color: gray;
+  border-color: gray;
+  opacity: 0.6;
+}
+
+/* .last {
+    margin-bottom: 50px;
+} */
+/* Adjustments for medium screens (below 991px) */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Increase padding to ensure no overlap */
+  }
+
+  form {
+    margin-bottom: 60px; /* Add more margin to the bottom of the form */
+  }
+
+  .img-fluid {
+    height: 350px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  section.vh-100 {
+    margin-bottom: 400px;
+  }
+}
+
+/* Adjustments for small screens (below 450px) */
+@media (max-width: 560px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Extra padding at the bottom */
+  }
+
+  form {
+    margin-bottom: 70px; /* More margin to ensure no overlap */
+  }
+
+  .img-fluid {
+    height: 250px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  section.vh-100 {
+    margin-bottom: 300px;
+  }
+}
+
+/* Adjustments for small screens (below 450px) */
+@media (max-width: 450px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Extra padding at the bottom */
+  }
+
+  form {
+    margin-bottom: 70px; /* More margin to ensure no overlap */
+  }
+
+  .img-fluid {
+    height: 180px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  section.vh-100 {
+    margin-bottom: 200px;
+  }
 }

@@ -4,20 +4,24 @@ import { LoginReq } from "../dtoClasses/login-req";
 import Swal from "sweetalert2";
 import { UserAuthServiceService } from "../services/user-auth-service.service";
 import { Router } from "@angular/router";
+import { AuthService } from "../services/auth-service.service";
+import { response } from "express";
 
 @Component({
   selector: "app-login",
   standalone: false,
   templateUrl: "./login.component.html",
-  styleUrl: "./login.component.css",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent {
   constructor(
     private router: Router,
-    private userAuthService: UserAuthServiceService
+    private userAuthService: UserAuthServiceService,
+    private authService: AuthService // Inject AuthService
   ) {}
 
   login = new LoginReq();
+
   onSubmit(form: any) {
     if (form.valid) {
       console.log(form.value);
@@ -25,26 +29,22 @@ export class LoginComponent {
       this.login.username = form.value.username;
       this.login.password = form.value.password;
 
-      console.log(this.login);
-
-      // Call the service to save the user data
       this.userAuthService.userLogin(this.login).subscribe(
         (response) => {
-          // console.log(response);
-          // Display success pop-up on successful registration
           Swal.fire({
             icon: "success",
             title: "Login Successful!",
             text: "You have successfully logged in.",
             confirmButtonText: "OK",
           }).then(() => {
-            form.reset(); // Reset the form after successful registration
+            form.reset(); // Reset form after successful login
+            // console.log(response);
+            this.authService.login(response.token); // Update login state via AuthService
+            if (response.role == "ADMIN") this.router.navigate(["/admin"]);
+            else if (response.role == "USER") this.router.navigate(["/"]); // Redirect to homepage after login (optional)
           });
-          // console.log(response.token)
-          localStorage.setItem("token", response.token);
         },
         (error) => {
-          // Display error pop-up if registration fails
           Swal.fire({
             icon: "error",
             title: "Login Failed!",

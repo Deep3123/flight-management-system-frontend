@@ -39,4 +39,18 @@ export class UserAuthServiceService {
       resetPassword
     );
   }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/get-all-user-details`); // Adjust endpoint if needed
+  }
+
+  deleteUser(username: any): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/user/delete-user-by-username/` + username
+    ); // Adjust endpoint if needed
+  }
+
+  updateUser(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user/update-user-by-username`, user);
+  }
 }
