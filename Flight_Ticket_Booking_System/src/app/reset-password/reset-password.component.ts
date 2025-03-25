@@ -21,7 +21,7 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private userAuthService: UserAuthServiceService,
     private route: ActivatedRoute // Inject ActivatedRoute to get the route parameters
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Retrieve the route parameters for username, timestamp, and token
@@ -63,6 +63,17 @@ export class ResetPasswordComponent implements OnInit {
       this.resetPassword.password = password;
       this.resetPassword.confirmPassword = confirmPassword;
 
+      // Show SweetAlert2 loading spinner
+      Swal.fire({
+        title: 'Processing...',
+        text: 'Please wait while we reset your password.',
+        icon: 'info',
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading(); // Show loading spinner
+        }
+      });
+
       // Call the service to reset the password
       this.userAuthService
         .resetPassword(
@@ -73,22 +84,23 @@ export class ResetPasswordComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            // Show success message
+            // Hide SweetAlert2 loading spinner and show success message
+            Swal.close(); // Close the loading spinner
             Swal.fire({
               icon: "success",
-              title: "Password Reset Successful",
+              title: "Password Reset Successful!",
               text: response.message,
               confirmButtonText: "OK",
             }).then(() => {
-              // Redirect to login page after password reset
               this.router.navigate(["/login"]);
             });
           },
           (error) => {
-            // Show error message if password reset fails
+            // Hide SweetAlert2 loading spinner and show error message
+            Swal.close(); // Close the loading spinner
             Swal.fire({
               icon: "error",
-              title: "Password Reset Failed",
+              title: "Password Reset Failed!",
               text:
                 error.error.message ||
                 "Something went wrong. Please try again.",
