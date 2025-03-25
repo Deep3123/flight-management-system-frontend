@@ -1,7 +1,11 @@
 <div class="container mt-4">
     <!-- Add User Button -->
     <button class="btn btn-primary float-right mb-3" (click)="openForm()">
+<<<<<<< HEAD
         <mat-icon>add</mat-icon> Add User
+=======
+        Add User
+>>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
     </button>
 
     <!-- User DataTable -->
@@ -13,8 +17,11 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Role</th>
+<<<<<<< HEAD
                     <th>Created At</th>
                     <th>Updated At</th>
+=======
+>>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,9 +31,18 @@
                     <td>{{ user.emailId }}</td>
                     <td>{{ user.mobileNo }}</td>
                     <td>{{ user.role }}</td>
+<<<<<<< HEAD
                     <td>{{ user.createdAt | date:'short' }}</td>
                     <td>{{ user.updatedAt | date:'short' }}</td>
                     <td class="text-center">
+=======
+                    <td class="text-center">
+                        <!-- Toggle Details Button -->
+                        <button class="btn btn-link" (click)="toggleDetails(i)">
+                            <mat-icon>{{ openedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                        </button>
+
+>>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
                         <!-- Edit Button -->
                         <button class="btn btn-warning" (click)="editUser(user)">
                             <mat-icon>edit</mat-icon> Edit
