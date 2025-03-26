@@ -1,12 +1,14 @@
 <div class="container mt-4">
     <!-- Add User Button -->
-    <button class="btn btn-primary float-right mb-3" (click)="openForm()">
-<<<<<<< HEAD
+    <button class="btn btn-primary mb-3" (click)="openForm()"
+        style="display: flex; align-items: center; gap: 5px;border-radius:20px;">
         <mat-icon>add</mat-icon> Add User
-=======
-        Add User
->>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
     </button>
+
+    <!-- <button mat-raised-button color="primary" class="float-left mb-3" (click)="openForm()"
+        style="display: flex; align-items: center;">
+        <mat-icon>add</mat-icon> Add User
+    </button> -->
 
     <!-- User DataTable -->
     <div class="table-responsive">
@@ -17,12 +19,9 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Role</th>
-<<<<<<< HEAD
                     <th>Created At</th>
                     <th>Updated At</th>
-=======
->>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
-                    <th>Actions</th>
+                    <th colspan="2" class="text-center">Actions</th> <!-- Only colspan for header -->
                 </tr>
             </thead>
             <tbody>
@@ -31,27 +30,30 @@
                     <td>{{ user.emailId }}</td>
                     <td>{{ user.mobileNo }}</td>
                     <td>{{ user.role }}</td>
-<<<<<<< HEAD
                     <td>{{ user.createdAt | date:'short' }}</td>
                     <td>{{ user.updatedAt | date:'short' }}</td>
-                    <td class="text-center">
-=======
-                    <td class="text-center">
-                        <!-- Toggle Details Button -->
-                        <button class="btn btn-link" (click)="toggleDetails(i)">
-                            <mat-icon>{{ openedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
-                        </button>
 
->>>>>>> c66986dbb5225b29f4ecd9881d4d182702c25305
-                        <!-- Edit Button -->
-                        <button class="btn btn-warning" (click)="editUser(user)">
+                    <!-- Actions Column with buttons styled with both Angular Material and custom styles -->
+                    <td class="text-center">
+                        <button class="btn btn-warning" (click)="editUser(user)"
+                            style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>edit</mat-icon> Edit
                         </button>
+                        <!-- <button mat-raised-button color="warn" (click)="editUser(user)"
+                            style="display: flex; align-items: center;">
+                            <mat-icon>edit</mat-icon> Edit
+                        </button> -->
+                    </td>
 
-                        <!-- Delete Button -->
-                        <button class="btn btn-danger" (click)="deleteUser(user)">
+                    <td class="text-center">
+                        <button class="btn btn-danger" (click)="deleteUser(user)"
+                            style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>delete</mat-icon> Delete
                         </button>
+                        <!-- <button mat-raised-button color="accent" (click)="deleteUser(user)"
+                            style="display: flex; align-items: center;">
+                            <mat-icon>delete</mat-icon> Delete
+                        </button> -->
                     </td>
                 </tr>
             </tbody>
@@ -64,52 +66,48 @@
             <h5 class="card-title">{{ isEditing ? 'Edit User' : 'Add User' }}</h5>
             <form #userForm="ngForm" (ngSubmit)="submitForm()">
                 <!-- Name -->
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" [(ngModel)]="selectedUser.name" name="name"
-                        required />
-                </div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" [(ngModel)]="selectedUser.name" name="name" required>
+                </mat-form-field>
 
                 <!-- Email -->
-                <div class="form-group">
-                    <label for="emailId">Email</label>
-                    <input type="email" class="form-control" id="emailId" [(ngModel)]="selectedUser.emailId"
-                        name="emailId" required />
-                </div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" [(ngModel)]="selectedUser.emailId" name="emailId" required>
+                </mat-form-field>
 
                 <!-- Mobile Number -->
-                <div class="form-group">
-                    <label for="mobileNo">Mobile No</label>
-                    <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="selectedUser.mobileNo"
-                        name="mobileNo" required />
-                </div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Mobile No</mat-label>
+                    <input matInput type="tel" [(ngModel)]="selectedUser.mobileNo" name="mobileNo" required>
+                </mat-form-field>
 
                 <!-- Username -->
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" [(ngModel)]="selectedUser.username"
-                        name="username" required />
-                </div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" [(ngModel)]="selectedUser.username" name="username" required>
+                </mat-form-field>
 
-                <!-- Password (will not be shown) -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" [(ngModel)]="selectedUser.password"
-                        name="password" required />
-                </div>
+                <!-- Password -->
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" [(ngModel)]="selectedUser.password" name="password" required>
+                </mat-form-field>
 
                 <!-- Role -->
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <select class="form-control" id="role" [(ngModel)]="selectedUser.role" name="role" required>
-                        <option value="USER">User</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="GUEST">Guest</option>
-                    </select>
-                </div>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Role</mat-label>
+                    <mat-select [(ngModel)]="selectedUser.role" name="role" required>
+                        <mat-option value="USER">User</mat-option>
+                        <mat-option value="ADMIN">Admin</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary mt-3">{{ isEditing ? 'Update' : 'Add' }} User</button>
+                <button mat-raised-button color="primary" type="submit" class="btn btn-primary mt-3">
+                    {{ isEditing ? 'Update' : 'Add' }} User
+                </button>
             </form>
         </div>
     </div>
