@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import Swal from "sweetalert2";
 import { AuthService } from "../services/auth-service.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-navbar",
@@ -11,7 +12,7 @@ import { AuthService } from "../services/auth-service.service";
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private route: Router) {}
 
   ngOnInit(): void {
     // Subscribe to the login status
@@ -28,5 +29,6 @@ export class NavbarComponent implements OnInit {
       text: "You have successfully logged out.",
       confirmButtonText: "OK",
     });
+    this.route.navigate(["/"]);
   }
 }

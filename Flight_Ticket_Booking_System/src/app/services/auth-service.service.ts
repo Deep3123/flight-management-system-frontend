@@ -10,27 +10,52 @@ export class AuthService {
 
   constructor() {}
 
+  // Private method to check if the token and role exist in localStorage
   private hasToken(): boolean {
-    // Check if running in the browser before accessing localStorage
     if (typeof window !== "undefined" && window.localStorage) {
-      return localStorage.getItem("token") !== null;
+      const token = localStorage.getItem("token");
+      const role = localStorage.getItem("role");
+      return !!token && !!role; // Return true if both token and role are present
     }
     return false;
   }
 
-  login(token: string): void {
-    // Check if running in the browser before accessing localStorage
+  // Login method to store token and role in localStorage
+  login(token: string, role: string): void {
     if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.setItem("token", token);
-      this.isLoggedInSubject.next(true);
+      localStorage.setItem("token", token); // Store token
+      localStorage.setItem("role", role); // Store role
+      this.isLoggedInSubject.next(true); // Update login status
     }
   }
 
+  // Logout method to clear token and role from localStorage
   logout(): void {
-    // Check if running in the browser before accessing localStorage
     if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.removeItem("token");
-      this.isLoggedInSubject.next(false);
+      localStorage.removeItem("token"); // Remove token
+      localStorage.removeItem("role"); // Remove role
+      this.isLoggedInSubject.next(false); // Update login status
     }
+  }
+
+  // Get the stored token from localStorage
+  getToken(): string | null {
+    if (typeof window !== "undefined" && window.localStorage) {
+      return localStorage.getItem("token");
+    }
+    return null;
+  }
+
+  // Get the stored role from localStorage
+  getRole(): string | null {
+    if (typeof window !== "undefined" && window.localStorage) {
+      return localStorage.getItem("role");
+    }
+    return null;
+  }
+
+  // Check if the user is authenticated by checking the token
+  isAuthenticated(): boolean {
+    return !!this.getToken(); // Return true if the token exists
   }
 }

@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { UserAuthServiceService } from "../services/user-auth-service.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth-service.service";
-import { response } from "express";
 
 @Component({
   selector: "app-login",
@@ -17,7 +16,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private userAuthService: UserAuthServiceService,
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService
   ) {}
 
   login = new LoginReq();
@@ -37,11 +36,15 @@ export class LoginComponent {
             text: "You have successfully logged in.",
             confirmButtonText: "OK",
           }).then(() => {
-            form.reset(); // Reset form after successful login
-            // console.log(response);
-            this.authService.login(response.token); // Update login state via AuthService
-            if (response.role == "ADMIN") this.router.navigate(["/admin"]);
-            else if (response.role == "USER") this.router.navigate(["/"]); // Redirect to homepage after login (optional)
+            form.reset();
+            // Store token and role in AuthService
+            this.authService.login(response.token, response.role);
+            // Redirect based on role
+            if (response.role === "ADMIN") {
+              this.router.navigate(["/admin"]);
+            } else if (response.role === "USER") {
+              this.router.navigate(["/"]);
+            }
           });
         },
         (error) => {

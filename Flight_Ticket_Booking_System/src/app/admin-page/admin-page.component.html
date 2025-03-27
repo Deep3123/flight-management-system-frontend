@@ -1,8 +1,14 @@
 <div class="container mt-4">
     <!-- Add User Button -->
-    <button class="btn btn-primary float-right mb-3" (click)="openForm()">
-        Add User
+    <button class="btn btn-primary mb-3" (click)="openForm()"
+        style="display: flex; align-items: center; gap: 5px;border-radius:20px;">
+        <mat-icon>add</mat-icon> Add User
     </button>
+
+    <!-- <button mat-raised-button color="primary" class="float-left mb-3" (click)="openForm()"
+        style="display: flex; align-items: center;">
+        <mat-icon>add</mat-icon> Add User
+    </button> -->
 
     <!-- User DataTable -->
     <div class="table-responsive">
@@ -13,7 +19,9 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Role</th>
-                    <th>Actions</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th colspan="2" class="text-center">Actions</th> <!-- Only colspan for header -->
                 </tr>
             </thead>
             <tbody>
@@ -22,80 +30,33 @@
                     <td>{{ user.emailId }}</td>
                     <td>{{ user.mobileNo }}</td>
                     <td>{{ user.role }}</td>
-                    <td class="text-center">
-                        <!-- Toggle Details Button -->
-                        <button class="btn btn-link" (click)="toggleDetails(i)">
-                            <mat-icon>{{ openedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
-                        </button>
+                    <td>{{ user.createdAt | date:'short' }}</td>
+                    <td>{{ user.updatedAt | date:'short' }}</td>
 
-                        <!-- Edit Button -->
-                        <button class="btn btn-warning" (click)="editUser(user)">
+                    <!-- Actions Column with buttons styled with both Angular Material and custom styles -->
+                    <td class="text-center">
+                        <button class="btn btn-success" (click)="editUser(user)"
+                            style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>edit</mat-icon> Edit
                         </button>
+                        <!-- <button mat-raised-button color="warn" (click)="editUser(user)"
+                            style="display: flex; align-items: center;">
+                            <mat-icon>edit</mat-icon> Edit
+                        </button> -->
+                    </td>
 
-                        <!-- Delete Button -->
-                        <button class="btn btn-danger" (click)="deleteUser(user)">
+                    <td class="text-center">
+                        <button class="btn btn-danger" (click)="deleteUser(user)"
+                            style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>delete</mat-icon> Delete
                         </button>
+                        <!-- <button mat-raised-button color="accent" (click)="deleteUser(user)"
+                            style="display: flex; align-items: center;">
+                            <mat-icon>delete</mat-icon> Delete
+                        </button> -->
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-
-    <!-- Add/Edit User Form -->
-    <div *ngIf="userForm" class="card mt-4">
-        <div class="card-body">
-            <h5 class="card-title">{{ isEditing ? 'Edit User' : 'Add User' }}</h5>
-            <form #userForm="ngForm" (ngSubmit)="submitForm()">
-                <!-- Name -->
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" [(ngModel)]="selectedUser.name" name="name"
-                        required />
-                </div>
-
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="emailId">Email</label>
-                    <input type="email" class="form-control" id="emailId" [(ngModel)]="selectedUser.emailId"
-                        name="emailId" required />
-                </div>
-
-                <!-- Mobile Number -->
-                <div class="form-group">
-                    <label for="mobileNo">Mobile No</label>
-                    <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="selectedUser.mobileNo"
-                        name="mobileNo" required />
-                </div>
-
-                <!-- Username -->
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" [(ngModel)]="selectedUser.username"
-                        name="username" required />
-                </div>
-
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" [(ngModel)]="selectedUser.password"
-                        name="password" required />
-                </div>
-
-                <!-- Role -->
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <select class="form-control" id="role" [(ngModel)]="selectedUser.role" name="role" required>
-                        <option value="USER">User</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="GUEST">Guest</option>
-                    </select>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary mt-3">{{ isEditing ? 'Update' : 'Add' }} User</button>
-            </form>
-        </div>
     </div>
 </div>

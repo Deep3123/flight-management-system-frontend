@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { UserDialogComponent } from "../user-dialog/user-dialog.component";
 import { UserAuthServiceService } from "../services/user-auth-service.service";
-import Swal from "sweetalert2"; // Import SweetAlert2
-import { NgForm } from "@angular/forms"; // Import NgForm to use in the form reference
-import { MatSnackBar } from "@angular/material/snack-bar"; // Keep if needed
+import Swal from "sweetalert2";
 
-declare var $: any; // jQuery declaration for DataTable
+declare var $: any; // Declare jQuery for DataTable initialization
 
 @Component({
   selector: "app-admin-page",
@@ -14,49 +14,49 @@ declare var $: any; // jQuery declaration for DataTable
 })
 export class AdminPageComponent implements OnInit, AfterViewInit {
   users: any[] = [];
-  openedIndex: number | null = null;
-  isEditing = false;
-  selectedUser: any = {}; // Initialize as empty object, not null
 
-  @ViewChild("userForm") userForm!: NgForm;
-
-  constructor(private userService: UserAuthServiceService) {}
+  constructor(
+    private userService: UserAuthServiceService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
   }
 
   ngAfterViewInit(): void {
-    // Initialize the DataTable after the view has been initialized
-    $("#userTable").DataTable(); // Initialize DataTable
+    // Initialize DataTable after view is initialized
+    setTimeout(() => {
+      $("#userTable").DataTable(); // Initialize DataTable for the user table
+    }, 100);
   }
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe((response: any) => {
       this.users = response;
+      this.initializeDataTable(); // Reinitialize DataTable after data is fetched
     });
   }
 
-  toggleDetails(index: number): void {
-    this.openedIndex = this.openedIndex === index ? null : index;
-  }
-
   openForm(): void {
-    this.isEditing = false;
-    this.selectedUser = {};
-    this.userForm.resetForm();
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: "600px",
+      data: { user: null }, // Pass null to signify adding a new user
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllUsers(); // Refresh user list after dialog closes
+    });
   }
 
   editUser(user: any): void {
-    this.isEditing = true;
-    this.selectedUser = { ...user };
-    this.userForm.setValue({
-      name: user.name,
-      emailId: user.emailId,
-      mobileNo: user.mobileNo,
-      username: user.username,
-      password: user.password,
-      role: user.role,
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: "600px",
+      data: { user: user }, // Pass selected user to edit
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllUsers(); // Refresh user list after dialog closes
     });
   }
 
@@ -82,49 +82,10 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     );
   }
 
-  submitForm() {
-    if (this.isEditing && this.selectedUser) {
-      this.userService
-        .updateUser({ ...this.selectedUser, ...this.userForm.value })
-        .subscribe(
-          () => {
-            this.getAllUsers();
-            Swal.fire({
-              icon: "success",
-              title: "User Updated Successfully!",
-              text: "The user information was updated.",
-              confirmButtonText: "OK",
-            });
-          },
-          (error) => {
-            Swal.fire({
-              icon: "error",
-              title: "Error Updating User!",
-              text: error.error.message,
-              confirmButtonText: "OK",
-            });
-          }
-        );
-    } else {
-      this.userService.saveUserData(this.userForm.value).subscribe(
-        () => {
-          this.getAllUsers();
-          Swal.fire({
-            icon: "success",
-            title: "User Added Successfully!",
-            text: "The new user was added to the system.",
-            confirmButtonText: "OK",
-          });
-        },
-        (error) => {
-          Swal.fire({
-            icon: "error",
-            title: "Error Adding User!",
-            text: error.error.message,
-            confirmButtonText: "OK",
-          });
-        }
-      );
-    }
+  // Reinitialize DataTable after data changes
+  initializeDataTable() {
+    setTimeout(() => {
+      $("#userTable").DataTable(); // Initialize or re-initialize the DataTable
+    }, 0);
   }
 }
