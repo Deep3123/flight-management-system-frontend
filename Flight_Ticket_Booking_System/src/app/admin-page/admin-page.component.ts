@@ -7,12 +7,12 @@ import Swal from "sweetalert2";
 declare var $: any; // Declare jQuery for DataTable initialization
 
 @Component({
-  selector: "app-admin-page",
+  selector: 'app-admin-page',
   standalone: false,
-  templateUrl: "./admin-page.component.html",
-  styleUrls: ["./admin-page.component.css"],
+  templateUrl: './admin-page.component.html',
+  styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageComponent implements OnInit, AfterViewInit {
+export class AdminPageComponent implements OnInit {
   users: any[] = [];
 
   constructor(
@@ -65,18 +65,18 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
       () => {
         this.getAllUsers();
         Swal.fire({
-          icon: "success",
-          title: "User Deleted Successfully!",
-          text: "The user was deleted from the system.",
-          confirmButtonText: "OK",
+          icon: 'success',
+          title: 'User Deleted Successfully!',
+          text: 'The user was deleted from the system.',
+          confirmButtonText: 'OK',
         });
       },
       (error) => {
         Swal.fire({
-          icon: "error",
-          title: "Error Deleting User!",
+          icon: 'error',
+          title: 'Error Deleting User!',
           text: error.error.message,
-          confirmButtonText: "OK",
+          confirmButtonText: 'OK',
         });
       }
     );
