@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light p-0" style="background-color: rgb(0, 0, 0);">
     <div class="container-fluid">
         <!-- Navbar Brand (Logo) -->
-        <a class="navbar-brand p-0 mx-2" href="#">
-            <img src="jetwayz.png" height="58" alt="MDB Logo" loading="lazy" />
+        <a class="navbar-brand p-0 mx-2" routerLink="/">
+            <img class="image" src="jetwayz.png" height="58" alt="MDB Logo" loading="lazy" />
         </a>
 
         <!-- Toggler Button for Mobile View, positioned on the right -->
@@ -15,19 +15,41 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> <!-- Centering navigation items -->
                 <li class="nav-item">
-                    <a class="nav-link px-4 py-3 fw-bold text-light" href="#">Dashboard</a>
+                    <a class="nav-link px-4 py-3 fw-bold text-light" routerLink="/"
+                        style="display: flex; align-items: center; gap: 5px"><mat-icon>home</mat-icon> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 py-3 fw-bold text-light" href="#">Team</a>
+                    <a class="nav-link px-4 py-3 fw-bold text-light" routerLink="/"
+                        style="display: flex; align-items: center; gap: 5px"><mat-icon>info</mat-icon> About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 py-3 fw-bold text-light" href="#">Projects</a>
+                    <a class="nav-link px-4 py-3 fw-bold text-light" routerLink="/"
+                        style="display: flex; align-items: center;gap: 5px"><mat-icon>perm_identity</mat-icon>Contact</a>
+                </li>
+
+                <!-- Login Button (Visible if Not Logged In) for Mobile View -->
+                <li *ngIf="!isLoggedIn" class="nav-item d-lg-none">
+                    <a routerLink="/login" class="nav-link px-4 py-3 fw-bold text-light"
+                        style="display: flex; align-items: center; gap: 5px"><mat-icon>login</mat-icon> Login</a>
+                </li>
+
+                <!-- Signup Button (Visible if Not Logged In) for Mobile View -->
+                <li *ngIf="!isLoggedIn" class="nav-item d-lg-none">
+                    <a routerLink="/register" class="nav-link px-4 py-3 fw-bold text-light"
+                        style="display: flex; align-items: center; gap: 5px"><mat-icon>add_to_home_screen</mat-icon>Signup</a>
+                </li>
+
+                <!-- Logout Button (Visible if Logged In) for Mobile View -->
+                <li *ngIf="isLoggedIn" class="nav-item d-lg-none">
+                    <a (click)="logout()" class="nav-link px-4 py-3 fw-bold text-light"
+                        style="display: flex; align-items: center; gap: 5px"><mat-icon>exit_to_app</mat-icon>Logout</a>
                 </li>
             </ul>
         </div>
 
-        <!-- Right Elements (Login/Logout and Signup) -->
-        <div class="d-flex align-items-center ms-auto"> <!-- Added ms-auto to push right -->
+        <!-- Right Elements (Login/Logout and Signup) for Desktop View -->
+        <div class="d-flex align-items-center ms-auto d-none d-lg-flex">
+            <!-- Added d-none d-lg-flex for desktop view -->
             <!-- Logout Button (Visible if Logged In) -->
             <a *ngIf="isLoggedIn" (click)="logout()" class="btn btn-light rounded-pill">Logout</a>
 

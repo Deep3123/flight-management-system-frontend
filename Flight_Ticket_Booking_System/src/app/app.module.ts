@@ -24,6 +24,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select"; 
 import { AdminPageComponent } from "./admin-page/admin-page.component";
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
     ResetPasswordComponent,
     AdminPageComponent,
     UserDialogComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import { RegisterComponent } from "./register/register.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AdminPageComponent } from "./admin-page/admin-page.component";
+import { authGuard } from "./services/auth.guard";
+import { ErrorPageComponent } from "./error-page/error-page.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -15,8 +17,14 @@ const routes: Routes = [
     path: "reset-password/:username/:timestamp/:token",
     component: ResetPasswordComponent,
   },
-  { path: "admin", component: AdminPageComponent },
+  {
+    path: "admin",
+    component: AdminPageComponent,
+    canActivate: [authGuard], // Apply the guard to this route
+    data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
+  },
   { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "**", component: ErrorPageComponent },
 ];
 
 @NgModule({

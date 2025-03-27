@@ -15,6 +15,7 @@
         <table class="table table-striped table-hover table-bordered" id="userTable">
             <thead class="thead-dark">
                 <tr>
+                    <th>S.No.</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -26,6 +27,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of users; let i = index">
+                    <td>{{ i + 1 }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.emailId }}</td>
                     <td>{{ user.mobileNo }}</td>
@@ -35,7 +37,7 @@
 
                     <!-- Actions Column with buttons styled with both Angular Material and custom styles -->
                     <td class="text-center">
-                        <button class="btn btn-warning" (click)="editUser(user)"
+                        <button class="btn btn-success" (click)="editUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>edit</mat-icon> Edit
                         </button>
@@ -58,57 +60,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
-    <!-- Add/Edit User Form -->
-    <div *ngIf="userForm" class="card mt-4">
-        <div class="card-body">
-            <h5 class="card-title">{{ isEditing ? 'Edit User' : 'Add User' }}</h5>
-            <form #userForm="ngForm" (ngSubmit)="submitForm()">
-                <!-- Name -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Name</mat-label>
-                    <input matInput type="text" [(ngModel)]="selectedUser.name" name="name" required>
-                </mat-form-field>
-
-                <!-- Email -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Email</mat-label>
-                    <input matInput type="email" [(ngModel)]="selectedUser.emailId" name="emailId" required>
-                </mat-form-field>
-
-                <!-- Mobile Number -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Mobile No</mat-label>
-                    <input matInput type="tel" [(ngModel)]="selectedUser.mobileNo" name="mobileNo" required>
-                </mat-form-field>
-
-                <!-- Username -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Username</mat-label>
-                    <input matInput type="text" [(ngModel)]="selectedUser.username" name="username" required>
-                </mat-form-field>
-
-                <!-- Password -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" [(ngModel)]="selectedUser.password" name="password" required>
-                </mat-form-field>
-
-                <!-- Role -->
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Role</mat-label>
-                    <mat-select [(ngModel)]="selectedUser.role" name="role" required>
-                        <mat-option value="USER">User</mat-option>
-                        <mat-option value="ADMIN">Admin</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <!-- Submit Button -->
-                <button mat-raised-button color="primary" type="submit" class="btn btn-primary mt-3">
-                    {{ isEditing ? 'Update' : 'Add' }} User
-                </button>
-            </form>
-        </div>
     </div>
 </div>

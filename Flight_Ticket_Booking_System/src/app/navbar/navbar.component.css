@@ -2,3 +2,16 @@
 .nav-link:active {
   background-color: #414141;
 }
+
+@media (max-width: 300px) {
+  .image{
+    width: 40%;
+    height: 40%;
+  }
+
+  .navbar-toggler{
+    width: 35px;
+    height: 40%;
+    padding-left: px;
+  }
+}
