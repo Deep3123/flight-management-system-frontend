@@ -55,7 +55,6 @@ export class UserAuthServiceService {
     );
   }
 
-  // Update user (Authorization required)
   updateUser(user: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/user/update-user-by-username`, user);
   }
