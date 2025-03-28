@@ -59,7 +59,7 @@ export class UserDialogComponent {
           }
         );
     } else {
-      this.userService.saveUserData(userForm.value).subscribe(
+      this.userService.saveUserDataWithHeader(userForm.value).subscribe(
         () => {
           this.dialogRef.close();
           Swal.fire({

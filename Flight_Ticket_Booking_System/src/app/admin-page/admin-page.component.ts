@@ -7,10 +7,10 @@ import Swal from "sweetalert2";
 declare var $: any; // Declare jQuery for DataTable initialization
 
 @Component({
-  selector: 'app-admin-page',
+  selector: "app-admin-page",
   standalone: false,
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.css']
+  templateUrl: "./admin-page.component.html",
+  styleUrls: ["./admin-page.component.css"],
 })
 export class AdminPageComponent implements OnInit {
   users: any[] = [];
@@ -27,14 +27,18 @@ export class AdminPageComponent implements OnInit {
   ngAfterViewInit(): void {
     // Initialize DataTable after view is initialized
     setTimeout(() => {
-      $("#userTable").DataTable(); // Initialize DataTable for the user table
+      this.initializeDataTable(); // Initialize DataTable
     }, 100);
   }
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe((response: any) => {
+      console.log(response); // Log the response for debugging purposes
       this.users = response;
-      this.initializeDataTable(); // Reinitialize DataTable after data is fetched
+      console.log(this.users);
+
+      // Reinitialize DataTable after data is fetched
+      this.initializeDataTable();
     });
   }
 
@@ -65,27 +69,33 @@ export class AdminPageComponent implements OnInit {
       () => {
         this.getAllUsers();
         Swal.fire({
-          icon: 'success',
-          title: 'User Deleted Successfully!',
-          text: 'The user was deleted from the system.',
-          confirmButtonText: 'OK',
+          icon: "success",
+          title: "User Deleted Successfully!",
+          text: "The user was deleted from the system.",
+          confirmButtonText: "OK",
         });
       },
       (error) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Error Deleting User!',
+          icon: "error",
+          title: "Error Deleting User!",
           text: error.error.message,
-          confirmButtonText: 'OK',
+          confirmButtonText: "OK",
         });
       }
     );
   }
 
-  // Reinitialize DataTable after data changes
+  // Initialize or reinitialize DataTable after data changes
   initializeDataTable() {
     setTimeout(() => {
-      $("#userTable").DataTable(); // Initialize or re-initialize the DataTable
+      // Destroy any existing DataTable instances before initializing again
+      if ($.fn.dataTable.isDataTable("#userTable")) {
+        $("#userTable").DataTable().destroy();
+      }
+
+      // Now initialize the DataTable
+      $("#userTable").DataTable();
     }, 0);
   }
 }

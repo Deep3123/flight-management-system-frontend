@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { catchError, Observable } from "rxjs";
 import { AuthService } from "./auth-service.service";
 
 @Injectable({
@@ -9,37 +9,28 @@ import { AuthService } from "./auth-service.service";
 export class UserAuthServiceService {
   private baseUrl: string = "http://localhost:8080"; // Make sure this is the correct API base URL
 
-  constructor(private http: HttpClient, private service: AuthService) {}
+  constructor(private http: HttpClient) {}
 
-  // Create the headers including the Authorization token
-  private createHeaders(): HttpHeaders {
-    const token = this.service.getToken();
-    let headers = new HttpHeaders();
-    if (token) {
-      headers = headers.set("Authorization", `Bearer ${token}`);
-    }
-    return headers;
-  }
-
-  // Send the registration data to the backend API
+  // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/register`, user, {
-      headers: this.createHeaders(),
-    });
+    return this.http.post(`${this.baseUrl}/user/register`, user);
+  }
+  
+  saveUserDataWithHeader(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user/register`, user);
   }
 
+  // Send login data to backend API (no Authorization needed)
   userLogin(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/login`, params, {
-      headers: this.createHeaders(),
-    });
+    return this.http.post(`${this.baseUrl}/user/login`, params);
   }
 
+  // Forgot password (no Authorization needed)
   forgotPassword(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/forgot-password`, params, {
-      headers: this.createHeaders(),
-    });
+    return this.http.post(`${this.baseUrl}/user/forgot-password`, params);
   }
 
+  // Reset password (no Authorization needed)
   resetPassword(
     resetPassword: any,
     username: any,
@@ -48,29 +39,24 @@ export class UserAuthServiceService {
   ): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/user/reset-password/${username}/${timestamp}/${token}`,
-      resetPassword,
-      { headers: this.createHeaders() }
+      resetPassword
     );
   }
 
+  // Get all users (Authorization required)
   getAllUsers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/user/get-all-user-details`, {
-      headers: this.createHeaders(),
-    });
+    return this.http.get(`${this.baseUrl}/user/get-all-user-details`);
   }
 
+  // Delete user (Authorization required)
   deleteUser(username: any): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/user/delete-user-by-username/${username}`,
-      { headers: this.createHeaders() }
+      `${this.baseUrl}/user/delete-user-by-username/${username}`
     );
   }
 
+  // Update user (Authorization required)
   updateUser(user: any): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}/user/update-user-by-username`,
-      user,
-      { headers: this.createHeaders() }
-    );
+    return this.http.post(`${this.baseUrl}/user/update-user-by-username`, user);
   }
 }
