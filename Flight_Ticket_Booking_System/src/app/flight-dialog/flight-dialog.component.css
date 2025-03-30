@@ -1,0 +1,8 @@
+ngx-material-timepicker-overlay {
+  position: fixed !important;
+  z-index: 10000 !important;
+}
+
+.mat-dialog-container {
+  z-index: 1000 !important;
+}

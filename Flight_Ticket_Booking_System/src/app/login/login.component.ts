@@ -17,7 +17,7 @@ export class LoginComponent {
     private router: Router,
     private userAuthService: UserAuthServiceService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   login = new LoginReq();
 
@@ -48,13 +48,18 @@ export class LoginComponent {
           });
         },
         (error) => {
+          console.log(error);
+
+          // ✅ Ensure error message is displayed properly
+          const errorMessage =
+            error.error?.message || error.error?.error?.message || "Login failed. Please try again.";
+
           Swal.fire({
             icon: "error",
             title: "Login Failed!",
-            text: error.error.message,
+            text: errorMessage,
             confirmButtonText: "OK",
           });
-          console.log(error);
         }
       );
     } else {
@@ -66,4 +71,5 @@ export class LoginComponent {
       });
     }
   }
+
 }

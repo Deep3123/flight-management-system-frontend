@@ -8,6 +8,7 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
 import { AdminPageComponent } from "./admin-page/admin-page.component";
 import { authGuard } from "./services/auth.guard";
 import { ErrorPageComponent } from "./error-page/error-page.component";
+import { FlightPageComponent } from "./flight-page/flight-page.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -23,6 +24,12 @@ const routes: Routes = [
     canActivate: [authGuard], // Apply the guard to this route
     data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
   },
+  {
+    path: "flight",
+    component: FlightPageComponent,
+    canActivate: [authGuard], // Apply the guard to this route
+    data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
+  },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", component: ErrorPageComponent },
 ];
@@ -31,4 +38,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

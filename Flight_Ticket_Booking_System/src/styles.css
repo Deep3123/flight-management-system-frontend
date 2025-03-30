@@ -40,4 +40,15 @@ body.dark-mode .btn-light {
   background-color: #333;
   color: white;
 }
-    
+
+/* .custom-dialog-container {
+  z-index: 1050 !important;
+}
+
+ngx-material-timepicker-overlay {
+  z-index: 1100 !important;
+} */
+
+.cdk-overlay-container {
+  z-index: 10000 !important;
+}

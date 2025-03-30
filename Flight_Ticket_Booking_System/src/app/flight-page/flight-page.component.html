@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <!-- Add Flight Button -->
+    <button class="btn btn-primary mb-3" (click)="openForm()"
+        style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+        <mat-icon>add</mat-icon> Add Flight
+    </button>
+
+    <!-- Flight DataTable -->
+    <div class="table-responsive">
+        <table datatable class="table table-striped table-hover table-bordered" id="flightTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Flight Number</th>
+                    <th>Departure Date</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Price</th>
+                    <th>Seats Available</th>
+                    <th colspan="2" class="text-center">Actions</th> <!-- Updated colspan here -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let flight of flights; let i = index; trackBy: trackByFn">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ flight.flightNumber }}</td>
+                    <td>{{ flight.departureDate | date:'short' }}</td>
+                    <td>{{ flight.arrivalDate | date:'short' }}</td>
+                    <td>{{ flight.departureAirport }}</td>
+                    <td>{{ flight.arrivalAirport }}</td>
+                    <td>₹{{ flight.price }}</td>
+                    <td>{{ flight.seatsAvailable }}</td>
+
+                    <!-- Actions Column with two separate columns for Edit and Delete -->
+                    <td class="text-center">
+                        <button class="btn btn-success" (click)="editFlight(flight)"
+                            style="display: flex; align-items: center; gap: 5px;border-radius: 20px;">
+                            <mat-icon>edit</mat-icon> Edit
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger" (click)="deleteFlight(flight.id)"
+                            style="display: flex; align-items: center; gap: 5px;border-radius: 20px;">
+                            <mat-icon>delete</mat-icon> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

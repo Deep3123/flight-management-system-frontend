@@ -26,6 +26,14 @@ import { AdminPageComponent } from "./admin-page/admin-page.component";
 import { UserDialogComponent } from "./user-dialog/user-dialog.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { AuthInterceptor } from "./core/interceptors/auth.service";
+import { FlightDialogComponent } from './flight-dialog/flight-dialog.component';
+import { FlightPageComponent } from './flight-page/flight-page.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -39,6 +47,8 @@ import { AuthInterceptor } from "./core/interceptors/auth.service";
     AdminPageComponent,
     UserDialogComponent,
     ErrorPageComponent,
+    FlightDialogComponent,
+    FlightPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +61,10 @@ import { AuthInterceptor } from "./core/interceptors/auth.service";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    BrowserAnimationsModule,
     HttpClientModule,
   ],
   providers: [
@@ -62,4 +76,4 @@ import { AuthInterceptor } from "./core/interceptors/auth.service";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

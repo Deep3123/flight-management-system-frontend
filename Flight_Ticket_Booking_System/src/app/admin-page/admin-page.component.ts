@@ -58,15 +58,19 @@ export class AdminPageComponent implements OnInit {
   deleteUser(user: any): void {
     this.userService.deleteUser(user.username).subscribe(
       (response) => {
-        this.getAllUsers();
         Swal.fire({
           icon: "success",
-          title: "User Deleted Successfully!",
+          title: "Deletion Successful!", // Updated title
           text: response.message,
           confirmButtonText: "OK",
         });
+        // window.location.reload();
+        this.getAllUsers();
       },
       (error) => {
+        console.log(error)
+        console.log(error.message);
+
         Swal.fire({
           icon: "error",
           title: "Error Deleting User!",

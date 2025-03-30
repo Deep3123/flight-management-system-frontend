@@ -7,27 +7,24 @@ import { AuthService } from "./auth-service.service";
   providedIn: "root",
 })
 export class UserAuthServiceService {
-  private baseUrl: string = "http://localhost:8080"; // Make sure this is the correct API base URL
+  private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
 
   constructor(private http: HttpClient) {}
 
   // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/register`, user);
+    return this.http.post(`${this.baseUrl}/register`, user);
   }
   
-  saveUserDataWithHeader(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/register`, user);
-  }
 
   // Send login data to backend API (no Authorization needed)
   userLogin(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/login`, params);
+    return this.http.post(`${this.baseUrl}/login`, params);
   }
 
   // Forgot password (no Authorization needed)
   forgotPassword(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/forgot-password`, params);
+    return this.http.post(`${this.baseUrl}/forgot-password`, params);
   }
 
   // Reset password (no Authorization needed)
@@ -38,24 +35,24 @@ export class UserAuthServiceService {
     token: any
   ): Observable<any> {
     return this.http.post(
-      `${this.baseUrl}/user/reset-password/${username}/${timestamp}/${token}`,
+      `${this.baseUrl}/reset-password/${username}/${timestamp}/${token}`,
       resetPassword
     );
   }
 
   // Get all users (Authorization required)
   getAllUsers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/user/get-all-user-details`);
+    return this.http.get(`${this.baseUrl}/get-all-user-details`);
   }
 
   // Delete user (Authorization required)
   deleteUser(username: any): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/user/delete-user-by-username/${username}`
+      `${this.baseUrl}/delete-user-by-username/${username}`
     );
   }
 
   updateUser(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/update-user-by-username`, user);
+    return this.http.post(`${this.baseUrl}/update-user-by-username`, user);
   }
 }

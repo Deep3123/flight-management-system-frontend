@@ -59,13 +59,13 @@ export class UserDialogComponent {
           }
         );
     } else {
-      this.userService.saveUserDataWithHeader(userForm.value).subscribe(
-        () => {
+      this.userService.saveUserData(userForm.value).subscribe(
+        (response) => {
           this.dialogRef.close();
           Swal.fire({
             icon: "success",
             title: "User Added Successfully!",
-            text: "The new user was added to the system.",
+            text: response.message,
             confirmButtonText: "OK",
           });
         },
