@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Emirates'; /* Give the font a name */
-    src: url('assets/fonts/Emirates.otf') format('opentype'),
-         url('assets/fonts/Emirates.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Emirates"; /* Give the font a name */
+  src: url("assets/fonts/Emirates.otf") format("opentype"),
+    url("assets/fonts/Emirates.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Apply the font globally */
@@ -11,5 +11,33 @@
     font-family: 'Emirates', sans-serif;
 } */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212; /* Dark background */
+  color: white; /* White text */
+}
+
+/* Additional Dark Mode Styling */
+body.dark-mode .navbar {
+  background-color: #333; /* Dark navbar background */
+}
+
+body.dark-mode .btn-outline-light {
+  border-color: white; /* Dark mode button */
+  color: white;
+}
+
+body.dark-mode .btn-light {
+  background-color: #333;
+  color: white;
+}
+    

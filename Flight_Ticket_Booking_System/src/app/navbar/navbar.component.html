@@ -24,7 +24,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-4 py-3 fw-bold text-light" routerLink="/"
-                        style="display: flex; align-items: center;gap: 5px"><mat-icon>perm_identity</mat-icon>Contact</a>
+                        style="display: flex; align-items: center;gap: 5px"><mat-icon>perm_identity</mat-icon>
+                        Contact</a>
                 </li>
 
                 <!-- Login Button (Visible if Not Logged In) for Mobile View -->
@@ -49,6 +50,10 @@
 
         <!-- Right Elements (Login/Logout and Signup) for Desktop View -->
         <div class="d-flex align-items-center ms-auto d-none d-lg-flex">
+            <!-- Dark/Light Mode Toggle Button -->
+            <button (click)="toggleTheme()" class="btn btn-outline-light rounded-pill mx-3">
+                <mat-icon>{{ darkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
+            </button>
             <!-- Added d-none d-lg-flex for desktop view -->
             <!-- Logout Button (Visible if Logged In) -->
             <a *ngIf="isLoggedIn" (click)="logout()" class="btn btn-light rounded-pill">Logout</a>
