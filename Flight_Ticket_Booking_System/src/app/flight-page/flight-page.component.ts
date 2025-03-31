@@ -18,7 +18,7 @@ export class FlightPageComponent implements OnInit {
   constructor(
     private flightService: FlightAuthServiceService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAllFlights();
@@ -26,7 +26,7 @@ export class FlightPageComponent implements OnInit {
 
   getAllFlights() {
     this.flightService.getAllFlights().subscribe((response: any) => {
-      console.log(response); // Debugging
+      // console.log(response); // Debugging
       this.flights = response;
       this.reinitializeDataTable(); // Ensure DataTable updates correctly
     });
@@ -65,7 +65,7 @@ export class FlightPageComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // Proceed with the deletion if the user confirms
-        this.flightService.deleteFlight(flight.id).subscribe(
+        this.flightService.deleteFlight(flight.flightNumber).subscribe(
           (response) => {
             Swal.fire({
               icon: "success",

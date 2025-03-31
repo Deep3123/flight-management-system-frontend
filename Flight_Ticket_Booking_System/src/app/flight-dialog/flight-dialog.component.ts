@@ -63,7 +63,7 @@ export class FlightDialogComponent {
 
     // Function to extract date in 'yyyy-MM-dd' format
     const formatDate = (date: Date): string => {
-      console.log(date);
+      // console.log(date);
       const year = date.getFullYear();
       const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Add leading zero
       const day = date.getDate().toString().padStart(2, "0"); // Add leading zero
@@ -94,8 +94,8 @@ export class FlightDialogComponent {
     const departureDateTimeString = `${departureFormattedDate}T${departureTime24Hour}:00`; // Combine with time in ISO format
 
     const departureDateTime = new Date(departureDateTimeString);
-    console.log(departureDateTimeString);
-    console.log(departureDateTime);
+    // console.log(departureDateTimeString);
+    // console.log(departureDateTime);
 
     // Extract arrival date from string and combine with time
     const arrivalDateObject = new Date(this.selectedFlight.arrivalDate);
@@ -106,8 +106,8 @@ export class FlightDialogComponent {
     const arrivalDateTimeString = `${arrivalFormattedDate}T${arrivalTime24Hour}:00`; // Combine with time in ISO format
 
     const arrivalDateTime = new Date(arrivalDateTimeString);
-    console.log(arrivalDateTimeString);
-    console.log(arrivalDateTime);
+    // console.log(arrivalDateTimeString);
+    // console.log(arrivalDateTime);
 
     // Ensure that the dates are valid
     if (

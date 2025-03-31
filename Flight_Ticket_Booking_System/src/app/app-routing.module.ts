@@ -9,6 +9,7 @@ import { AdminPageComponent } from "./admin-page/admin-page.component";
 import { authGuard } from "./services/auth.guard";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { FlightPageComponent } from "./flight-page/flight-page.component";
+import { ContactComponent } from "./contact/contact.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     canActivate: [authGuard], // Apply the guard to this route
     data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
   },
+  { path: "contact-us", component: ContactComponent, canActivate: [authGuard] },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", component: ErrorPageComponent },
 ];
