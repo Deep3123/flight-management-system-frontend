@@ -17,6 +17,8 @@
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
                     <th>Price</th>
+                    <th>Flight Class</th>
+                    <th>Duration (Minutes)</th>
                     <th>Seats Available</th>
                     <th colspan="2" class="text-center">Actions</th> <!-- Updated colspan here -->
                 </tr>
@@ -30,6 +32,8 @@
                     <td>{{ flight.departureAirport }}</td>
                     <td>{{ flight.arrivalAirport }}</td>
                     <td>₹{{ flight.price }}</td>
+                    <td>{{ flight.flightClass }}</td> <!-- Added flightClass -->
+                    <td>{{ flight.durationMinutes }}</td>
                     <td>{{ flight.seatsAvailable }}</td>
 
                     <!-- Actions Column with two separate columns for Edit and Delete -->

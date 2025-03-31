@@ -10,10 +10,11 @@ import { Observable, throwError } from "rxjs";
 import { catchError, switchMap } from "rxjs/operators";
 import { AuthService } from "../../services/auth-service.service";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -32,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // Get the path part of the URL without query parameters
     const path = request.url.split("?")[0];
-    console.log(path);
+    // console.log(path);
     // Check if the current request URL is in the excluded list
     if (excludedUrls.some((url) => path.includes(url))) {
       // If the URL is excluded, don't add the Authorization header
@@ -47,7 +48,7 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       });
 
-      console.log(request);
+      // console.log(request);
     }
 
     // Continue with the request
@@ -59,15 +60,31 @@ export class AuthInterceptor implements HttpInterceptor {
 
           // If the token is expired, redirect to login
           this.authService.logout(); // Clear the expired token
-          this.router.navigate(["/login"]); // Redirect to login page
 
           // Optionally, show a toast or alert for the user (you could use a service like SweetAlert2)
-          alert("Session expired. Please log in again.");
+          // alert("Session expired. Please log in again.");
+
+          Swal.fire({
+            icon: "info",
+            title: "Login again!",
+            text: "Session expired. Please log in again.",
+            confirmButtonText: "OK",
+          });
+
+          this.router.navigate(["/login"]); // Redirect to login page
 
           return throwError(error); // Rethrow the error so it doesn't propagate further
         } else if (error.status === 403) {
           // Token is valid but the user doesn't have access (you can handle 403 as well)
-          alert("Access denied. You do not have the necessary permissions.");
+          // alert("Access denied. You do not have the necessary permissions.");
+
+          Swal.fire({
+            icon: "info",
+            title: "Permissions denied!",
+            text: "Access denied. You do not have the necessary permissions.",
+            confirmButtonText: "OK",
+          });
+
           return throwError(error);
         }
 

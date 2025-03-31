@@ -12,8 +12,9 @@ import { Router } from "@angular/router";
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   darkMode: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private route: Router) {}
 
   ngOnInit(): void {
     // Subscribe to the login status
@@ -21,11 +22,16 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = loggedInStatus;
     });
 
+    // Subscribe to the admin status
+    this.authService.isAdmin$.subscribe((adminStatus) => {
+      this.isAdmin = adminStatus;
+    });
+
     // Check for saved theme in localStorage (only available in the browser)
-    if (typeof window !== 'undefined' && localStorage.getItem('theme')) {
-      const savedTheme = localStorage.getItem('theme');
+    if (typeof window !== "undefined" && localStorage.getItem("theme")) {
+      const savedTheme = localStorage.getItem("theme");
       if (savedTheme) {
-        this.darkMode = savedTheme === 'dark';
+        this.darkMode = savedTheme === "dark";
         this.applyTheme();
       }
     }
@@ -50,13 +56,13 @@ export class NavbarComponent implements OnInit {
 
   // Apply the theme to the body and store in localStorage
   applyTheme(): void {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (this.darkMode) {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
       } else {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
       }
     }
   }

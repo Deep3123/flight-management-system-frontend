@@ -49,6 +49,25 @@ ngx-material-timepicker-overlay {
   z-index: 1100 !important;
 } */
 
-.cdk-overlay-container {
-  z-index: 10000 !important;
+/* Ensure dialog overlay container is on top */
+/* Global z-index management */
+/* .cdk-overlay-container {
+  z-index: 1000000 !important; 
+}
+
+.ngx-material-timepicker-overlay {
+  z-index: 1000001 !important; 
+}
+
+.ngx-material-timepicker {
+  z-index: 1000002 !important; 
+} */
+
+.timepicker-overlay {
+  z-index: 10000000 !important;
+}
+
+/* Ensure the backdrop overlay is also above other elements */
+.timepicker-backdrop-overlay {
+  z-index: 10000000 !important;
 }

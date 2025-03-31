@@ -19,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   constructor(
     private userService: UserAuthServiceService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -27,7 +27,7 @@ export class AdminPageComponent implements OnInit {
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe((response: any) => {
-      console.log(response); // Debugging
+      // console.log(response); // Debugging
       this.users = response;
       this.reinitializeDataTable(); // Ensure DataTable updates correctly
     });
@@ -56,29 +56,45 @@ export class AdminPageComponent implements OnInit {
   }
 
   deleteUser(user: any): void {
-    this.userService.deleteUser(user.username).subscribe(
-      (response) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed with the deletion if the user confirms
+        this.userService.deleteUser(user.username).subscribe(
+          (response) => {
+            Swal.fire({
+              icon: "success",
+              title: "Deletion Successful!",
+              text: response.message,
+              confirmButtonText: "OK",
+            });
+            this.getAllUsers(); // Refresh the user list
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error Deleting User!",
+              text: error.error.message,
+              confirmButtonText: "OK",
+            });
+          }
+        );
+      } else {
+        // Optionally, show a cancellation message if the user cancels
         Swal.fire({
-          icon: "success",
-          title: "Deletion Successful!", // Updated title
-          text: response.message,
-          confirmButtonText: "OK",
-        });
-        // window.location.reload();
-        this.getAllUsers();
-      },
-      (error) => {
-        console.log(error)
-        console.log(error.message);
-
-        Swal.fire({
-          icon: "error",
-          title: "Error Deleting User!",
-          text: error.error.message,
+          icon: "info",
+          title: "Deletion Cancelled",
+          text: "The user was not deleted.",
           confirmButtonText: "OK",
         });
       }
-    );
+    });
   }
 
   reinitializeDataTable() {

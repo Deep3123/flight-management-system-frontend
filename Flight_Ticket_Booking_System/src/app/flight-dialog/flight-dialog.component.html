@@ -44,6 +44,11 @@
             <ngx-material-timepicker #arrivalTimePicker [appendToInput]="false"></ngx-material-timepicker>
         </mat-form-field>
 
+        <!-- <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Meeting Time</mat-label>
+            <input matInput type="datetime-local" id="meeting-time" name="meeting-time" required>
+          </mat-form-field> -->
+
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Departure Airport</mat-label>
             <input matInput type="text" [(ngModel)]="selectedFlight.departureAirport" name="departureAirport" required>
@@ -67,7 +72,7 @@
         <!-- Duration (Auto-Calculated) -->
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Duration (Minutes)</mat-label>
-            <input matInput type="number" [(ngModel)]="selectedFlight.durationMinutes" name="durationMinutes" readonly>
+            <input matInput type="number" [(ngModel)]="selectedFlight.durationMinutes" name="durationMinutes">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="w-100">

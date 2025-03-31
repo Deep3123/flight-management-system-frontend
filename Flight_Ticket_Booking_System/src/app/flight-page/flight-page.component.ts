@@ -18,7 +18,7 @@ export class FlightPageComponent implements OnInit {
   constructor(
     private flightService: FlightAuthServiceService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllFlights();
@@ -55,26 +55,45 @@ export class FlightPageComponent implements OnInit {
   }
 
   deleteFlight(flight: any): void {
-    this.flightService.deleteFlight(flight.id).subscribe(
-      (response) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed with the deletion if the user confirms
+        this.flightService.deleteFlight(flight.id).subscribe(
+          (response) => {
+            Swal.fire({
+              icon: "success",
+              title: "Flight Deleted!",
+              text: response.message,
+              confirmButtonText: "OK",
+            });
+            this.getAllFlights(); // Refresh the flight list
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error Deleting Flight!",
+              text: error.error.message,
+              confirmButtonText: "OK",
+            });
+          }
+        );
+      } else {
+        // Optionally, show a cancellation message if the user cancels
         Swal.fire({
-          icon: "success",
-          title: "Flight Deleted!",
-          text: response.message,
-          confirmButtonText: "OK",
-        });
-        this.getAllFlights();
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Error Deleting Flight!",
-          text: error.error.message,
+          icon: "info",
+          title: "Deletion Cancelled",
+          text: "The flight was not deleted.",
           confirmButtonText: "OK",
         });
       }
-    );
+    });
   }
 
   reinitializeDataTable() {
