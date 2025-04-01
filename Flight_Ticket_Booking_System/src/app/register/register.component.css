@@ -46,6 +46,45 @@ button:disabled {
   opacity: 0.6;
 }
 
+/* 
+Central message styling
+.central-message {
+    text-align: center;
+    margin: 10% auto;
+  }
+  
+  .central-message h4 {
+    font-size: 2.5rem; 
+    font-weight: 500;
+    font-family: "Arial", sans-serif;
+    letter-spacing: 0.5px;
+    margin-top: 0;
+    display: block;
+  }
+  
+  .central-message .part1 {
+    font-size: 2.8rem; 
+    color: #dda853; 
+    font-weight: 600;
+    display: inline-block;
+  }
+  
+  .central-message .part2 {
+    font-size: 3rem; 
+    color: #183b4e; 
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 10px; 
+  }
+  
+  .central-message .part3 {
+    font-size: 2.2rem; 
+    color: #7d858f; 
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 10px; 
+  } */
+
 /* .last {
     margin-bottom: 50px;
 } */

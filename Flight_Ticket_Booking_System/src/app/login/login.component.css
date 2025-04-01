@@ -1,35 +1,73 @@
 .divider:after,
 .divider:before {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #eee;
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
 
 .h-custom {
-    height: calc(100% - 73px);
+  height: calc(100% - 73px);
 }
 
 @media (max-width: 450px) {
-    .h-custom {
-        height: 100%;
-    }
+  .h-custom {
+    height: 100%;
+  }
 }
 
 .error {
-    color: red;
-    font-size: 0.875rem;
-    border-radius: 5px;
-    margin-top: 5px;
-    padding-left: 5px;
-    background-color: rgb(253, 226, 226);
+  color: red;
+  font-size: 0.875rem;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  background-color: rgb(253, 226, 226);
 }
 
 button:disabled {
-    cursor: not-allowed;
-    /* Display the not-allowed cursor */
-    background-color: gray;
-    border-color: gray;
-    opacity: 0.6;
-    /* Optional: Make the disabled button look less prominent */
+  cursor: not-allowed;
+  /* Display the not-allowed cursor */
+  background-color: gray;
+  border-color: gray;
+  opacity: 0.6;
+  /* Optional: Make the disabled button look less prominent */
 }
+/* 
+Central message styling
+.central-message {
+    text-align: center;
+    margin: 10% auto;
+  }
+  
+  .central-message h4 {
+    font-size: 2.5rem; 
+    font-weight: 500;
+    font-family: "Arial", sans-serif;
+    letter-spacing: 0.5px;
+    margin-top: 0;
+    display: block;
+  }
+  
+  .central-message .part1 {
+    font-size: 2.8rem; 
+    color: #dda853; 
+    font-weight: 600;
+    display: inline-block;
+  }
+  
+  .central-message .part2 {
+    font-size: 3rem; 
+    color: #183b4e; 
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 10px; 
+  }
+  
+  .central-message .part3 {
+    font-size: 2.2rem; 
+    color: #7d858f; 
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 10px; 
+  } */
