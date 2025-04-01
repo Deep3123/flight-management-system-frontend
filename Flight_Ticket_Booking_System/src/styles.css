@@ -71,3 +71,8 @@ ngx-material-timepicker-overlay {
 .timepicker-backdrop-overlay {
   z-index: 10000000 !important;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
