@@ -10,6 +10,7 @@ import { authGuard } from "./services/auth.guard";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { FlightPageComponent } from "./flight-page/flight-page.component";
 import { ContactComponent } from "./contact/contact.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -32,12 +33,19 @@ const routes: Routes = [
     data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
   },
   { path: "contact-us", component: ContactComponent, canActivate: [authGuard] },
-  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "", component: HomeComponent },
   { path: "**", component: ErrorPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: "enabled",
+      anchorScrolling: "enabled",
+      onSameUrlNavigation: "reload",
+      scrollOffset: [0, 50],
+    }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,454 @@
+.container {
+  margin-top: 30px;
+}
+
+.home-img{
+    margin-bottom: 20px;
+}
+
+.about .about-meta {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.about .about-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .about .about-title {
+    font-size: 2rem;
+  }
+}
+
+.about .about-description {
+  margin-bottom: 2rem;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.about .feature-list-wrapper {
+  margin-bottom: 2rem;
+}
+
+.about .feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about .feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.about .feature-list li i {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+}
+
+.about .profile .profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about .profile .profile-name {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.about .profile .profile-position {
+  color: var(--accent-color);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.about .contact-info {
+  padding: 1rem 1.5rem;
+  background-color: var(--surface-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+}
+
+.about .contact-info i {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.about .contact-info .contact-label {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.about .contact-info .contact-number {
+  font-weight: 600;
+  margin: 0;
+}
+
+.about .image-wrapper {
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .about .image-wrapper {
+    padding-left: 0;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .about .image-wrapper .images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .about .image-wrapper .main-image {
+    margin-left: 0;
+  }
+}
+
+.about .image-wrapper .small-image {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 45%;
+  border: 8px solid var(--surface-color);
+}
+
+@media (max-width: 992px) {
+  .about .image-wrapper .small-image {
+    position: static;
+    width: 100%;
+    margin: 0 auto;
+    border: 0;
+  }
+}
+
+.about .image-wrapper .experience-badge {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  min-width: 200px;
+  animation: experience-float 3s ease-in-out infinite;
+}
+
+@media (max-width: 992px) {
+  .about .image-wrapper .experience-badge {
+    position: static;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+.about .image-wrapper .experience-badge h3 {
+  color: var(--contrast-color);
+  font-size: 2.5rem;
+  margin: 0;
+  line-height: 0.5;
+}
+
+.about .image-wrapper .experience-badge h3 span {
+  font-size: 1rem;
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+
+.about .image-wrapper .experience-badge p {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+}
+
+@keyframes experience-float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation classes */
+.animated {
+  animation-duration: 1.2s;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+/* Optional: Add delay to buttons or key elements */
+.animated.fadeInUp {
+  animation-delay: 0.5s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.flight-banner {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.flight-path {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #e0e0e0 20%,
+    #e0e0e0 80%,
+    transparent
+  );
+}
+
+.route-markers {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.destination-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #1a73e8;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.destination-label {
+  font-size: 12px;
+  color: #5f6368;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.airplane-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: flyAcross 15s linear infinite;
+  z-index: 10;
+}
+
+.airplane {
+  display: flex;
+  align-items: center;
+}
+
+/* Horizontal airplane design */
+.plane-body {
+  width: 80px;
+  height: 20px;
+  background: linear-gradient(to right, #1a73e8, #4285f4);
+  border-radius: 20px;
+  position: relative;
+}
+
+.plane-nose {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #4285f4;
+}
+
+.plane-tail {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 12px;
+  height: 30px;
+  background-color: #1a73e8;
+  border-radius: 2px 0 0 2px;
+}
+
+.plane-wing-top {
+  position: absolute;
+  left: 30px;
+  top: -15px;
+  width: 30px;
+  height: 15px;
+  background-color: #4285f4;
+  border-radius: 5px 5px 0 0;
+}
+
+.plane-wing-bottom {
+  position: absolute;
+  left: 30px;
+  bottom: -15px;
+  width: 30px;
+  height: 15px;
+  background-color: #4285f4;
+  border-radius: 0 0 5px 5px;
+}
+
+.window {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #e8f0fe;
+  border-radius: 50%;
+  top: 7px;
+}
+
+.window-1 {
+  left: 15px;
+}
+.window-2 {
+  left: 30px;
+}
+.window-3 {
+  left: 45px;
+}
+.window-4 {
+  left: 60px;
+}
+
+.trail {
+  position: absolute;
+  left: -80px;
+  top: 50%;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(26, 115, 232, 0),
+    rgba(26, 115, 232, 0.5)
+  );
+}
+
+@keyframes flyAcross {
+  0% {
+    left: -120px;
+  }
+  100% {
+    left: calc(100% + 120px);
+  }
+}
+
+.airplane-container:nth-child(2) {
+  animation-delay: -5s;
+}
+
+.airplane-container:nth-child(3) {
+  animation-delay: -10s;
+}
+
+.overlay-gradient-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+  z-index: 2;
+}
+
+.overlay-gradient-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+  z-index: 2;
+}
+
+.flight-info-popup {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: #5f6368;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.airplane-container:hover .flight-info-popup {
+  opacity: 1;
+}

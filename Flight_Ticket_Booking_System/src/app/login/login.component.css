@@ -10,12 +10,6 @@
   height: calc(100% - 73px);
 }
 
-@media (max-width: 450px) {
-  .h-custom {
-    height: 100%;
-  }
-}
-
 .error {
   color: red;
   font-size: 0.875rem;
@@ -71,3 +65,75 @@ Central message styling
     display: inline-block;
     margin-left: 10px; 
   } */
+
+@media (max-width: 991px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Increase padding to ensure no overlap */
+  }
+
+  form {
+    margin-bottom: 60px; /* Add more margin to the bottom of the form */
+  }
+
+  .img-fluid {
+    margin-top: 60px;
+    height: 350px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  section.vh-100 {
+    margin-bottom: 100px;
+  }
+}
+
+/* Adjustments for small screens (below 450px) */
+@media (max-width: 560px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Extra padding at the bottom */
+  }
+
+  form {
+    margin-bottom: 70px; /* More margin to ensure no overlap */
+  }
+
+  .img-fluid {
+    margin-top: 60px;
+    height: 300px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  /* section.vh-100 { */
+  /* margin-bottom: 10px; */
+  /* } */
+}
+
+/* Adjustments for small screens (below 450px) */
+@media (max-width: 450px) {
+  .container-fluid {
+    padding-bottom: 40px; /* Extra padding at the bottom */
+  }
+
+  form {
+    margin-bottom: 70px; /* More margin to ensure no overlap */
+  }
+
+  .img-fluid {
+    margin-top: 40px;
+    height: 250px;
+    display: block; /* Make image block level */
+    margin-left: auto; /* Align the left side to auto */
+    margin-right: auto; /* Align the right side to auto */
+  }
+
+  section.vh-100 {
+    margin-bottom: 40px;
+  }
+
+  .h-custom {
+    height: 100%;
+  }
+}

@@ -6,6 +6,10 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Apply the font globally */
 /* body {
     font-family: 'Emirates', sans-serif;
@@ -75,4 +79,11 @@ ngx-material-timepicker-overlay {
 button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
+}
+
+:root {
+  --accent-color: #ff5733;
+  --default-color: #333;
+  --surface-color: #f4f4f4;
+  --contrast-color: #fff;
 }

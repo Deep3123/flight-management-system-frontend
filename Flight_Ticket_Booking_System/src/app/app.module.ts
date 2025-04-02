@@ -33,6 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ContactComponent } from './contact/contact.component';
     FlightDialogComponent,
     FlightPageComponent,
     ContactComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
