@@ -36,7 +36,7 @@
                 <path
                     d="M80-120v-720h400v160h400v560H80Zm80-80h240v-80H160v80Zm0-160h240v-80H160v80Zm0-160h240v-80H160v80Zm0-160h240v-80H160v80Zm320 480h320v-400H480v400Zm80-240v-80h160v80H560Zm0 160v-80h160v80H560Z" />
             </svg>
-            <span class="destination-label">PARIS</span>
+            <span class="destination-label">DUBAI</span>
         </div>
 
         <div class="destination">
@@ -46,7 +46,7 @@
                 <path
                     d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z" />
             </svg>
-            <span class="destination-label">DUBAI</span>
+            <span class="destination-label">MUMBAI</span>
         </div>
 
         <div class="destination">
@@ -139,7 +139,9 @@
 
         <!-- Optional animation on 'Buy Tickets' Button -->
         <div class="text-center">
-            <a [routerLink]="'/buy-ticket'" class="btn btn-lg btn-primary animated fadeInUp">Buy Tickets Now</a>
+            <a routerLink="/buy-ticket" class="btn btn-lg btn-primary animated fadeInUp"
+                style="align-items: center;gap: 5px">Buy Tickets
+                Now<mat-icon>launch</mat-icon></a>
         </div>
     </div>
 </section>
@@ -214,7 +216,7 @@
 
             <div class="col-lg-6">
                 <div class="position-relative rounded-4 overflow-hidden shadow-lg">
-                    <img src="about_hero.jpg" alt="Travel Inspiration" class="img-fluid w-100">
+                    <img src="about_hero.png" alt="Travel Inspiration" class="img-fluid w-100">
                     <div class="position-absolute bottom-0 start-0 end-0 bg-white p-4 bg-opacity-75">
                         <h5 class="mb-2 fw-semibold">Our Promise to You</h5>
                         <ul class="list-unstyled text-muted small">
@@ -240,7 +242,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
                     <div class="col">
                         <div class="card border-0 shadow-sm rounded-4">
-                            <img src="team_member_1.jpg" class="card-img-top rounded-top" alt="Team Member 1">
+                            <img src="team_member_1.png" class="card-img-top rounded-top" alt="Team Member 1">
                             <div class="card-body text-center">
                                 <h6 class="card-title fw-semibold mb-1">Alice Wonderland</h6>
                                 <p class="card-text text-muted small">Head of Customer Experience</p>
@@ -249,7 +251,7 @@
                     </div>
                     <div class="col">
                         <div class="card border-0 shadow-sm rounded-4">
-                            <img src="team_member_2.jpg" class="card-img-top rounded-top" alt="Team Member 2">
+                            <img src="team_member_2.png" class="card-img-top rounded-top" alt="Team Member 2">
                             <div class="card-body text-center">
                                 <h6 class="card-title fw-semibold mb-1">Bob The Builder</h6>
                                 <p class="card-text text-muted small">Chief Technology Officer</p>
@@ -258,7 +260,7 @@
                     </div>
                     <div class="col">
                         <div class="card border-0 shadow-sm rounded-4">
-                            <img src="team_member_3.jpg" class="card-img-top rounded-top" alt="Team Member 3">
+                            <img src="team_member_3.png" class="card-img-top rounded-top" alt="Team Member 3">
                             <div class="card-body text-center">
                                 <h6 class="card-title fw-semibold mb-1">Charlie Chaplin</h6>
                                 <p class="card-text text-muted small">Marketing Director</p>
