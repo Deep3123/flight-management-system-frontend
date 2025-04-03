@@ -8,7 +8,7 @@ declare var $: any; // Declare jQuery for DataTable initialization
 
 @Component({
   selector: "app-contact-us-page",
-  standalone:false,
+  standalone: false,
   templateUrl: "./contact-us-page.component.html",
   styleUrls: ["./contact-us-page.component.css"],
 })
@@ -18,7 +18,7 @@ export class ContactUsPageComponent implements OnInit {
   constructor(
     private contactService: ContactServiceService, // Contact service
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAllContacts();
@@ -30,12 +30,6 @@ export class ContactUsPageComponent implements OnInit {
       (response: any) => {
         this.contacts = response;
         this.reinitializeDataTable(); // Reinitialize DataTable
-        Swal.fire({
-          icon: "success",
-          title: "Data Loaded Successfully",
-          text: "Contact queries have been loaded.",
-          confirmButtonText: "OK",
-        });
       },
       (error) => {
         Swal.fire({
@@ -56,12 +50,12 @@ export class ContactUsPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      Swal.fire({
-        icon: "info",
-        title: "Closed View",
-        text: "You have closed the contact query details.",
-        confirmButtonText: "OK",
-      });
+      // Swal.fire({
+      //   icon: "info",
+      //   title: "Closed View",
+      //   text: "You have closed the contact query details.",
+      //   confirmButtonText: "OK",
+      // });
       // Optionally, you can refresh the list of contacts
       this.getAllContacts();
     });
@@ -79,7 +73,7 @@ export class ContactUsPageComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // Call the delete API from service
-        this.contactService.deleteContact(contact.id).subscribe(
+        this.contactService.deleteContact(contact).subscribe(
           (response) => {
             Swal.fire({
               icon: "success",
@@ -99,6 +93,14 @@ export class ContactUsPageComponent implements OnInit {
             });
           }
         );
+      }
+      else{
+        Swal.fire({
+          icon: "info",
+          title: "Deletion Cancelled",
+          text: "The contact query was not deleted.",
+          confirmButtonText: "OK",
+        });        
       }
     });
   }

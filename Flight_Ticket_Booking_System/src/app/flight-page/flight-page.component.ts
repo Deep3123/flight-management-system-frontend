@@ -89,9 +89,9 @@ export class FlightPageComponent implements OnInit {
         Swal.fire({
           icon: "info",
           title: "Deletion Cancelled",
-          text: "The flight was not deleted.",
+          text: "The flight details have not been deleted.",
           confirmButtonText: "OK",
-        });
+        });        
       }
     });
   }

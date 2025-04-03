@@ -19,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   constructor(
     private userService: UserAuthServiceService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -90,7 +90,7 @@ export class AdminPageComponent implements OnInit {
         Swal.fire({
           icon: "info",
           title: "Deletion Cancelled",
-          text: "The user was not deleted.",
+          text: "The user details have not been deleted.",
           confirmButtonText: "OK",
         });
       }

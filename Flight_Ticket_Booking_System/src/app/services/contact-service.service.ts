@@ -9,7 +9,7 @@ export class ContactServiceService {
 
   private baseUrl: string = "http://localhost:8080/contact"; // Make sure this is the correct API base URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   saveContactData(object: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/save-contact-us-details`, object);
@@ -25,7 +25,7 @@ export class ContactServiceService {
     return this.http.get(`${this.baseUrl}/get-all-contact-us-details`);
   }
 
-  deleteContact(id: any) {
-    throw new Error("Method not implemented.");
+  deleteContact(obj: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/delete-contact-us-details`, obj);
   }
 }

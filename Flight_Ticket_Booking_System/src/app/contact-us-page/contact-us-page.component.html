@@ -10,7 +10,7 @@
                     <th>Phone</th>
                     <th>Message</th>
                     <th>Submitted At</th>
-                    <th class="text-center">Actions</th>
+                    <th colspan="2" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +26,14 @@
                         <!-- View Details Button -->
                         <button class="btn btn-info" (click)="viewContact(contact)"
                             style="display: flex; align-items: center; gap: 5px;">
-                            <mat-icon>visibility</mat-icon> 
+                            <mat-icon style="color: white;">visibility</mat-icon>
                         </button>
+                    </td>
+                    <td class="text-center">
                         <!-- Delete Button -->
-                        <button class="btn btn-danger" (click)="deleteContact(contact)">
-                            <mat-icon>delete</mat-icon> 
+                        <button class="btn btn-danger" (click)="deleteContact(contact)"
+                            style="display: flex; align-items: center; gap: 5px;">
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>
