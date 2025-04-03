@@ -24,7 +24,7 @@
           <div class="form-outline mb-4">
             <label class="form-label" for="form3Example3">Username:</label>
             <input type="text" id="form3Example3" class="form-control form-control-lg" name="username" ngModel required
-              pattern="^[a-zA-Z0-9]+$" minlength="4" maxlength="15" #username="ngModel"
+              pattern="^[a-zA-Z0-9_]+$" minlength="4" maxlength="15" #username="ngModel"
               placeholder="Enter your username" />
             <div *ngIf="username.invalid && username.touched" class="error">
               <div *ngIf="username.errors?.['required']">Username is required</div>

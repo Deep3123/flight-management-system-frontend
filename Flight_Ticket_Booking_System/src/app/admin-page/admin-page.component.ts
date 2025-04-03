@@ -27,7 +27,7 @@ export class AdminPageComponent implements OnInit {
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe((response: any) => {
-      // console.log(response); // Debugging
+      console.log(response); // Debugging
       this.users = response;
       this.reinitializeDataTable(); // Ensure DataTable updates correctly
     });

@@ -1,0 +1,322 @@
+/* css for flight-booking-page */
+/* figure, footer, header, main, section, video {
+    display: block;
+}
+
+.page-header-util__blank-container-size .page-header-util__content-header, .page-header-util__blank-container-size .page-header-util__header {
+  position: static;
+  right: unset;
+  bottom: unset;
+  left: unset;
+  padding-bottom: 0;
+  transform: unset;
+  box-sizing:inherit;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 991px) {
+  .page-header-util__dark .content-header {
+      padding: 0 15px;
+  }
+}
+
+.page-header-util__content-header .content-header {
+  display: flex
+;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding-bottom: 30px;
+}
+
+.page-header-util__header {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  max-width: 1100px;
+}
+
+.content-header {
+  width: 100%;
+} */
+
+/* Header styles */
+header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  background-color: #d71921;
+  padding: 15px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emirates-logo {
+  height: 40px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin-left: 20px;
+}
+
+nav ul li {
+  position: relative;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 25px 0;
+  display: inline-block;
+}
+
+nav ul li.active {
+  border-bottom: 3px solid #d71921;
+}
+
+/* Main content */
+.book-header {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.book-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Booking container */
+.booking-container {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 20px;
+}
+
+/* Booking tabs */
+.booking-tabs ul {
+  display: flex;
+  list-style: none;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.booking-tabs li {
+  margin-right: 20px;
+}
+
+.booking-tabs button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.booking-tabs li.active button {
+  color: #d71921;
+  font-weight: bold;
+  border-bottom: 2px solid #d71921;
+}
+
+/* Skywards login section */
+.skywards-login {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.skywards-login i {
+  margin-right: 10px;
+  color: #666;
+}
+
+.skywards-login a {
+  color: #d71921;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Search form sections */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.airports-container {
+  display: flex;
+  gap: 20px;
+}
+
+.airport-field {
+  flex: 1;
+  position: relative;
+}
+
+.date-field {
+  position: relative;
+}
+
+.input-field,
+.date-input input,
+.dropdown input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.airport-field label,
+.date-field label,
+.passenger-field label,
+.class-field label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: white;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+}
+
+/* Dates container */
+.dates-container {
+  position: relative;
+}
+
+/* Passenger and class selection */
+.passenger-class {
+  display: flex;
+  gap: 20px;
+}
+
+.passenger-field,
+.class-field {
+  flex: 1;
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* Promo and search button section */
+.promo-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.promo-code {
+  background: none;
+  border: none;
+  color: #d71921;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.promo-code i {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.search-button {
+  background-color: #d71921;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #b5151c;
+}
+
+/* Info section */
+.info-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.info-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.info-content p {
+  margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .airports-container,
+  .passenger-class {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .promo-search {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+}
+

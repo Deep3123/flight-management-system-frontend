@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Contact Us Query</h2>
+
+<mat-dialog-content>
+    <div>
+        <strong>Name:</strong> {{ contact.name }}<br />
+        <strong>Email:</strong> {{ contact.email }}<br />
+        <strong>Phone:</strong> {{ contact.phoneNumber }}<br />
+        <strong>Message:</strong>
+        <p>{{ contact.message }}</p>
+        <strong>Submitted At:</strong> {{ contact.submittedAt | date:'short' }}<br />
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <!-- Delete Button (optional) -->
+    <button mat-button (click)="deleteContact()">Delete</button>
+</mat-dialog-actions>

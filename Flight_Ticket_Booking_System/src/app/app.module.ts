@@ -34,6 +34,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
+import { FlightBookingComponent } from './flight-booking/flight-booking.component';
+import { ContactUsPageComponent } from './contact-us-page/contact-us-page.component';
+import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { HomeComponent } from './home/home.component';
     FlightPageComponent,
     ContactComponent,
     HomeComponent,
+    FlightBookingComponent,
+    ContactUsPageComponent,
+    ContactUsDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,53 +16,55 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> <!-- Centering navigation items -->
                 <li class="nav-item">
                     <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/"
-                        style="display: flex; align-items: center; gap: 5px"><mat-icon>home</mat-icon> Home</a>
+                        style="display: flex; align-items: center; gap: 5px;font-size: 15px;"><mat-icon>home</mat-icon>
+                        Home</a>
                 </li>
                 <!-- Navbar link for About Us -->
                 <li class="nav-item">
                     <a class="nav-link px-3 py-3 fw-bold text-light page-scroll" [routerLink]="'/'" [fragment]="'about'"
-                        style="display: flex; align-items: center; gap: 5px">
+                        style="display: flex; align-items: center; gap: 5px;font-size: 15px;">
                         <mat-icon>info</mat-icon> About Us
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/contact-us"
-                        style="display: flex; align-items: center;gap: 5px"><mat-icon>perm_identity</mat-icon>
+                        style="display: flex; align-items: center;gap: 5px;font-size: 15px;"><mat-icon>perm_identity</mat-icon>
                         Get in Touch</a>
                 </li>
                 <li *ngIf="isAdmin" class="nav-item">
                     <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/admin"
-                        style="display: flex; align-items: center;gap: 5px"><mat-icon>perm_contact_calendar</mat-icon>
+                        style="display: flex; align-items: center;gap: 5px;font-size: 15px;"><mat-icon>perm_contact_calendar</mat-icon>
                         Manage Users</a>
-                </li> 
+                </li>
                 <li *ngIf="isAdmin" class="nav-item">
                     <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/flight"
-                        style="display: flex; align-items: center;gap: 5px"><mat-icon>flight</mat-icon>
+                        style="display: flex; align-items: center;gap: 5px; font-size: 15px;"><mat-icon>flight</mat-icon>
                         Flight Details</a>
                 </li>
                 <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/"
-                        style="display: flex; align-items: center;gap: 5px"><mat-icon>source</mat-icon>
+                    <a class="nav-link px-3 py-3 fw-bold text-light" routerLink="/contact-data"
+                        style="display: flex; align-items: center;gap: 5px;font-size: 15px;"><mat-icon>source</mat-icon>
                         Contact Data</a>
                 </li>
 
                 <!-- Login Button (Visible if Not Logged In) for Mobile View -->
                 <li *ngIf="!isLoggedIn" class="nav-item d-lg-none">
                     <a routerLink="/login" class="nav-link px-4 py-3 fw-bold text-light"
-                        style="display: flex; align-items: center; gap: 5px"><mat-icon>login</mat-icon> Login</a>
+                        style="display: flex; align-items: center; gap: 5px;font-size: 15px;"><mat-icon>login</mat-icon>
+                        Login</a>
                 </li>
 
                 <!-- Signup Button (Visible if Not Logged In) for Mobile View -->
                 <li *ngIf="!isLoggedIn" class="nav-item d-lg-none">
                     <a routerLink="/register" class="nav-link px-4 py-3 fw-bold text-light"
-                        style="display: flex; align-items: center; gap: 5px"><mat-icon>add_to_home_screen</mat-icon>Signup</a>
+                        style="display: flex; align-items: center; gap: 5px; font-size: 15px;"><mat-icon>add_to_home_screen</mat-icon>Signup</a>
                 </li>
 
                 <!-- Logout Button (Visible if Logged In) for Mobile View -->
                 <li *ngIf="isLoggedIn" class="nav-item d-lg-none">
                     <a (click)="logout()" class="nav-link px-4 py-3 fw-bold text-light"
-                        style="display: flex; align-items: center; gap: 5px"><mat-icon>exit_to_app</mat-icon>Logout</a>
+                        style="display: flex; align-items: center; gap: 5px;font-size: 15px;"><mat-icon>exit_to_app</mat-icon>Logout</a>
                 </li>
             </ul>
         </div>

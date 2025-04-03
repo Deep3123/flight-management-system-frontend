@@ -11,6 +11,8 @@ import { ErrorPageComponent } from "./error-page/error-page.component";
 import { FlightPageComponent } from "./flight-page/flight-page.component";
 import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
+import { FlightBookingComponent } from "./flight-booking/flight-booking.component";
+import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -32,7 +34,18 @@ const routes: Routes = [
     canActivate: [authGuard], // Apply the guard to this route
     data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
   },
+  {
+    path: "contact-data",
+    component: ContactUsPageComponent,
+    canActivate: [authGuard], // Apply the guard to this route
+    data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
+  },
   { path: "contact-us", component: ContactComponent, canActivate: [authGuard] },
+  {
+    path: "flight-booking",
+    component: FlightBookingComponent,
+    canActivate: [authGuard],
+  },
   { path: "", component: HomeComponent },
   { path: "**", component: ErrorPageComponent },
 ];

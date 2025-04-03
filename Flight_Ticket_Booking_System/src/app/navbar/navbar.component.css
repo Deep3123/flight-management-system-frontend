@@ -3,6 +3,10 @@
   background-color: #414141;
 }
 
+.navbar-nav.nav-item.nav-link {
+  border-bottom: 3px solid #d71921;
+}
+
 @media (max-width: 300px) {
   .image {
     width: 40%;

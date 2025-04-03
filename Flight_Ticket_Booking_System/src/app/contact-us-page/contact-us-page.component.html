@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <!-- Contact Us DataTable -->
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered" id="contactUsTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Submitted At</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of contacts; let i = index; trackBy: trackByFn">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phoneNumber }}</td>
+                    <td>{{ contact.message | slice:0:50 }}{{ contact.message.length > 50 ? '...' : '' }}</td>
+                    <!-- Display message snippet -->
+                    <td>{{ contact.submittedAt | date:'short' }}</td>
+                    <td class="text-center">
+                        <!-- View Details Button -->
+                        <button class="btn btn-info" (click)="viewContact(contact)"
+                            style="display: flex; align-items: center; gap: 5px;">
+                            <mat-icon>visibility</mat-icon> 
+                        </button>
+                        <!-- Delete Button -->
+                        <button class="btn btn-danger" (click)="deleteContact(contact)">
+                            <mat-icon>delete</mat-icon> 
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
