@@ -98,10 +98,7 @@ nav ul li.active {
   margin-bottom: 20px;
 }
 
-.subtitle {
-  color: #666;
-  font-size: 1rem;
-}
+
 
 /* Booking container */
 .booking-container {
@@ -320,3 +317,149 @@ nav ul li.active {
   }
 }
 
+/* Calendar Section */
+.calendar-section {
+  background-color: #fff;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.calendar-flexible {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+.switch input:checked + .slider {
+  background-color: #2196f3;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* Calendar view with two months */
+/* .calendar-view {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.calendar-month {
+  flex: 1;
+  min-width: 300px;
+}
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.nav-arrow {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.day-header {
+  padding: 0.5rem 0;
+}
+.dates-grid {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.3rem;
+}
+.calendar-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar-cell {
+  text-align: center;
+  padding: 0.5rem 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.calendar-cell.empty {
+  background: none;
+  cursor: default;
+}
+.calendar-cell:hover {
+  background-color: #eee;
+}
+.calendar-cell.selected {
+  background-color: #2196f3;
+  color: #fff;
+  font-weight: bold;
+} */
+
+* {
+  box-sizing: inherit;
+}
+
+.title {
+  color: #666666;
+  font-size: 10px;
+  font-family: HelveticaNeue_medium, Helvetica, Arial, sans-serif;
+  /* opacity:0.7; */
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+}

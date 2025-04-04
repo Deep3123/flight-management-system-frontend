@@ -253,7 +253,7 @@
     </div>
 </main> -->
 
-<div class="logo-container">
+<!-- <div class="logo-container">
     <img src="/api/placeholder/150/50" alt="Emirates logo" class="emirates-logo">
 </div>
 <nav>
@@ -368,8 +368,8 @@
                                 </button></div>
                         </div>
                     </div>
-                </div>
-                <!-- <div class="DayPicker_wrapper__horizontal DayPicker_wrapper__horizontal_1" style="width: 1024px;">
+                </div> -->
+<!-- <div class="DayPicker_wrapper__horizontal DayPicker_wrapper__horizontal_1" style="width: 1024px;">
                     <div class="DayPicker_weekHeaders DayPicker_weekHeaders_1 DayPicker_weekHeaders__horizontal DayPicker_weekHeaders__horizontal_2"
                         aria-hidden="true" role="presentation">
                         <div class="DayPicker_weekHeader DayPicker_weekHeader_1" style="left: 0px;">
@@ -1207,7 +1207,227 @@
                         </div>
                     </div>
                 </div> -->
+<!-- </div>
+        </div>
+    </section>
+</main> -->
+
+<!-- <div class="booking-container">
+
+    <div class="search-form">
+        <div class="airports-container">
+            <div class="airport-field">
+                <label for="departure">Departure airport</label>
+                <input type="text" id="departure" value="Ahmedabad (AMD)" class="input-field">
+                <button class="clear-btn"><i class="fa fa-times"></i></button>
             </div>
+            <div class="airport-field">
+                <label for="arrival">Arrival airport</label>
+                <input type="text" id="arrival" value="Brisbane (BNE)" class="input-field">
+            </div>
+        </div>
+
+        <div class="dates-container">
+            <div class="date-field">
+                <label>Departing - Returning</label>
+                <div class="date-input" (click)="toggleCalendar()">
+                    <input type="text" placeholder="Select dates" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="passenger-class">
+            <div class="passenger-field">
+                <label for="passengers">Passengers</label>
+                <div class="dropdown" (click)="togglePassengerDropdown()">
+                    <input type="text" id="passengers" [value]="selectedPassenger" readonly>
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <div *ngIf="showPassengerDropdown" class="dropdown-menu">
+                    <ul>
+                        <li (click)="selectPassenger('1 Adult')">1 Adult</li>
+                        <li (click)="selectPassenger('2 Adults')">2 Adults</li>
+                        <li (click)="selectPassenger('3 Adults')">3 Adults</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="class-field">
+                <label for="class">Class</label>
+                <div class="dropdown" (click)="toggleClassDropdown()">
+                    <input type="text" id="class" [value]="selectedClass" readonly>
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <div *ngIf="showClassDropdown" class="dropdown-menu">
+                    <ul>
+                        <li (click)="selectClass('Economy Class')">Economy Class</li>
+                        <li (click)="selectClass('Business Class')">Business Class</li>
+                        <li (click)="selectClass('First Class')">First Class</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="promo-search">
+            <button class="promo-code">
+                Use promotional code
+                <i class="fa fa-chevron-right"></i>
+            </button>
+            <button class="search-button">Search flights</button>
+        </div>
+    </div>
+
+    <section class="calendar-section" *ngIf="showCalendar">
+        <div class="calendar-header">
+            <span class="calendar-title">Please choose your departure date</span>
+            <div class="calendar-flexible">
+                <span>My dates are flexible (+/- 3 days)</span>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="flexibleDates">
+                    <span class="slider" (click)="toggleFlexibleDates()"></span>
+                </label>
+            </div>
+        </div>
+        <div class="calendar-view">
+            <div class="calendar-month">
+                <div class="month-header">
+                    {{ getMonthYear(currentMonth) }}
+                </div>
+                <div class="days-header">
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                </div>
+                <div class="dates-grid">
+                    <div class="calendar-row" *ngFor="let week of calendar1">
+                        <div class="calendar-cell" *ngFor="let day of week" (click)="onDateSelect(day)" [ngClass]="{
+                     'empty': !day.inCurrentMonth,
+                     'selected': selectedDate && isSameDate(day.date, selectedDate)
+                   }">
+                            <span *ngIf="day.inCurrentMonth">{{ day.date.getDate() }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-month">
+                <div class="month-header">
+                    {{ getMonthYear(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1)) }}
+                    <button class="nav-arrow" (click)="navigateNext()">&rarr;</button>
+                </div>
+                <div class="days-header">
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                </div>
+                <div class="dates-grid">
+                    <div class="calendar-row" *ngFor="let week of calendar2">
+                        <div class="calendar-cell" *ngFor="let day of week" (click)="onDateSelect(day)" [ngClass]="{
+                     'empty': !day.inCurrentMonth,
+                     'selected': selectedDate && isSameDate(day.date, selectedDate)
+                   }">
+                            <span *ngIf="day.inCurrentMonth">{{ day.date.getDate() }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+
+
+<main id="maincontent">
+    <div class="book-header">
+        <p class="title">BOOK</p>
+        <h1 class="content-header__text, content-header__text--large, page-header-util__text reset-h"
+            style="font-family: Emirates-Bold,sans-serif; font-size: 50px;">Book a flight</h1>
+        <p class="subtitle">Search for JetWayz flights and book online. See our routes and schedules, and discover more
+            about the experience you can look forward to on board.</p>
+    </div>
+
+    <div class="booking-container">
+        <div class="booking-tabs">
+            <ul>
+                <li class="active"><button>Return</button></li>
+                <li><button>One way</button></li>
+                <li><button>Multi-city</button></li>
+            </ul>
+        </div>
+
+        <div class="skywards-login">
+            <i class="fa fa-user-circle"></i>
+            <a href="#">Log in to book Classic Rewards</a>
+            <i class="fa fa-chevron-right"></i>
+        </div>
+
+        <div class="search-form">
+            <div class="airports-container">
+                <div class="airport-field">
+                    <label for="departure">Departure airport</label>
+                    <input type="text" id="departure" class="input-field">
+                    <button class="clear-btn"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="airport-field">
+                    <label for="arrival">Arrival airport</label>
+                    <input type="text" id="arrival" class="input-field">
+                </div>
+            </div>
+
+            <div class="dates-container">
+                <div class="date-field">
+                    <label>Departing - Returning</label>
+                    <div class="date-input">
+                        <input type="text" placeholder="Select dates" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="passenger-class">
+                <div class="passenger-field">
+                    <label for="passengers">Passengers</label>
+                    <div class="dropdown">
+                        <input type="text" id="passengers" value="1 Adult" readonly>
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="class-field">
+                    <label for="class">Class</label>
+                    <div class="dropdown">
+                        <input type="text" id="class" value="Economy Class" readonly>
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-search">
+                <button class="promo-code">
+                    Use promotional code
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+                <button class="search-button">Search flights</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="info-section">
+        <h2>How to book a flight ticket with Emirates</h2>
+        <div class="info-content">
+            <p><strong>Book a flight ticket online</strong></p>
+            <p>To find the right air ticket for your trip, just enter the location you're flying from and your flight
+                destination. Enter your dates, class of travel and the number of passengers. Select 'Search flights' to
+                continue with the online flight booking process and book a flight ticket that suits your travel plans.
+            </p>
+            <p><strong>Compare flight ticket fares</strong></p>
+            <p>Choose from a range of fares that give you more benefits on your journey. You can choose Emirates fares
+                that give you more baggage allowance, free seat selection and greater flexibility to change your travel
+                dates. Some fares also offer upgrade options and more Skywards Miles.</p>
         </div>
     </section>
 </main>

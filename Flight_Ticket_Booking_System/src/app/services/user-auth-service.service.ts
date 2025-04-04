@@ -9,13 +9,12 @@ import { AuthService } from "./auth-service.service";
 export class UserAuthServiceService {
   private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, user);
   }
-  
 
   // Send login data to backend API (no Authorization needed)
   userLogin(params: any): Observable<any> {
@@ -47,12 +46,17 @@ export class UserAuthServiceService {
 
   // Delete user (Authorization required)
   deleteUser(username: any): Observable<any> {
-    return this.http.get(
-      `${this.baseUrl}/delete-user-by-username/${username}`
-    );
+    return this.http.get(`${this.baseUrl}/delete-user-by-username/${username}`);
   }
 
   updateUser(user: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/update-user-by-username`, user);
+  }
+
+  checkAccountExists(): Observable<any> {
+    return this.http.post(
+      `${this.baseUrl}/check-account-exists`,
+      this.authService.getToken()
+    );
   }
 }

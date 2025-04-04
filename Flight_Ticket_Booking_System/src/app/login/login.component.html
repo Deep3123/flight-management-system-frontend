@@ -1,73 +1,62 @@
-<!-- <div class="card shadow-lg my-5 mx-5"> -->
 <section class="vh-100">
-  <!-- Centered Login Header -->
-  <!-- <div class="text-center mt-4">
-      <h2>Login</h2>
-    </div> -->
-
   <div class="container-fluid h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="login.jpg" class="img-fluid" alt="Sample image">
+      <div class="col-md-9 col-lg-6 col-xl-5 text-center">
+        <img src="login.jpg" class="img-fluid" alt="JetWayz Login Banner">
       </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-4">
-        <!-- <div class="central-message">
-          <h4>
-            <span class="part1">Welcome Back!</span><br>
-            <span class="part2">Log in to continue</span><br>
-            <span class="part3">Access your account and manage your bookings effortlessly.</span>
-          </h4>
-        </div> -->
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-4 login">
+        <div class="login-container">
+          <div class="login-header">
+            <h2>JetWayz</h2>
+            <p>Flight Booking System</p>
+            <div class="orange-accent"></div>
+          </div>
 
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-          <!-- Username input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Username:</label>
-            <input type="text" id="form3Example3" class="form-control form-control-lg" name="username" ngModel required
-              pattern="^[a-zA-Z0-9_]+$" minlength="4" maxlength="15" #username="ngModel"
-              placeholder="Enter your username" />
-            <div *ngIf="username.invalid && username.touched" class="error">
-              <div *ngIf="username.errors?.['required']">Username is required</div>
-              <div *ngIf="username.errors?.['pattern']">Username can only contain alphanumeric characters</div>
-              <div *ngIf="username.errors?.['minlength']">Username must be at least 4 characters</div>
-              <div *ngIf="username.errors?.['maxlength']">Username cannot be more than 15 characters</div>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <!-- Username input -->
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" class="form-control" name="username" ngModel required
+                pattern="^[a-zA-Z0-9_]+$" minlength="4" maxlength="15" #username="ngModel"
+                placeholder="Enter your username" />
+              <div *ngIf="username.invalid && username.touched" class="error-message">
+                <div *ngIf="username.errors?.['required']">Username is required</div>
+                <div *ngIf="username.errors?.['pattern']">Username can only contain alphanumeric characters</div>
+                <div *ngIf="username.errors?.['minlength']">Username must be at least 4 characters</div>
+                <div *ngIf="username.errors?.['maxlength']">Username cannot be more than 15 characters</div>
+              </div>
             </div>
-          </div>
 
-          <!-- Password input -->
-          <div class="form-outline mb-3">
-            <label class="form-label" for="form3Example4">Password:</label>
-            <input type="password" id="form3Example4" class="form-control form-control-lg" name="password" ngModel
-              required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-              #password="ngModel" placeholder="Enter password" />
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
-              <div *ngIf="password.errors?.['required']">Password is required.</div>
-              <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long.</div>
-              <div *ngIf="password.errors?.['pattern']">Password must include at least one uppercase letter, one
-                lowercase letter, one number, and one special character.</div>
+            <!-- Password input -->
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" class="form-control" name="password" ngModel required minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" #password="ngModel"
+                placeholder="Enter password" />
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+                <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long.</div>
+                <div *ngIf="password.errors?.['pattern']">Password must include at least one uppercase letter, one
+                  lowercase letter, one number, and one special character.</div>
+              </div>
             </div>
-          </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" name="rememberMe" ngModel />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="remember-me">
+                <input class="form-check-input me-2" type="checkbox" name="rememberMe" ngModel />
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
             </div>
-            <a routerLink="/forgot-password" class="text-body">Forgot password?</a>
-          </div>
 
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginForm.invalid"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a class="link-danger"
-                routerLink="/register">Register</a></p>
-          </div>
-        </form>
+            <button type="submit" class="login-button" [disabled]="loginForm.invalid">Log In</button>
+
+            <div class="signup-link">
+              Don't have an account? <a routerLink="/register">Register</a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<!-- </div> -->

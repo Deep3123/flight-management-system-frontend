@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <!-- Contact Us DataTable -->
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered" id="contactUsTable">
+        <table class="table table-striped table-hover table-bordered text-center" id="contactUsTable">
             <thead class="thead-dark">
                 <tr>
                     <th>S.No.</th>
@@ -22,14 +22,14 @@
                     <td>{{ contact.message | slice:0:50 }}{{ contact.message.length > 50 ? '...' : '' }}</td>
                     <!-- Display message snippet -->
                     <td>{{ contact.submittedAt | date:'short' }}</td>
-                    <td class="text-center">
+                    <td class="text-center" style="justify-items: center;">
                         <!-- View Details Button -->
-                        <button class="btn btn-info" (click)="viewContact(contact)"
+                        <button class="btn btn-info"  (click)="viewContact(contact)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon style="color: white;">visibility</mat-icon>
                         </button>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center" style="justify-items: center;">
                         <!-- Delete Button -->
                         <button class="btn btn-danger" (click)="deleteContact(contact)"
                             style="display: flex; align-items: center; gap: 5px;">

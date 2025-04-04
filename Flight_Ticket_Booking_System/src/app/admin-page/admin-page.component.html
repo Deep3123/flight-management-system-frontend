@@ -12,7 +12,7 @@
 
     <!-- User DataTable -->
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered" id="userTable">
+        <table class="table table-striped table-hover table-bordered text-center" id="userTable">
             <thead class="thead-dark">
                 <tr>
                     <th>S.No.</th>
@@ -38,7 +38,7 @@
                     <td>{{ user.updatedAt | date:'short' }}</td>
 
                     <!-- Actions Column with buttons styled with both Angular Material and custom styles -->
-                    <td class="text-center">
+                    <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-success" (click)="editUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>edit</mat-icon> 
@@ -49,7 +49,7 @@
                         </button> -->
                     </td>
 
-                    <td class="text-center">
+                    <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-danger" (click)="deleteUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>delete</mat-icon> 
