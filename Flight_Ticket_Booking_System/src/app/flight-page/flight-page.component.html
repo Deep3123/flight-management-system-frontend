@@ -1,9 +1,11 @@
-<div class="container mt-4">
+<div class="container mt-5">
     <!-- Add Flight Button -->
-    <button class="btn btn-primary mb-3" (click)="openForm()"
-        style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
-        <mat-icon>add</mat-icon> Add Flight
-    </button>
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary mb-3" (click)="openForm()"
+            style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+            <mat-icon>add</mat-icon> Add Flight
+        </button>
+    </div>
 
     <!-- Flight DataTable -->
     <div class="table-responsive">
@@ -13,7 +15,9 @@
                     <th>S.No.</th>
                     <th>Flight Number</th>
                     <th>Departure Date</th>
+                    <th>Departure Time</th>
                     <th>Arrival Date</th>
+                    <th>Arrival Time</th>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
                     <th>Price</th>
@@ -27,8 +31,10 @@
                 <tr *ngFor="let flight of flights; let i = index; trackBy: trackByFn">
                     <td>{{ i + 1 }}</td>
                     <td>{{ flight.flightNumber }}</td>
-                    <td>{{ flight.departureDate | date:'short' }}</td>
-                    <td>{{ flight.arrivalDate | date:'short' }}</td>
+                    <td>{{ flight.departureDate | date:'yyyy-MM-dd' }}</td>
+                    <td>{{ flight.departureTime }}</td>
+                    <td>{{ flight.departureDate | date:'yyyy-MM-dd' }}</td>
+                    <td>{{ flight.arrivalTime }}</td>
                     <td>{{ flight.departureAirport }}</td>
                     <td>{{ flight.arrivalAirport }}</td>
                     <td>₹{{ flight.price }}</td>
@@ -40,13 +46,13 @@
                     <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-success" (click)="editFlight(flight)"
                             style="display: flex; align-items: center; gap: 5px;border-radius: 20px;">
-                            <mat-icon>edit</mat-icon> 
+                            <mat-icon>edit</mat-icon>
                         </button>
                     </td>
                     <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-danger" (click)="deleteFlight(flight)"
                             style="display: flex; align-items: center; gap: 5px;border-radius: 20px;">
-                            <mat-icon>delete</mat-icon> 
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>

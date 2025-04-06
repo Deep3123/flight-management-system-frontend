@@ -1,0 +1,21 @@
+<div class="results-container">
+    <h2>Available Flights</h2>
+
+    <div *ngIf="flightResults.length > 0; else noResults">
+        <div class="flight-card" *ngFor="let flight of flightResults">
+            <h3>{{ flight.airlineName }} | {{ flight.flightNumber }}</h3>
+            <p><strong>From:</strong> {{ flight.departureAirport }}</p>
+            <p><strong>To:</strong> {{ flight.arrivalAirport }}</p>
+            <p><strong>Departure Date:</strong> {{ flight.departureDate | date:'yyyy-MM-dd' }}</p>
+            <p><strong>Departure Time:</strong> {{ flight.departureTime }}</p>
+            <p><strong>Arrival Date:</strong> {{ flight.arrivalDate | date:'yyyy-MM-dd' }}</p>
+            <p><strong>Arrival Time:</strong> {{ flight.arrivalTime }}</p>
+            <p><strong>Class:</strong> {{ flight.flightClass }}</p>
+            <p><strong>Seats Left:</strong> {{ flight.seatsAvailable }}</p>
+        </div>
+    </div>
+
+    <ng-template #noResults>
+        <p>No flights found matching your criteria.</p>
+    </ng-template>
+</div>

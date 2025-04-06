@@ -20,6 +20,10 @@ export class FlightAuthServiceService {
     return this.http.get(`${this.apiUrl}/get-flights-details-by-flight-number/${flightNumber}`);
   }
 
+  getFlightByAllDetails(flight: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/get-flight-details-by-departure-and-arrival`, flight);
+  }
+
   // Save new flight details
   saveFlightData(flight: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/add-flight-details`, flight);

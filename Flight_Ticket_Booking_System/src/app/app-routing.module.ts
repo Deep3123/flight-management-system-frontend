@@ -13,6 +13,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { FlightBookingComponent } from "./flight-booking/flight-booking.component";
 import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.component";
+import { FlightResultsComponent } from "./flight-results/flight-results.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -46,6 +47,11 @@ const routes: Routes = [
     component: FlightBookingComponent,
     canActivate: [authGuard],
   },
+  {
+    path: "flight-result",
+    component: FlightResultsComponent,
+    canActivate: [authGuard],
+  },
   { path: "", component: HomeComponent },
   { path: "**", component: ErrorPageComponent },
 ];
@@ -61,4 +67,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

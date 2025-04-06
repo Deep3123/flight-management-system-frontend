@@ -130,7 +130,7 @@ body {
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .register-container {
-    width: 500px; /* Slightly smaller width on medium screens */
+    width: 480px; /* Slightly smaller width on medium screens */
   }
 
   .img-fluid {

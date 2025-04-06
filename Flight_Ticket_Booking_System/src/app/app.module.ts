@@ -37,6 +37,8 @@ import { HomeComponent } from './home/home.component';
 import { FlightBookingComponent } from './flight-booking/flight-booking.component';
 import { ContactUsPageComponent } from './contact-us-page/contact-us-page.component';
 import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FlightResultsComponent } from './flight-results/flight-results.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.
     FlightBookingComponent,
     ContactUsPageComponent,
     ContactUsDialogComponent,
+    FlightResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
   ],
   providers: [

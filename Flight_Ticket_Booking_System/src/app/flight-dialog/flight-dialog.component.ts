@@ -29,6 +29,9 @@ export class FlightDialogComponent {
 
   flightClasses: string[] = ["Economy", "Business", "First Class"];
 
+  get minDate(): Date {
+    return new Date(new Date().setHours(0, 0, 0, 0));
+  }
   constructor(
     public dialogRef: MatDialogRef<FlightDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -230,4 +233,24 @@ export class FlightDialogComponent {
 
     console.log("Calculated Duration:", durationMinutes);
   }
+
+  validateDate(event: any, type: 'departure' | 'arrival') {
+    const selected = new Date(event.value).setHours(0, 0, 0, 0);
+    const today = new Date().setHours(0, 0, 0, 0);
+  
+    if (selected < today) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Date!',
+        text: `${type === 'departure' ? 'Departure' : 'Arrival'} date cannot be in the past.`,
+      });
+  
+      if (type === 'departure') {
+        this.selectedFlight.departureDate = null;
+      } else {
+        this.selectedFlight.arrivalDate = null;
+      }
+    }
+  }
+  
 }

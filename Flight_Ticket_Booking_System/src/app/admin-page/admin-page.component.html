@@ -1,9 +1,11 @@
-<div class="container mt-4">
+<div class="container mt-5">
     <!-- Add User Button -->
-    <button class="btn btn-primary mb-3" (click)="openForm()"
-        style="display: flex; align-items: center; gap: 5px;border-radius:20px;">
-        <mat-icon>add</mat-icon> Add User
-    </button>
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary" (click)="openForm()"
+            style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+            <mat-icon>add</mat-icon> Add User
+        </button>
+    </div>
 
     <!-- <button mat-raised-button color="primary" class="float-left mb-3" (click)="openForm()"
         style="display: flex; align-items: center;">
@@ -41,7 +43,7 @@
                     <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-success" (click)="editUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
-                            <mat-icon>edit</mat-icon> 
+                            <mat-icon>edit</mat-icon>
                         </button>
                         <!-- <button mat-raised-button color="warn" (click)="editUser(user)"
                             style="display: flex; align-items: center;">
@@ -52,7 +54,7 @@
                     <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-danger" (click)="deleteUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
-                            <mat-icon>delete</mat-icon> 
+                            <mat-icon>delete</mat-icon>
                         </button>
                         <!-- <button mat-raised-button color="accent" (click)="deleteUser(user)"
                             style="display: flex; align-items: center;">

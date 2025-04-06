@@ -1,152 +1,194 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from '@angular/core';
+import { FlightAuthServiceService } from '../services/flight-auth-service.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-flight-booking",
+  selector: 'app-flight-booking',
   standalone: false,
-  templateUrl: "./flight-booking.component.html",
-  styleUrl: "./flight-booking.component.css",
+  templateUrl: './flight-booking.component.html',
+  styleUrls: ['./flight-booking.component.css'],
 })
 export class FlightBookingComponent {
-  // // Toggle calendar display
-  // showCalendar: boolean = false;
+  adultCount: number = 1;
+  childCount: number = 0;
+  infantCount: number = 0;
+  showCounter: boolean = false;
 
-  // // Dropdown toggles (for passengers & class)
-  // showPassengerDropdown: boolean = false;
-  // showClassDropdown: boolean = false;
+  selectedClass: string = 'Economy';
+  showClassDropdown: boolean = false;
 
-  // // Selected values for form dropdowns
-  // selectedPassenger: string = "1 Adult";
-  // selectedClass: string = "Economy Class";
+  departureAirport: string = "";
+  arrivalAirport: string = "";
+  departureTime: any = "";
+  arrivalTime: any = "";
 
-  // // Flexible dates toggle flag
-  // flexibleDates: boolean = false;
+  constructor(private service: FlightAuthServiceService, private router: Router) { }
 
-  // // Selected date from the calendar
-  // selectedDate: Date | null = null;
+  get passengerCount(): number {
+    return this.adultCount + this.childCount + this.infantCount;
+  }
 
-  // // Calendar generation:
-  // currentMonth: Date = new Date(); // current month (will use the 1st day of month)
-  // calendar1: CalendarCell[][] = []; // calendar grid for currentMonth
-  // calendar2: CalendarCell[][] = []; // calendar grid for next month
+  get passengerCountText(): string {
+    return `${this.passengerCount} Passenger${this.passengerCount > 1 ? 's' : ''}`;
+  }
 
-  // ngOnInit(): void {
-  //   // Reset currentMonth to the first of the month.
-  //   this.currentMonth = new Date(
-  //     this.currentMonth.getFullYear(),
-  //     this.currentMonth.getMonth(),
-  //     1
-  //   );
-  //   this.updateCalendars();
-  // }
+  toggleCounter(event?: Event): void {
+    event?.stopPropagation();
+    this.showCounter = !this.showCounter;
+    this.showClassDropdown = false;
+  }
 
-  // // Toggle the calendar display
-  // toggleCalendar(): void {
-  //   this.showCalendar = !this.showCalendar;
-  // }
+  toggleClassDropdown(event?: Event): void {
+    event?.stopPropagation();
+    this.showClassDropdown = !this.showClassDropdown;
+    this.showCounter = false;
+  }
 
-  // // Dropdown toggles and selections
-  // togglePassengerDropdown(): void {
-  //   this.showPassengerDropdown = !this.showPassengerDropdown;
-  // }
+  increment(type: 'adult' | 'child' | 'infant'): void {
+    if (this.passengerCount >= 9) return;
 
-  // toggleClassDropdown(): void {
-  //   this.showClassDropdown = !this.showClassDropdown;
-  // }
+    if (type === 'adult') this.adultCount++;
+    if (type === 'child') this.childCount++;
+    if (type === 'infant') this.infantCount++;
+  }
 
-  // selectPassenger(passenger: string): void {
-  //   this.selectedPassenger = passenger;
-  //   this.showPassengerDropdown = false;
-  // }
+  decrement(type: 'adult' | 'child' | 'infant'): void {
+    if (type === 'adult' && this.adultCount > 1) this.adultCount--;
+    if (type === 'child' && this.childCount > 0) this.childCount--;
+    if (type === 'infant' && this.infantCount > 0) this.infantCount--;
+  }
 
-  // selectClass(cls: string): void {
-  //   this.selectedClass = cls;
-  //   this.showClassDropdown = false;
-  // }
+  selectClass(classType: string): void {
+    this.selectedClass = classType;
+    this.showClassDropdown = false;
+  }
 
-  // toggleFlexibleDates(): void {
-  //   this.flexibleDates = !this.flexibleDates;
-  // }
+  formatDateTime(date: Date): string {
+    const pad = (n: number) => n.toString().padStart(2, '0');
 
-  // // Navigate to the next month (updates both calendar views)
-  // navigateNext(): void {
-  //   this.currentMonth = new Date(
-  //     this.currentMonth.getFullYear(),
-  //     this.currentMonth.getMonth() + 1,
-  //     1
-  //   );
-  //   this.updateCalendars();
-  // }
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
 
-  // // Generate a 6-week (42 cells) calendar grid for a given month.
-  // generateCalendar(monthDate: Date): CalendarCell[][] {
-  //   const year = monthDate.getFullYear();
-  //   const month = monthDate.getMonth();
-  //   const firstDayOfMonth = new Date(year, month, 1);
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
 
-  //   // Adjusting so Monday is the first day. (JS: Sunday === 0, so treat 0 as 7)
-  //   let dayOfWeek = firstDayOfMonth.getDay();
-  //   dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-  //   const offset = dayOfWeek - 1; // days to subtract to reach the Monday of the first week
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
 
-  //   // Start date for the grid (could be from the previous month)
-  //   const startDate = new Date(year, month, 1 - offset);
+  onSubmit() {
+    const flight = {
+      departureAirport: this.departureAirport,
+      arrivalAirport: this.arrivalAirport,
+      departureDate: this.formatDateTime(this.departureTime),
+      arrivalDate: this.formatDateTime(this.arrivalTime),
+      personCount: this.passengerCount,
+      flightClass: this.selectedClass,
+    };
 
-  //   const weeks: CalendarCell[][] = [];
-  //   let current = new Date(startDate);
+    console.log(flight);
+    console.log("Departure:", this.departureTime, "Arrival:", this.arrivalTime);
 
-  //   // Always generate 6 weeks (6 * 7 = 42 cells)
-  //   for (let week = 0; week < 6; week++) {
-  //     const weekCells: CalendarCell[] = [];
-  //     for (let i = 0; i < 7; i++) {
-  //       weekCells.push({
-  //         date: new Date(current),
-  //         inCurrentMonth: current.getMonth() === month,
-  //       });
-  //       current.setDate(current.getDate() + 1);
-  //     }
-  //     weeks.push(weekCells);
-  //   }
-  //   return weeks;
-  // }
+    this.service.getFlightByAllDetails(flight).subscribe(
+      (response) => {
+        // Success popup
+        Swal.fire({
+          icon: "success",
+          title: "Flights Loaded Successfully ✈️",
+          text: response.message || "We found matching flights based on your search criteria.",
+          confirmButtonText: "View Results",
+        }).then(() => {
+          // console.log("Flight search response:", response);
+          // You can add logic here to show or navigate to the results
+          this.router.navigate(['/flight-result'], {
+            state: { flights: response }  // Make sure the backend returns an array called `flights`
+          });
+        });
+      },
+      (error) => {
+        // Error popup
+        let errorMessage = "We couldn't find any flights matching your search. Please try different dates or locations.";
 
-  // // Update both calendar views.
-  // updateCalendars(): void {
-  //   // Calendar for the current month
-  //   this.calendar1 = this.generateCalendar(this.currentMonth);
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message; // Custom message from backend
+        }
 
-  //   // Calendar for the next month
-  //   const nextMonth = new Date(
-  //     this.currentMonth.getFullYear(),
-  //     this.currentMonth.getMonth() + 1,
-  //     1
-  //   );
-  //   this.calendar2 = this.generateCalendar(nextMonth);
-  // }
+        Swal.fire({
+          icon: "error",
+          title: "No Flights Found 😔",
+          text: errorMessage,
+          confirmButtonText: "Try Again",
+        });
+      }
+    );
+  }
 
-  // // Handle a date click. You can expand this logic if needed.
-  // onDateSelect(cell: CalendarCell): void {
-  //   // Allow selection only for dates visible in the current month view (optional)
-  //   if (
-  //     !cell.inCurrentMonth &&
-  //     cell.date.getMonth() !== this.currentMonth.getMonth()
-  //   ) {
-  //     return;
-  //   }
-  //   this.selectedDate = cell.date;
-  //   console.log("Selected date:", this.selectedDate);
-  // }
+  get minDate(): Date {
+    return new Date(new Date().setHours(0, 0, 0, 0));
+  }
 
-  // // Helper to format a month label (e.g., 'April 2025')
-  // getMonthYear(date: Date): string {
-  //   return date.toLocaleString("default", { month: "long", year: "numeric" });
-  // }
+  validateDate(event: any, type: 'departure' | 'arrival') {
+    const selectedRaw = new Date(event.value);
+    const today = new Date();
 
-  // // Helper to compare dates (ignoring the time)
-  // isSameDate(d1: Date, d2: Date): boolean {
-  //   return (
-  //     d1.getFullYear() === d2.getFullYear() &&
-  //     d1.getMonth() === d2.getMonth() &&
-  //     d1.getDate() === d2.getDate()
-  //   );
-  // }
+    // Strip both dates to compare day-wise only
+    const selectedDateOnly = new Date(selectedRaw.setHours(0, 0, 0, 0)).getTime();
+    const todayDateOnly = new Date(today.setHours(0, 0, 0, 0)).getTime();
+
+    if (selectedDateOnly < todayDateOnly) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Date!',
+        text: `${type === 'departure' ? 'Departure' : 'Arrival'} date cannot be in the past.`,
+      });
+
+      if (type === 'departure') {
+        this.departureTime = null;
+      } else {
+        this.arrivalTime = null;
+      }
+
+      return;
+    }
+
+    // If selected date is today, append current time
+    let finalDate: Date;
+    if (selectedDateOnly === todayDateOnly) {
+      const now = new Date();
+      finalDate = new Date(
+        selectedRaw.getFullYear(),
+        selectedRaw.getMonth(),
+        selectedRaw.getDate(),
+        now.getHours(),
+        now.getMinutes(),
+        now.getSeconds()
+      );
+    } else {
+      // Future date, set time to 00:00 (or leave as is)
+      finalDate = new Date(
+        selectedRaw.getFullYear(),
+        selectedRaw.getMonth(),
+        selectedRaw.getDate()
+      );
+    }
+
+    // Assign updated date to model
+    if (type === 'departure') {
+      this.departureTime = finalDate;
+    } else {
+      this.arrivalTime = finalDate;
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const isPassenger = target.closest('.passenger-group') || target.closest('.passenger-counter');
+    const isClass = target.closest('.class-group') || target.closest('.class-dropdown');
+
+    if (!isPassenger) this.showCounter = false;
+    if (!isClass) this.showClassDropdown = false;
+  }
 }

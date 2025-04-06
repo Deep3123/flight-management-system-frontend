@@ -11,8 +11,8 @@
         <!-- Departure Date with Calendar -->
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Departure Date</mat-label>
-            <input matInput [matDatepicker]="departurePicker" [(ngModel)]="selectedFlight.departureDate"
-                name="departureDate" required>
+            <input matInput [matDatepicker]="departurePicker" [min]="minDate" [(ngModel)]="selectedFlight.departureDate"
+                name="departureDate" required (dateInput)="validateDate($event, 'departure')">
             <mat-datepicker-toggle matIconSuffix [for]="departurePicker"></mat-datepicker-toggle>
             <mat-datepicker #departurePicker></mat-datepicker>
         </mat-form-field>
@@ -21,15 +21,16 @@
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Departure Time</mat-label>
             <input matInput [ngxTimepicker]="departureTimePicker" [(ngModel)]="selectedFlight.departureTime"
-                name="departureTime" (timeSet)="calculateDuration()" required>
+                name="departureTime" (timeSet)="calculateDuration()" required />
             <ngx-material-timepicker-toggle [for]="departureTimePicker"></ngx-material-timepicker-toggle>
-            <ngx-material-timepicker #departureTimePicker [appendToInput]="false"></ngx-material-timepicker>
+            <ngx-material-timepicker #departureTimePicker [format]="12"
+                [appendToInput]="false"></ngx-material-timepicker>
         </mat-form-field>
 
         <!-- Arrival Date with Calendar -->
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Arrival Date</mat-label>
-            <input matInput [matDatepicker]="arrivalPicker" [(ngModel)]="selectedFlight.arrivalDate" name="arrivalDate"
+            <input matInput [matDatepicker]="arrivalPicker" [min]="minDate" [(ngModel)]="selectedFlight.arrivalDate" name="arrivalDate"
                 required>
             <mat-datepicker-toggle matIconSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
             <mat-datepicker #arrivalPicker></mat-datepicker>
@@ -39,9 +40,9 @@
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Arrival Time</mat-label>
             <input matInput [ngxTimepicker]="arrivalTimePicker" [(ngModel)]="selectedFlight.arrivalTime"
-                name="arrivalTime" (timeSet)="calculateDuration()" required>
+                name="arrivalTime" (timeSet)="calculateDuration()" required (dateInput)="validateDate($event, 'arrival')"/>
             <ngx-material-timepicker-toggle [for]="arrivalTimePicker"></ngx-material-timepicker-toggle>
-            <ngx-material-timepicker #arrivalTimePicker [appendToInput]="false"></ngx-material-timepicker>
+            <ngx-material-timepicker #arrivalTimePicker [format]="12" [appendToInput]="false"></ngx-material-timepicker>
         </mat-form-field>
 
         <!-- <mat-form-field appearance="fill" class="w-100">

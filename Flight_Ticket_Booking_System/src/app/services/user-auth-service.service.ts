@@ -9,7 +9,7 @@ import { AuthService } from "./auth-service.service";
 export class UserAuthServiceService {
   private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
@@ -53,10 +53,10 @@ export class UserAuthServiceService {
     return this.http.post(`${this.baseUrl}/update-user-by-username`, user);
   }
 
-  checkAccountExists(): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}/check-account-exists`,
-      this.authService.getToken()
-    );
-  }
+  // checkAccountExists(): Observable<any> {
+  //   return this.http.post(
+  //     `${this.baseUrl}/check-account-exists`,
+  //     this.authService.getToken()
+  //   );
+  // }
 }

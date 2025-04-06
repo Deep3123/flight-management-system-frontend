@@ -1,21 +1,224 @@
+/* Hover effect for nav links */
 .navbar .nav-link:hover,
-.navbar .nav-link:active {
-  background-color: #414141;
+.navbar .nav-link:focus {
+  background-color: #3e3e3e;
+  /* border-radius: 4px; /* Rounded corners */
 }
 
-.navbar-nav.nav-item.nav-link {
-  border-bottom: 3px solid #d71921;
+/* Default navbar layout */
+#nav.navbar {
+  height: auto !important; /* Allow it to expand naturally */
+  position: relative;
+  z-index: 1; /* Lowered z-index to avoid overlay issues */
 }
 
-@media (max-width: 300px) {
-  .image {
-    width: 40%;
-    height: 40%;
+/* Navbar logo wrapper */
+.navbar-logo-wrapper {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  position: relative;
+  margin-bottom: -40px;
+  z-index: 2;
+}
+
+/* Logo styling */
+.navbar-logo {
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Show desktop logo by default */
+.desktop-logo {
+  display: block;
+}
+
+/* Hide mobile logo by default */
+.mobile-logo {
+  display: none;
+}
+
+.navbar .nav-link {
+  font-size: 15px;
+  padding: 8px 12px;
+}
+
+/* Fix for navbar collapse and content shift */
+.navbar-collapse,
+.collapse,
+#navbarNav {
+  background-color: black;
+  width: 100%;
+  position: static !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-collapse.show {
+  display: block !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive: Mobile View (below 1200px) */
+@media (max-width: 1199.98px) {
+  .desktop-logo {
+    display: none !important;
+  }
+
+  .mobile-logo {
+    display: block !important;
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    padding: 5px 0;
+  }
+
+  .navbar-logo-wrapper {
+    height: 60px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  #nav.navbar {
+    height: auto;
   }
 
   .navbar-toggler {
-    width: 35px;
-    height: 40%;
-    padding-left: px;
+    z-index: 1001;
+    margin-right: 10px;
+  }
+
+  #navbarNav.show .nav-item,
+  #navbarNav.collapsing .nav-item {
+    margin: 5px 0;
+  }
+
+  #navbarNav.show .nav-link,
+  #navbarNav.collapsing .nav-link {
+    padding: 10px 15px;
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+/* Responsive: Medium Screens (1200px to 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .desktop-logo {
+    display: block;
+    margin-left: 10px;
+    max-height: 120px;
+  }
+
+  /* .navbar-logo-wrapper {
+    height: 80px;
+    margin-bottom: -30px;
+  } */
+
+  .navbar-logo-wrapper {
+    height: 80px;
+    margin-bottom: -20px;
+  }
+
+  #nav.navbar {
+    height: auto;
+  }
+
+  /* .navbar .nav-link {
+    font-size: 15px;
+    padding: 18px;
+  } */
+
+  .navbar .nav-link {
+    font-size: 15px;
+    padding: 18px 15px;
+  }
+
+  /* .navbar .nav-link-2 {
+    font-size: 15px;
+    padding: 28px;
+  } */
+}
+
+@media (min-width: 1001px) and (max-width: 1170px) {
+  .navbar .nav-link {
+    font-size: 15px;
+    padding: 17px 10px;
+  }
+
+  .navbar-logo {
+    margin-left: 5px;
+  }
+}
+
+/* Responsive: Large Screens (1400px and up) */
+@media (min-width: 1400px) {
+  .image {
+    margin-left: 30px;
+  }
+
+  #nav.navbar {
+    height: auto;
+  }
+
+  /* .navbar-logo-wrapper {
+    height: 100px;
+    margin-bottom: -40px;
+  } */
+
+  .navbar-logo-wrapper {
+    height: 100px;
+    margin-bottom: -30px;
+  }
+
+  .navbar-logo {
+    margin-left: 20px;
+    max-height: 130px;
+  }
+
+  /* .navbar .nav-link {
+    font-size: 17px;
+    padding: 26px;
+  } */
+
+  .navbar .nav-link {
+    font-size: 16px;
+    padding: 23px 18px;
+  }
+}
+
+@media (max-width: 350px) {
+  .container-fluid {
+    height: 40px;
+    padding: 0;
+  }
+
+  .navbar-logo {
+    max-height: 95%;
+  }
+
+  .navbar-logo-wrapper {
+    padding: 0;
+    height: 41px;
+  }
+
+  .mobile-logo {
+    padding: 0;
+  }
+
+  .navbar-collapse,
+  .collapse,
+  #navbarNav {
+    background-color: black;
+    width: 100%;
+    position: static !important;
+    transition: all 0.3s ease-in-out;
+    z-index: 5000;
+  }
+
+  .navbar-collapse.show {
+    display: block !important;
+    transition: all 0.3s ease-in-out;
   }
 }
