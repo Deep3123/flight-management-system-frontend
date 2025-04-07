@@ -39,6 +39,7 @@ import { ContactUsPageComponent } from './contact-us-page/contact-us-page.compon
 import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlightResultsComponent } from './flight-results/flight-results.component';
+import { TimeFormatPipe } from './time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FlightResultsComponent } from './flight-results/flight-results.componen
     ContactUsPageComponent,
     ContactUsDialogComponent,
     FlightResultsComponent,
+    TimeFormatPipe,
   ],
   imports: [
     BrowserModule,

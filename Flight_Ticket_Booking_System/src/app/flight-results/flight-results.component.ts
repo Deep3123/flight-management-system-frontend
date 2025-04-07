@@ -32,8 +32,8 @@ export class FlightResultsComponent implements OnInit {
   // Get the airport name based on the airport code
   getAirportName(airportCode: string): string {
     const airportNames: { [key: string]: string } = {
-      DEL: "Indira Gandhi International Airport",
-      JFK: "John F. Kennedy International Airport",
+      Ahmedabad: "AMD",
+      Delhi: "DLH",
       DXB: "Dubai International Airport",
       // Add more airports as needed
     };
@@ -46,6 +46,14 @@ export class FlightResultsComponent implements OnInit {
       return (Math.min(...this.flightResults.map((f) => f.price)) * this.count).toString();
     } else {
       return "0";
+    }
+  }
+
+  getLowestPriceValue(): number {
+    if (this.flightResults?.length > 0) {
+      return Math.min(...this.flightResults.map((f) => f.price));
+    } else {
+      return 0;
     }
   }
 

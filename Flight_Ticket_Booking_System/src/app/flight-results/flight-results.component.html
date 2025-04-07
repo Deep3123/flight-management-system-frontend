@@ -12,7 +12,7 @@
                 <span class="arrival">{{ flightResults[0]?.arrivalAirport }}</span>
             </div>
             <div class="trip-details">
-                <span>Return</span> • <span>{{count}} </span><span *ngIf="count==1">passenger</span><span
+                <span>One Way</span> • <span>{{count}} </span><span *ngIf="count==1">passenger</span><span
                     *ngIf="count>1">passengers</span>
                 <a class="link" routerLink="/flight-booking">Change search</a>
             </div>
@@ -52,53 +52,68 @@
         </div>
     </div>
 
-    <!-- Flight result cards -->
-    <div class="flight-results">
-        <div class="flight-card" *ngFor="let flight of flightResults; let i = index; trackBy: trackByFn">
-            <div class="flight-details">
-                <div class="times-route">
-                    <div class="departure-details">
-                        <div class="time">{{ flight.departureTime }}</div>
-                        <div class="airport-code">{{ flight.departureAirport }}</div>
-                        <div class="airport-name">{{ getAirportName(flight.departureAirport) }}</div>
+    <div>
+
+        <div class="wrapper">
+            <span class="text-center"><span class="current-date">{{ flightResults[0]?.departureDate | date:'EEEE, d MMMM y' }} </span><span class="option" *ngIf="flightResults.length==1">({{flightResults.length}} option)</span><span
+            *ngIf="flightResults.length>1">({{flightResults.length}} options)</span></span>
+        </div>
+
+        <!-- <hr> -->
+        <!-- Flight result cards -->
+        <div class="flight-results">
+            <div class="flight-card" *ngFor="let flight of flightResults; let i = index; trackBy: trackByFn"
+                (click)="bookFlight(flight)">
+                <div class="flight-details">
+                    <div class="times-route">
+                        <div class="departure-details">
+                            <div class="date">{{ flight.departureDate | date:'EEE dd MMM' }}</div>
+                            <div class="time">{{ flight.departureTime | timeFormat }}</div>
+                            <div class="airport-code">{{ getAirportName(flight.departureAirport) }}</div>
+                            <div class="airport-name">{{ flight.departureAirport }}</div>
+                        </div>
+
+                        <div class="flight-duration">
+                            <div class="duration-text">{{ formatDuration(flight.durationMinutes) }}</div>
+                            <!-- &#8594; -->
+                            <!-- &#x1F822; -->
+                            <div class="route-line">
+                                <div class="line"></div>
+                            </div>
+                            <div class="connection-info" *ngIf="flight.connection">
+                                Connects in {{ flight.connection }}
+                            </div>
+                        </div>
+
+                        <div class="arrival-details">
+                            <div class="date">{{ flight.arrivalDate | date:'EEE dd MMM' }}</div>
+                            <div class="time">{{ flight.arrivalTime | timeFormat }}</div>
+                            <div class="airport-code">{{ getAirportName(flight.arrivalAirport) }}</div>
+                            <div class="airport-name">{{ flight.arrivalAirport }}</div>
+                        </div>
                     </div>
 
-                    <div class="flight-duration">
-                        <div class="duration-text">{{ formatDuration(flight.durationMinutes) }}</div>
-                        <div class="route-line">
-                            <div class="line"></div>
+                    <div class="price-column">
+                        <div class="cabin-class">{{ flight.flightClass }} <span> class</span></div>
+                        <div class="price-display">
+                            <div>
+                                <span class="price-label">from </span>
+                                <span class="currency-type">INR <span class="total-price">{{ flight.price
+                                        }}</span></span>
+                            </div>
+                            <div *ngIf="getLowestPriceValue()==flight.price" class="price-tag">Lowest price</div>
                         </div>
-                        <div class="connection-info" *ngIf="flight.connection">
-                            Connects in {{ flight.connection }}
-                        </div>
-                    </div>
-
-                    <div class="arrival-details">
-                        <div class="time">{{ flight.arrivalTime }}</div>
-                        <div class="airport-code">{{ flight.arrivalAirport }}</div>
-                        <div class="airport-name">{{ getAirportName(flight.arrivalAirport) }}</div>
+                        <!-- <button class="select-flight-button" (click)="bookFlight(flight)">
+                            Select
+                        </button> -->
                     </div>
                 </div>
 
-                <div class="price-column">
-                    <div class="cabin-class">{{ flight.flightClass }}</div>
-                    <div class="price-display">
-                        <div>
-                            <span class="price-prefix">from</span>
-                            <span class="price-amount">₹{{ flight.price }}</span>
-                        </div>
-                        <div *ngIf="getLowestPrice()==flight.price" class="price-tag">Lowest price</div>
+                <div class="flight-info">
+                    <div class="aircraft-info">
+                        <img class="airline-logo" src="https://c.ekstatic.net/shared/icons/tailfin/ek.svg">
+                        <span>{{ flight.flightNumber }}</span>
                     </div>
-                    <button class="select-flight-button" (click)="bookFlight(flight)">
-                        Select
-                    </button>
-                </div>
-            </div>
-
-            <div class="flight-info">
-                <div class="aircraft-info">
-                    <span class="airline-logo"></span>
-                    <span>{{ flight.flightNumber }}</span>
                 </div>
             </div>
         </div>
