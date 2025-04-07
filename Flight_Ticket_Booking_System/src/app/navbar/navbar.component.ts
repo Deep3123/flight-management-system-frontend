@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   darkMode: boolean = false;
   isAdmin: boolean = false;
+  isMobileView: boolean = false; // Flag to detect mobile view
+  isDropdownOpen: boolean = false; // Flag to track dropdown state
 
   constructor(private authService: AuthService, private route: Router) {}
 
@@ -28,13 +30,38 @@ export class NavbarComponent implements OnInit {
     });
 
     // Check for saved theme in localStorage (only available in the browser)
-    if (typeof window !== "undefined" && localStorage.getItem("theme")) {
+    if (this.isBrowser() && localStorage.getItem("theme")) {
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme) {
         this.darkMode = savedTheme === "dark";
         this.applyTheme();
       }
     }
+
+    // Initialize screen size detection
+    this.checkScreenSize();
+
+    // Add resize listener for screen size change, only in the browser
+    if (this.isBrowser()) {
+      window.addEventListener("resize", () => this.checkScreenSize());
+    }
+  }
+
+  // Check if the code is running in the browser (client-side)
+  isBrowser(): boolean {
+    return typeof window !== "undefined";
+  }
+
+  // Detect mobile/desktop screen size
+  checkScreenSize() {
+    if (this.isBrowser()) {
+      this.isMobileView = window.innerWidth < 768; // Adjust the breakpoint as needed
+    }
+  }
+
+  // Toggle the dropdown icon and state
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   logout(): void {
@@ -76,7 +103,7 @@ export class NavbarComponent implements OnInit {
 
   // Apply the theme to the body and store in localStorage
   applyTheme(): void {
-    if (typeof window !== "undefined") {
+    if (this.isBrowser()) {
       if (this.darkMode) {
         document.body.classList.add("dark-mode");
         localStorage.setItem("theme", "dark");
@@ -86,5 +113,4 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-  
 }

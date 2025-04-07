@@ -26,7 +26,7 @@ export class FlightPageComponent implements OnInit {
 
   getAllFlights() {
     this.flightService.getAllFlights().subscribe((response: any) => {
-      // console.log(response); // Debugging
+      console.log(response); // Debugging
       this.flights = response;
       this.reinitializeDataTable(); // Ensure DataTable updates correctly
     });

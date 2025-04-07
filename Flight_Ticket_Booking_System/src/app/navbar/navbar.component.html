@@ -33,30 +33,23 @@
                         <mat-icon>perm_identity</mat-icon> Get in Touch
                     </a>
                 </li>
-                <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link fw-bold text-light" routerLink="/admin"
+
+                <!-- Admin Dropdown for All Screen Sizes -->
+                <li *ngIf="isAdmin" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold text-light" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false"
                         style="display: flex; align-items: center; gap: 5px;">
-                        <mat-icon>perm_contact_calendar</mat-icon> Manage Users
+                        <mat-icon>perm_contact_calendar</mat-icon> Admin Dashboard
                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink="/admin">Manage Users</a></li>
+                        <li><a class="dropdown-item" routerLink="/flight">Flight Details</a></li>
+                        <li><a class="dropdown-item" routerLink="/contact-data">Contact Data</a></li>
+                        <li><a class="dropdown-item" routerLink="/contact-data">Bookings</a></li>
+                    </ul>
                 </li>
-                <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link fw-bold text-light" routerLink="/flight"
-                        style="display: flex; align-items: center; gap: 5px;">
-                        <mat-icon>flight</mat-icon> Flight Details
-                    </a>
-                </li>
-                <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link fw-bold text-light" routerLink="/contact-data"
-                        style="display: flex; align-items: center; gap: 5px;">
-                        <mat-icon>source</mat-icon> Contact Data
-                    </a>
-                </li>
-                <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link nav-link-2 fw-bold text-light" routerLink="/contact-data"
-                        style="display: flex; align-items: center; gap: 5px;">
-                        <mat-icon>source</mat-icon> Bookings
-                    </a>
-                </li>
+
+                <!-- Login and Signup links (for non-logged in users) -->
                 <li *ngIf="!isLoggedIn" class="nav-item d-xl-none">
                     <a routerLink="/login" class="nav-link fw-bold text-light"
                         style="display: flex; align-items: center; gap: 5px;">
