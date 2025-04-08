@@ -4,6 +4,10 @@ body {
   font-family: Arial, sans-serif; /* Added font-family for consistency */
 }
 
+section.vh-100 {
+  margin-bottom: 50px;
+}
+
 /* Form container */
 .register-container {
   width: 550px;

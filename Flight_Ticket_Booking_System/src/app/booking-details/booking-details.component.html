@@ -1,0 +1,164 @@
+<div class="">
+    <div class="header-main">
+        <div class="route-header">
+            <div class="route-info">
+                <div class="route-path">
+                    <span class="departure">{{ selectedFlight.departureAirport }}</span>
+                    <span class="route-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                            viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                            <path
+                                d="m397-115-99-184-184-99 71-70 145 25 102-102-317-135 84-86 385 68 124-124q23-23 57-23t57 23q23 23 23 56.5T822-709L697-584l68 384-85 85-136-317-102 102 26 144-71 71Z" />
+                        </svg></span>
+                    <span class="arrival">{{ selectedFlight.arrivalAirport }}</span>
+                </div>
+                <div class="trip-details">
+                    <span>One Way</span> • <span>{{passengerCount}} </span><span
+                        *ngIf="passengerCount==1">passenger</span><span *ngIf="passengerCount>1">passengers</span>
+                    <a class="link" routerLink="/flight-booking">Change search</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="booking-main-container">
+        <div class="booking-container">
+            <!-- Booking header -->
+            <div class="booking-header">
+                <h1 class="page-title">Complete your booking</h1>
+                <p *ngIf="selectedFlight">{{ selectedFlight.departureAirport }} to {{ selectedFlight.arrivalAirport }} •
+                    {{
+                    passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }}</p>
+            </div>
+
+            <!-- Flight details summary -->
+            <div class="flight-summary" *ngIf="selectedFlight">
+                <div class="summary-header">
+                    <h2>Flight details</h2>
+                </div>
+                <div class="flight-info">
+                    <div class="flight-route">
+                        <div class="departure-details">
+                            <div class="date">{{ selectedFlight.departureDate | date:'EEE dd MMM' }}</div>
+                            <div class="time">{{ selectedFlight.departureTime }}</div>
+                            <div class="airport-name">{{ selectedFlight.departureAirport }}</div>
+                        </div>
+
+                        <div class="flight-duration">
+                            <div class="duration-text">{{ selectedFlight.durationMinutes | formatDuration }}</div>
+                            <div class="route-line">
+                                <div class="line"></div>
+                            </div>
+                            <div class="flight-number">{{ selectedFlight.flightNumber }}</div>
+                        </div>
+
+                        <div class="arrival-details">
+                            <div class="date">{{ selectedFlight.arrivalDate | date:'EEE dd MMM' }}</div>
+                            <div class="time">{{ selectedFlight.arrivalTime }}</div>
+                            <div class="airport-name">{{ selectedFlight.arrivalAirport }}</div>
+                        </div>
+                    </div>
+
+                    <div class="price-details">
+                        <div class="cabin-class">{{ selectedFlight.flightClass }} class</div>
+                        <div class="price">INR {{ selectedFlight.price * passengerCount }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passenger information form -->
+            <div class="passenger-form">
+                <div class="form-header">
+                    <h2>Passenger information</h2>
+                    <p>Please enter details for all passengers</p>
+                </div>
+
+                <form (ngSubmit)="onSubmit()" #bookingForm="ngForm">
+                    <div *ngFor="let passenger of passengers; let i = index" class="passenger-section">
+                        <h3>{{ i === 0 ? 'Main passenger' : 'Passenger ' + (i + 1) }}</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName{{i}}">First name *</label>
+                                <input type="text" id="firstName{{i}}" [(ngModel)]="passenger.firstName"
+                                    name="firstName{{i}}" required #firstName="ngModel" class="form-control">
+                                <div *ngIf="firstName.invalid && firstName.touched" class="error-message">
+                                    First name is required
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName{{i}}">Last name *</label>
+                                <input type="text" id="lastName{{i}}" [(ngModel)]="passenger.lastName"
+                                    name="lastName{{i}}" required #lastName="ngModel" class="form-control">
+                                <div *ngIf="lastName.invalid && lastName.touched" class="error-message">
+                                    Last name is required
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-small">
+                                <label for="age{{i}}">Age *</label>
+                                <input type="number" id="age{{i}}" [(ngModel)]="passenger.age" name="age{{i}}" required
+                                    min="2" max="120" #age="ngModel" class="form-control">
+                                <div *ngIf="age.invalid && age.touched" class="error-message">
+                                    Valid age is required (2-120)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email and Mobile fields only for main passenger -->
+                        <div *ngIf="i === 0" class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email address *</label>
+                                <input type="email" id="email" [(ngModel)]="passenger.email" name="email" required email
+                                    #email="ngModel" class="form-control">
+                                <div *ngIf="email.invalid && email.touched" class="error-message">
+                                    Valid email is required
+                                </div>
+                            </div>
+
+                            <div class="form-group mobile-group">
+                                <label for="mobile">Mobile number *</label>
+                                <div class="mobile-input-group">
+                                    <select [(ngModel)]="passenger.countryCode" name="countryCode" class="country-code">
+                                        <option *ngFor="let country of countryCodes" [value]="country.code">
+                                            {{ country.code }} ({{ country.country }})
+                                        </option>
+                                    </select>
+                                    <input type="tel" id="mobile" [(ngModel)]="passenger.mobile" name="mobile" required
+                                        pattern="^[0-9]{10}$" #mobile="ngModel" class="form-control mobile-input">
+                                </div>
+                                <div *ngIf="mobile.invalid && mobile.touched" class="error-message">
+                                    Valid 10-digit mobile number is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr *ngIf="i < passengers.length - 1">
+                    </div>
+
+                    <!-- Price summary and checkout -->
+                    <div class="price-summary">
+                        <div class="summary-row">
+                            <span>Flight price ({{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger'
+                                }})</span>
+                            <span>INR {{ selectedFlight?.price * passengerCount }}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Taxes and fees</span>
+                            <span>Included</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total price</span>
+                            <span>INR {{ getTotalPrice() }}</span>
+                        </div>
+                        <div class="summary-note">
+                            By proceeding, you agree to our terms and conditions
+                        </div>
+                        <button type="submit" [disabled]="bookingForm.invalid" class="checkout-button">Proceed to
+                            payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,22 +51,58 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div>
-
+<!---------------------------------------------------------------------->
+<div class="flight-details-main">
+    <div class="flight-list">
         <div class="wrapper">
-            <span class="text-center"><span class="current-date">{{ flightResults[0]?.departureDate | date:'EEEE, d MMMM y' }} </span><span class="option" *ngIf="flightResults.length==1">({{flightResults.length}} option)</span><span
-            *ngIf="flightResults.length>1">({{flightResults.length}} options)</span></span>
+            <span class="current-date">{{ flightResults[0]?.departureDate | date:'EEEE, d MMMM y' }} </span><span
+                class="option" *ngIf="flightResults.length==1">({{flightResults.length}}
+                option)</span><span *ngIf="flightResults.length>1">({{flightResults.length}} options)</span>
+        </div>
+        <hr>
+        <!-- Flight result cards -->
+        <div class="filter-container">
+            <div class="sort-dropdown" (clickOutside)="isFilterOpen = false">
+                <button class="sort-button" (click)="toggleFilter()">
+                    <span class="sort-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="12" x2="14" y2="12"></line>
+                            <line x1="4" y1="18" x2="8" y2="18"></line>
+                        </svg>
+                    </span>
+                    <span class="sort-class">Sort:</span>
+                    <span class="sort-text"> {{ sortCriteria }}</span>
+                    <span class="sort-arrow" [ngClass]="{'open': isFilterOpen}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </button>
+
+                <div class="sort-options" *ngIf="isFilterOpen">
+                    <div class="sort-header">Sort by</div>
+                    <div class="options-grid">
+                        <div class="option-item" *ngFor="let option of sortOptions" (click)="selectSortOption(option)"
+                            [ngClass]="{'active': sortCriteria === option.label}">
+                            {{ option.label }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- <hr> -->
-        <!-- Flight result cards -->
         <div class="flight-results">
             <div class="flight-card" *ngFor="let flight of flightResults; let i = index; trackBy: trackByFn"
                 (click)="bookFlight(flight)">
                 <div class="flight-details">
                     <div class="times-route">
                         <div class="departure-details">
+                            <!-- <div style="font-size: medium;">{{ flight.airlineName }}</div> -->
                             <div class="date">{{ flight.departureDate | date:'EEE dd MMM' }}</div>
                             <div class="time">{{ flight.departureTime | timeFormat }}</div>
                             <div class="airport-code">{{ getAirportName(flight.departureAirport) }}</div>
@@ -119,3 +155,4 @@
         </div>
     </div>
 </div>
+<!-- </div> -->

@@ -40,6 +40,8 @@ import { ContactUsDialogComponent } from './contact-us-dialog/contact-us-dialog.
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlightResultsComponent } from './flight-results/flight-results.component';
 import { TimeFormatPipe } from './time-format.pipe';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { FormatDurationPipe } from './format-duration.pipe';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { TimeFormatPipe } from './time-format.pipe';
     ContactUsDialogComponent,
     FlightResultsComponent,
     TimeFormatPipe,
+    BookingDetailsComponent,
+    FormatDurationPipe,
   ],
   imports: [
     BrowserModule,

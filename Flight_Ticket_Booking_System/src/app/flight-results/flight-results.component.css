@@ -4,7 +4,24 @@
   margin: 25px auto;
   padding: 20px;
   color: #333;
-  /* font-family: "Segoe UI", sans-serif; */
+}
+
+.flight-details-main {
+  background-color: #f6f6f6;
+  margin-top: 0; /* Remove the margin */
+  padding-bottom: 50px; /* Ensure the background extends downwards */
+  min-height: 100vh; /* Stretch to at least the height of the viewport */
+}
+
+.flight-list {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  color: #333;
+}
+
+hr {
+  opacity: 0.2;
 }
 
 /* === ROUTE HEADER === */
@@ -77,13 +94,13 @@
 }
 
 .price-label {
-  color: #2c5e2e;
+  color: #1f5a2d;
   font-weight: 500;
   font-size: 16px;
 }
 
 .currency-type {
-  color: #2c5e2e;
+  color: #1f5a2d;
   font-weight: 500;
   font-size: 21px;
 }
@@ -173,6 +190,7 @@
 }
 
 .flight-card {
+  margin-bottom: 10px;
   background-color: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -218,14 +236,12 @@
 
 .airport-code {
   font-size: 16px;
-  font-weight: 600;
-  /* margin-top: 5px; */
+  font-weight: 500;
 }
 
 .airport-name {
   font-size: 14px;
   color: #666;
-  /* margin-top: 3px; */
 }
 
 .flight-duration {
@@ -277,7 +293,7 @@
 .cabin-class {
   font-weight: 300;
   font-size: 16px;
-  color: #2c5e2e;
+  color: #1f5a2d;
   margin-bottom: 5px;
 }
 
@@ -300,7 +316,7 @@
 
 .price-tag {
   font-size: 12px;
-  color: #2c5e2e;
+  color: #1f5a2d;
   background-color: #ecfdf5;
   padding: 2px 8px;
   border-radius: 20px;
@@ -342,22 +358,18 @@
 .airline-logo {
   width: 24px;
   height: 24px;
-  /* background-color: #e5e7eb; */
   border-radius: 4px;
   display: inline-block;
 }
 
-.wrapper{
+.wrapper {
   margin: 20px 0px;
 }
 
 .current-date {
   font-size: 25px;
   font-weight: 300;
-  
 }
-
-/* hr{} */
 
 .option {
   font-size: 10px;
@@ -406,5 +418,133 @@
     width: 100%;
     justify-content: flex-end;
     margin-top: 10px;
+  }
+}
+
+.filter-container {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end; /* This will align children to the right */
+  width: 100%;
+}
+
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-button {
+  margin: 2px auto;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sort-button:hover {
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  /* transform: translateY(-2px); */
+}
+
+.sort-icon {
+  margin-left: 10px;
+  margin-right: 8px;
+  color: #666;
+}
+
+.sort-class {
+  font-weight: 300;
+  margin-right: 8px;
+  color: #666;
+}
+
+.sort-text {
+  margin-right: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-arrow {
+  transition: transform 0.2s ease;
+}
+
+.sort-arrow.open {
+  transform: rotate(180deg);
+}
+
+.sort-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 700px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  margin-top: 5px;
+  padding: 20px;
+  padding-left:25px;
+  padding-bottom: 25px;
+  max-height: 300px; /* Fix the height */
+  overflow-y: auto; /* Enable scrolling if content exceeds max height */
+}
+
+.sort-header {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.option-item {  
+  font-weight: 300;
+  padding: 15px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+}
+
+.option-item:hover {
+  /* background-color: #f6f6f6; */
+  box-shadow: 0 0 6px rgba(91, 91, 91, 0.8);
+
+}
+
+.option-item.active {
+  font-weight: 500;
+  /* background-color: #e6f7ff; */
+  border-color: #406dc0;
+  color: #406dc0;
+
+}
+
+@media (max-width: 768px) {
+  .sort-options {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
   }
 }

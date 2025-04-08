@@ -17,6 +17,7 @@ body {
   box-shadow: 0 4px 10px rgba(0.1, 0.1, 0.1, 0.2);
   width: 100%;
   max-width: 900px;
+  margin-bottom: 80px;
 }
 
 .contact-form .row {

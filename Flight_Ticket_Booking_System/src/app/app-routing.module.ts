@@ -14,6 +14,7 @@ import { HomeComponent } from "./home/home.component";
 import { FlightBookingComponent } from "./flight-booking/flight-booking.component";
 import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.component";
 import { FlightResultsComponent } from "./flight-results/flight-results.component";
+import { BookingDetailsComponent } from "./booking-details/booking-details.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: "flight-result",
     component: FlightResultsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: "booking-details",
+    component: BookingDetailsComponent,
     canActivate: [authGuard],
   },
   { path: "", component: HomeComponent },

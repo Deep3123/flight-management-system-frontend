@@ -11,6 +11,10 @@ body {
   background-color: #f9f9f9;
 }
 
+section.vh-100 {
+  margin-bottom: 50px;
+}
+
 /* Container for login form */
 .login-container {
   background: white;
