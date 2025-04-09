@@ -1,5 +1,5 @@
 <div class="booking-main">
-    <div class="header-main">
+    <!-- <div class="header-main">
         <div class="route-header">
             <div class="route-info">
                 <div class="route-path">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="booking-inner-wrapper">
         <div class="booking-main-container">
@@ -28,7 +28,7 @@
                     <h1 class="page-title">Complete your booking</h1>
                     <p *ngIf="selectedFlight">{{ selectedFlight.departureAirport }} to {{ selectedFlight.arrivalAirport
                         }} •
-                        {{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }}</p>
+                        {{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }} •<span><a class="link" routerLink="/flight-booking">Change search</a></span></p>
                 </div>
 
                 <!-- Flight details summary -->

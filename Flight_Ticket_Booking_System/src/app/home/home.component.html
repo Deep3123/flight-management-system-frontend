@@ -1,5 +1,83 @@
-<!-- <div class="home-img" id="img">
-    <img src="home.svg" alt="JetWayz Home Page" />
+<!-- <div class="home-img text-center" id="img">
+    <img src="Scene2.jpg" alt="JetWayz Home Page" height="800px" width="auto"/>
+</div>
+
+<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_yr6zz3wv.json" 
+               background="transparent" speed="1" style="width: 100%; height: 800px;" 
+               loop autoplay></lottie-player> -->
+
+
+<!-- <div class="position-relative text-center" style="height: 800px; overflow: hidden;">
+                <dotlottie-player src="https://lottie.host/37c56a31-a18b-45ab-adbb-0ad31544007c/SQf140xU0R.lottie"
+                  background="transparent" speed="1" style="width: 100%; height: 100%; position: absolute;" loop autoplay></dotlottie-player>
+              
+                <div class="position-absolute top-50 start-50 translate-middle text-white bg-dark bg-opacity-50 p-4 rounded">
+                  <h1 class="display-4 fw-bold">Your Journey Starts Here</h1>
+                  <p class="lead">Experience smoother skies with JetWayz</p>
+                  <a href="/search" class="btn btn-primary btn-lg mt-3">Book Now</a>
+                </div>
+              </div> -->
+
+<div class="position-relative text-center" style="height: 800px; overflow: hidden;">
+    <dotlottie-player src="https://lottie.host/37c56a31-a18b-45ab-adbb-0ad31544007c/SQf140xU0R.lottie"
+        background="transparent" speed="1" style="width: 100%; height: 100%; position: absolute;" loop
+        autoplay></dotlottie-player>
+
+    <!-- Frosted Glass Content Block -->
+    <div class="position-absolute top-50 start-50 translate-middle text-white p-5 rounded-4 shadow-lg"
+        style="background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); max-width: 700px; width: 90%;">
+
+        <!-- Headline -->
+        <h1 class="display-5 fw-bold mb-3">Your Journey Starts Here ✈️</h1>
+        <p class="lead mb-4">Explore the world effortlessly with JetWayz — where comfort meets convenience.</p>
+
+        <!-- Highlights Section -->
+        <div class="row text-start mb-4">
+            <div class="col-md-4 mb-3">
+                <h5>🌍 Global Routes</h5>
+                <p class="mb-0 small">From New York to Tokyo, JetWayz connects you to over 150 destinations worldwide.
+                </p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>💺 Seamless Experience</h5>
+                <p class="mb-0 small">Smart booking, real-time updates, and curated in-flight comfort.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>⚡ Instant Booking</h5>
+                <p class="mb-0 small">Book your flight in under 60 seconds — anytime, anywhere.</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <!-- <a href="/search" class="btn btn-primary btn-lg">Start Booking Now</a> -->
+    </div>
+</div>
+
+
+<!-- 
+<div class="home-img position-relative text-center fade-in">
+    <img src="assets/images/Scene2.jpg" class="w-100" style="height: 800px; object-fit: cover;" alt="Hero Image" />
+    <div class="position-absolute top-50 start-50 translate-middle text-white">
+        <h1 class="display-4 fw-bold">Welcome to JetWayz</h1>
+        <p class="lead">The Smarter Way to Fly</p>
+        <a href="/search" class="btn btn-primary btn-lg mt-3">Search Flights Now</a>
+    </div>
+</div>
+
+<div class="flight-banner my-5">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="plane">
+        <img src="assets/images/airplane.png" alt="Plane" />
+    </div>
+    <div class="airport-names">
+        <span class="from">Delhi</span>
+        <span class="to">Dubai</span>
+        <span class="to">London</span>
+        <span class="to">New York</span>
+        <span class="to">Tokyo</span>
+    </div>
 </div> -->
 
 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150">
@@ -22,9 +100,8 @@
     <path d="M200,85 L380,85" stroke="#ff6b00" stroke-width="3" fill="none" />
 </svg> -->
 
-<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+<!-- <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <!-- Gradients -->
         <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#2e3b4e" />
             <stop offset="100%" stop-color="#6c91b1" />
@@ -35,12 +112,10 @@
             <stop offset="100%" stop-color="#b0c8e7" />
         </linearGradient>
 
-        <!-- Cloud Filter -->
         <filter id="cloudBlur" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
         </filter>
 
-        <!-- Glow effect -->
         <filter id="glow">
             <feGaussianBlur stdDeviation="4" result="coloredBlur" />
             <feMerge>
@@ -49,14 +124,11 @@
             </feMerge>
         </filter>
 
-        <!-- Plane Path For Animation -->
         <path id="planePath" d="M-100,250 C100,220 300,300 500,220 S700,280 900,250" fill="none" stroke="transparent" />
     </defs>
 
-    <!-- Background -->
     <rect width="800" height="500" fill="url(#skyGradient)" />
 
-    <!-- Animated Clouds -->
     <g class="clouds">
         <circle cx="100" cy="100" r="35" fill="white" opacity="0.6" filter="url(#cloudBlur)">
             <animate attributeName="cx" values="100;120;100" dur="22s" repeatCount="indefinite" />
@@ -79,7 +151,6 @@
         </circle>
     </g>
 
-    <!-- World Map in Background -->
     <g opacity="0.3">
         <path d="M150,350 Q250,320 350,350 T550,330 T750,360" fill="none" stroke="#ffffff" stroke-width="2" />
         <path d="M200,380 Q300,360 400,380 T600,370 T750,390" fill="none" stroke="#ffffff" stroke-width="2" />
@@ -89,13 +160,11 @@
         <circle cx="350" cy="380" r="4" fill="#ffffff" />
     </g>
 
-    <!-- Animated Route Line -->
     <path d="M100,350 C200,330 300,370 400,330 S600,370 700,330" stroke="#ffffff" stroke-width="2"
         stroke-dasharray="5,5" fill="none" opacity="0.8">
         <animate attributeName="stroke-dashoffset" from="100" to="0" dur="22s" repeatCount="indefinite" />
     </path>
 
-    <!-- Location Points -->
     <g>
         <circle cx="100" cy="350" r="10" fill="#1e3a6e" />
         <circle cx="100" cy="350" r="14" fill="#1e3a6e" opacity="0.6">
@@ -110,21 +179,15 @@
         </circle>
     </g>
 
-    <!-- Animated Airplane along Path (Running Airplane) -->
     <g filter="url(#glow)">
         <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"
             path="M-100,250 C100,220 300,300 500,220 S700,280 900,250" />
 
-        <!-- Airplane Body -->
-        <!-- <path d="M0,0 L-20,7 L-15,0 L-20,-7 Z" fill="url(#planeGradient)" stroke="#1e3a6e" stroke-width="2" /> -->
-
-        <!-- Trail -->
         <line x1="-20" y1="0" x2="-60" y2="0" stroke="#ffffff" stroke-width="3" opacity="0.8">
             <animate attributeName="opacity" values="0.8;0.5;0.8" dur="1.5s" repeatCount="indefinite" />
         </line>
     </g>
 
-    <!-- JetWayz Logo and Title -->
     <g transform="translate(400, 100)">
         <text text-anchor="middle" font-family="Montserrat, sans-serif" font-size="60" font-weight="bold"
             fill="#ffffff">
@@ -136,7 +199,6 @@
         </text>
     </g>
 
-    <!-- Search Box Animation -->
     <g transform="translate(400, 420)">
         <rect x="-160" y="-35" width="320" height="70" rx="35" ry="35" fill="rgba(255, 255, 255, 0.1)" stroke="#ffffff"
             stroke-width="3" />
@@ -146,7 +208,6 @@
         <circle cx="-120" cy="0" r="18" fill="none" stroke="#ffffff" stroke-width="3" />
         <line x1="-110" y1="5" x2="-100" y2="14" stroke="#ffffff" stroke-width="3" />
 
-        <!-- Pulsing effect on search box -->
         <rect x="-160" y="-35" width="320" height="70" rx="35" ry="35" fill="transparent" stroke="#ffffff"
             stroke-width="3" opacity="0.4">
             <animate attributeName="width" values="320;330;320" dur="3s" repeatCount="indefinite" />
@@ -156,8 +217,7 @@
             <animate attributeName="opacity" values="0.4;0.2;0.4" dur="3s" repeatCount="indefinite" />
         </rect>
     </g>
-</svg>
-
+</svg> -->
 
 <!-- Add the flight banner animation here -->
 <!-- <div class="flight-banner">

@@ -3,7 +3,7 @@
 }
 
 .home-img {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 /* .about .about-meta {
@@ -231,7 +231,7 @@
 /* Optional: Add delay to buttons or key elements */
 .animated.fadeInUp {
   animation-delay: 0.5s;
-} 
+}
 
 body {
   margin: 0;
@@ -454,3 +454,79 @@ body {
 .airplane-container:hover .flight-info-popup {
   opacity: 1;
 }
+
+/* .fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flight-banner {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  overflow: hidden;
+}
+
+.plane {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  animation: fly 10s linear infinite;
+}
+
+.plane img {
+  height: 60px;
+}
+
+@keyframes fly {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.cloud {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  top: 20%;
+  left: -100px;
+  animation: cloudMove 20s linear infinite;
+}
+
+@keyframes cloudMove {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.airport-names {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.airport-names span {
+  margin: 0 15px;
+} */

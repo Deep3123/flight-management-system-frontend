@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
+import { BookingServiceService } from "../services/booking-service.service";
+declare var Razorpay: any;
 
 @Component({
   selector: "app-booking-details",
@@ -260,7 +263,7 @@ export class BookingDetailsComponent implements OnInit {
   selectedCountry: string = ""; // Default to empty, let user type
   isCountryInputFocused: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private service: BookingServiceService) {
     const nav = this.router.getCurrentNavigation();
     this.selectedFlight = nav?.extras?.state?.["flight"] || null;
     this.passengerCount = nav?.extras?.state?.["count"] || 1;
@@ -322,12 +325,44 @@ export class BookingDetailsComponent implements OnInit {
 
   // Handle form submission
   onSubmit(): void {
-    this.initiatePayment();
-  }
+    const totalAmount = this.getTotalPrice() * 100; // Razorpay accepts paise
 
-  // Initiate Razorpay payment (simulated)
-  initiatePayment(): void {
-    // Razorpay payment logic here
+    const options: any = {
+      key: 'rzp_test_pIqGo2X8aqQ6ja',
+      amount: totalAmount,
+      currency: 'INR',
+      name: 'JetWayz',
+      description: 'Flight Booking Payment',
+      handler: (response: any) => {
+        // Send response to Spring Boot to verify + handle ticket
+        const bookingPayload = {
+          paymentId: response.razorpay_payment_id,
+          passenger: this.passengers[0],
+          flightId: this.selectedFlight.id,
+          amount: totalAmount / 100,
+        };
+
+        this.service.createBooking(bookingPayload).subscribe(
+          (response) => {
+            Swal.fire('Success!', 'Payment successful & ticket sent!', 'success');
+          },
+          (error) => {
+            Swal.fire('Error', 'Something went wrong. Try again.', 'error');
+          }
+        );
+      },
+      prefill: {
+        name: this.passengers[0].firstName + ' ' + this.passengers[0].lastName,
+        email: this.passengers[0].email,
+        contact: this.passengers[0].mobile,
+      },
+      theme: {
+        color: '#3399cc',
+      },
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
   }
 
   // Focus event handler

@@ -7,13 +7,13 @@ import { Observable } from "rxjs";
 })
 
 export class BookingServiceService {
-  private apiUrl = "/api/bookings"; // Change to your actual API endpoint
+  private apiUrl = "http://localhost:8080/bookings"; // Change to your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
   // Create a new booking
   createBooking(bookingData: any): Observable<any> {
-    return this.http.post(this.apiUrl, bookingData);
+    return this.http.post(`${this.apiUrl}/confirm`, bookingData);
   }
 
   // Get booking by ID
