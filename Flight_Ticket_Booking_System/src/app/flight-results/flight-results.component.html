@@ -12,7 +12,7 @@
                 <span class="arrival">{{ flightResults[0]?.arrivalAirport }}</span>
             </div>
             <div class="trip-details">
-                <span>One Way</span> • <span>{{count}} </span><span *ngIf="count==1">passenger</span><span
+                <span>One Way</span> • <span>{{count}} </span><span *ngIf="count<=1">passenger</span><span
                     *ngIf="count>1">passengers</span>
                 <a class="link" routerLink="/flight-booking">Change search</a>
             </div>
@@ -35,7 +35,7 @@
         </div>
         <div>
             <div class="price-info">
-                <div class="price-label">Lowest total price for <span>{{count}}</span><span *ngIf="count==1"> passenger
+                <div class="price-label">Lowest total price for <span>{{count}}</span><span *ngIf="count<=1"> passenger
                     </span><span *ngIf="count>1"> passengers </span> <span class="currency-type">INR</span> <span
                         class="total-price"> {{ getLowestPrice() }}</span></div>
                 <!-- <div class="total-price">
