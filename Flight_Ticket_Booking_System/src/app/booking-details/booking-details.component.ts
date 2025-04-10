@@ -326,9 +326,276 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   // Handle form submission
-  onSubmit(): void {
-    const totalAmount = this.getTotalPrice() * 100; // Razorpay accepts paise
+  // onSubmit(): void {
+  //   const totalAmount = this.getTotalPrice() * 100; // Razorpay accepts paise
 
+  //   const options: any = {
+  //     key: "rzp_test_pIqGo2X8aqQ6ja",
+  //     amount: totalAmount,
+  //     currency: "INR",
+  //     name: "JetWayz",
+  //     description: "Flight Booking Payment",
+  //     handler: (response: any) => {
+  //       // Send response to Spring Boot to verify + handle ticket
+  //       // // Show spinner before starting the API call
+  //       // this.isLoading = true;
+
+  //       const bookingPayload = {
+  //         paymentId: response.razorpay_payment_id,
+  //         passenger: this.passengers[0],
+  //         flightId: this.selectedFlight.flightNumber,
+  //         amount: totalAmount / 100,
+  //         count: this.passengerCount,
+  //       };
+
+  //       const ticketPayload = {
+  //         paymentId: response.razorpay_payment_id,
+  //         passengers: this.passengers,
+  //         flight: this.selectedFlight,
+  //         amount: totalAmount / 100,
+  //       };
+
+  //       this.service.createBooking(bookingPayload).subscribe(
+  //         (response) => {
+  //           // Assuming the response contains a booking reference or any important info:
+  //           const bookingReference = response.message || "N/A";
+
+  //           Swal.fire({
+  //             title: "Success!",
+  //             text: `Booking Reference: ${bookingReference}`,
+  //             icon: "success",
+  //             confirmButtonText: "OK",
+  //           }).then(() => {
+  //             // Show spinner before starting the API call
+  //             this.isLoading = true;
+  //             // You can call getBookingById() here after success if needed
+  //             this.service.generatePdfOfTicket(ticketPayload).subscribe(
+  //               (response) => {
+  //                 // Assuming the response contains a booking reference or any important info:
+  //                 const message = response.message || "N/A";
+
+  //                 Swal.fire({
+  //                   title: "Success!",
+  //                   text: message,
+  //                   icon: "success",
+  //                   confirmButtonText: "OK",
+  //                 }).then(() => {
+  //                   this.router.navigate(["/"]);
+  //                 });
+  //               },
+  //               (error) => {
+  //                 let errorMessage = "Something went wrong. Try again.";
+
+  //                 // You can add more specific error handling based on the error response
+  //                 if (error.error && error.error.message) {
+  //                   errorMessage = error.error.message;
+  //                 } else if (error.status === 400) {
+  //                   errorMessage =
+  //                     "Invalid input. Please check your booking details and try again."; // If backend sends a more specific error message
+  //                 } else if (error.status === 500) {
+  //                   errorMessage = "Server error. Please try again later.";
+  //                 }
+
+  //                 Swal.fire({
+  //                   title: "Error",
+  //                   text: errorMessage,
+  //                   icon: "error",
+  //                   confirmButtonText: "OK",
+  //                 });
+  //               }
+  //             );
+  //           });
+  //         },
+  //         (error) => {
+  //           let errorMessage = "Something went wrong. Try again.";
+
+  //           // You can add more specific error handling based on the error response
+  //           if (error.message && error.error.message) {
+  //             errorMessage = error.message || error.error.message;
+  //           } else if (error.status === 400) {
+  //             errorMessage =
+  //               "Invalid input. Please check your booking details and try again."; // If backend sends a more specific error message
+  //           } else if (error.status === 500) {
+  //             errorMessage = "Server error. Please try again later.";
+  //           }
+
+  //           Swal.fire({
+  //             title: "Error",
+  //             text: errorMessage,
+  //             icon: "error",
+  //             confirmButtonText: "OK",
+  //           });
+  //         }
+  //       );
+  //     },
+  //     prefill: {
+  //       name: this.passengers[0].firstName + " " + this.passengers[0].lastName,
+  //       email: this.passengers[0].email,
+  //       contact: this.passengers[0].mobile,
+  //     },
+  //     theme: {
+  //       color: "#0062cc",
+  //     },
+  //   };
+
+  //   // Call Razorpay checkout
+  //   const rzp1 = new Razorpay(options);
+  //   rzp1.open();
+  // }
+
+
+  // onSubmit(): void {
+  //   this.isLoading = false; // Start loader
+  //   this.setSpinnerTimeout(); // Add this line
+
+  //   const totalAmount = this.getTotalPrice() * 100; // Razorpay uses paise
+  //   const options: any = {
+  //     key: "rzp_test_pIqGo2X8aqQ6ja",
+  //     amount: totalAmount,
+  //     currency: "INR",
+  //     name: "JetWayz",
+  //     description: "Flight Booking Payment",
+  //     handler: (response: any) => {
+  //       // Keep spinner active during backend processing
+  //       const bookingPayload = {
+  //         paymentId: response.razorpay_payment_id,
+  //         passenger: this.passengers[0],
+  //         flightId: this.selectedFlight.flightNumber,
+  //         amount: totalAmount / 100,
+  //         count: this.passengerCount,
+  //       };
+
+  //       const ticketPayload = {
+  //         paymentId: response.razorpay_payment_id,
+  //         passengers: this.passengers,
+  //         flight: this.selectedFlight,
+  //         amount: totalAmount / 100,
+  //       };
+
+  //       this.service.createBooking(bookingPayload).subscribe(
+  //         (res) => {
+  //           // IMPORTANT: Hide spinner before showing any alerts
+  //           this.isLoading = false;
+
+  //           const bookingReference = res.message || "N/A";
+  //           Swal.fire({
+  //             title: "Success!",
+  //             text: `Booking Reference: ${bookingReference}`,
+  //             icon: "success",
+  //             confirmButtonText: "OK",
+  //           }).then(() => {
+  //             // Show spinner again for ticket generation
+  //             this.isLoading = true;
+
+  //             this.service.generatePdfOfTicket(ticketPayload).subscribe(
+  //               (res2) => {
+  //                 // Hide spinner before showing alert
+  //                 this.isLoading = false;
+
+  //                 Swal.fire({
+  //                   title: "Ticket Generated!",
+  //                   text: res2.message || "Your ticket has been sent!",
+  //                   icon: "success",
+  //                   confirmButtonText: "OK",
+  //                 }).then(() => {
+  //                   // Show spinner for navigation
+  //                   this.isLoading = true;
+  //                   this.router.navigate(["/"]).then(() => {
+  //                     // IMPORTANT: Hide spinner after navigation completes
+  //                     this.isLoading = false;
+  //                   });
+  //                 });
+  //               },
+  //               (error) => {
+  //                 // Hide spinner on error
+  //                 this.isLoading = false;
+
+  //                 Swal.fire({
+  //                   title: "Error",
+  //                   text: "Ticket generation failed. Try again.",
+  //                   icon: "error",
+  //                   confirmButtonText: "OK",
+  //                 });
+  //               }
+  //             );
+  //           });
+  //         },
+  //         (error) => {
+  //           // Hide spinner on error
+  //           this.isLoading = false;
+
+  //           let errorMessage = "Something went wrong during payment verification.";
+  //           if (error.error && error.error.message) {
+  //             errorMessage = error.error.message;
+  //           }
+
+  //           Swal.fire({
+  //             title: "Payment Failed",
+  //             text: errorMessage,
+  //             icon: "error",
+  //             confirmButtonText: "OK",
+  //           });
+  //         }
+  //       );
+  //     },
+  //     prefill: {
+  //       name: this.passengers[0].firstName + " " + this.passengers[0].lastName,
+  //       email: this.passengers[0].email,
+  //       contact: this.passengers[0].mobile,
+  //     },
+  //     theme: {
+  //       color: "#0062cc",
+  //     },
+  //     // IMPORTANT: Add modal closing handler to hide spinner if payment modal is closed
+  //     modal: {
+  //       ondismiss: () => {
+  //         this.isLoading = false;
+  //       }
+  //     }
+  //   };
+
+  //   const rzp1 = new Razorpay(options);
+
+  //   try {
+  //     // Hide spinner when Razorpay popup opens
+  //     rzp1.on('ready', () => {
+  //       this.isLoading = false;
+  //     });
+
+  //     rzp1.open();
+  //   } catch (error) {
+  //     // Hide spinner on error
+  //     this.isLoading = false;
+
+  //     Swal.fire({
+  //       title: "Error",
+  //       text: "Unable to open Razorpay. Please try again.",
+  //       icon: "error",
+  //       confirmButtonText: "OK",
+  //     });
+  //   }
+  // }
+
+  // private setSpinnerTimeout() {
+  //   setTimeout(() => {
+  //     if (this.isLoading) {
+  //       console.warn('Spinner safeguard activated - forcing spinner to hide after timeout');
+  //       this.isLoading = false;
+  //     }
+  //   }, 30000); // 30 seconds timeout
+  // }
+
+
+  // Add this method to your component class
+  setSpinnerTimeout(): void {
+    this.isLoading = true;
+  }
+
+  // Update your onSubmit method with loading state management
+  onSubmit(): void {
+    this.isLoading = true; // Start loading
+
+    const totalAmount = this.getTotalPrice() * 100; // Razorpay uses paise
     const options: any = {
       key: "rzp_test_pIqGo2X8aqQ6ja",
       amount: totalAmount,
@@ -336,10 +603,7 @@ export class BookingDetailsComponent implements OnInit {
       name: "JetWayz",
       description: "Flight Booking Payment",
       handler: (response: any) => {
-        // Send response to Spring Boot to verify + handle ticket
-        // // Show spinner before starting the API call
-        // this.isLoading = true;
-
+        // Keep spinner active during backend processing
         const bookingPayload = {
           paymentId: response.razorpay_payment_id,
           passenger: this.passengers[0],
@@ -356,9 +620,9 @@ export class BookingDetailsComponent implements OnInit {
         };
 
         this.service.createBooking(bookingPayload).subscribe(
-          (response) => {
-            // Assuming the response contains a booking reference or any important info:
-            const bookingReference = response.message || "N/A";
+          (res) => {
+            const bookingReference = res.message || "N/A";
+            this.isLoading = false; // Hide spinner before showing popup
 
             Swal.fire({
               title: "Success!",
@@ -366,17 +630,15 @@ export class BookingDetailsComponent implements OnInit {
               icon: "success",
               confirmButtonText: "OK",
             }).then(() => {
-              // Show spinner before starting the API call
-              this.isLoading = true;
-              // You can call getBookingById() here after success if needed
+              this.isLoading = true; // Show spinner for ticket generation
+
               this.service.generatePdfOfTicket(ticketPayload).subscribe(
-                (response) => {
-                  // Assuming the response contains a booking reference or any important info:
-                  const message = response.message || "N/A";
+                (res2) => {
+                  this.isLoading = false; // Hide spinner before showing popup
 
                   Swal.fire({
-                    title: "Success!",
-                    text: message,
+                    title: "Ticket Generated!",
+                    text: res2.message || "Your ticket has been sent!",
                     icon: "success",
                     confirmButtonText: "OK",
                   }).then(() => {
@@ -384,21 +646,11 @@ export class BookingDetailsComponent implements OnInit {
                   });
                 },
                 (error) => {
-                  let errorMessage = "Something went wrong. Try again.";
-
-                  // You can add more specific error handling based on the error response
-                  if (error.error && error.error.message) {
-                    errorMessage = error.error.message;
-                  } else if (error.status === 400) {
-                    errorMessage =
-                      "Invalid input. Please check your booking details and try again."; // If backend sends a more specific error message
-                  } else if (error.status === 500) {
-                    errorMessage = "Server error. Please try again later.";
-                  }
+                  this.isLoading = false; // Hide spinner on error
 
                   Swal.fire({
                     title: "Error",
-                    text: errorMessage,
+                    text: "Ticket generation failed. Try again.",
                     icon: "error",
                     confirmButtonText: "OK",
                   });
@@ -407,20 +659,15 @@ export class BookingDetailsComponent implements OnInit {
             });
           },
           (error) => {
-            let errorMessage = "Something went wrong. Try again.";
+            this.isLoading = false; // Hide spinner on error
 
-            // You can add more specific error handling based on the error response
-            if (error.message && error.error.message) {
-              errorMessage = error.message || error.error.message;
-            } else if (error.status === 400) {
-              errorMessage =
-                "Invalid input. Please check your booking details and try again."; // If backend sends a more specific error message
-            } else if (error.status === 500) {
-              errorMessage = "Server error. Please try again later.";
+            let errorMessage = "Something went wrong during payment verification.";
+            if (error.error && error.error.message) {
+              errorMessage = error.error.message;
             }
 
             Swal.fire({
-              title: "Error",
+              title: "Payment Failed",
               text: errorMessage,
               icon: "error",
               confirmButtonText: "OK",
@@ -436,12 +683,33 @@ export class BookingDetailsComponent implements OnInit {
       theme: {
         color: "#0062cc",
       },
+      modal: {
+        ondismiss: () => {
+          this.isLoading = false; // Hide spinner if payment modal is dismissed
+        }
+      }
     };
 
-    // Call Razorpay checkout
     const rzp1 = new Razorpay(options);
-    rzp1.open();
+
+    try {
+      rzp1.on('ready', () => {
+        this.isLoading = false; // Hide spinner when Razorpay popup opens
+      });
+
+      rzp1.open();
+    } catch (error) {
+      this.isLoading = false; // Hide spinner on error
+
+      Swal.fire({
+        title: "Error",
+        text: "Unable to open Razorpay. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
   }
+
 
   // onSubmit(): void {
   //   const totalAmount = this.getTotalPrice() * 100; // Razorpay accepts paise

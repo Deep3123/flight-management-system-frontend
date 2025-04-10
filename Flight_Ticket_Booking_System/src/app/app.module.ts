@@ -42,6 +42,7 @@ import { FlightResultsComponent } from './flight-results/flight-results.componen
 import { TimeFormatPipe } from './time-format.pipe';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { FormatDurationPipe } from './format-duration.pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { FormatDurationPipe } from './format-duration.pipe';
     TimeFormatPipe,
     BookingDetailsComponent,
     FormatDurationPipe,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
