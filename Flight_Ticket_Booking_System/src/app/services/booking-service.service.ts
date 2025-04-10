@@ -5,15 +5,26 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
-
 export class BookingServiceService {
-  private apiUrl = "http://localhost:8080/bookings"; // Change to your actual API endpoint
+  private apiUrl: string = "http://localhost:8080/bookings"; // Change to your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
+  verifyPayment(bookingData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verify-payment`, bookingData);
+  }
+
   // Create a new booking
   createBooking(bookingData: any): Observable<any> {
+    // return this.http.post(`${this.apiUrl}/confirm`, bookingData, {
+    //   responseType: "text",
+    // });
+
     return this.http.post(`${this.apiUrl}/confirm`, bookingData);
+  }
+
+  generatePdfOfTicket(bookingData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/generate-ticket`, bookingData);
   }
 
   // Get booking by ID

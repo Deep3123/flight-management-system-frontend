@@ -36,10 +36,16 @@ export class ForgotPasswordComponent {
         (error) => {
           console.log(error);
           // Display error pop-up if registration fails
+          let errorMsg;
+
+          if (error.message != null) errorMsg = error.message;
+          else errorMsg = "Something went wrong!";
+          // if (error.error.message != null) errorMsg = error.error.message;
+
           Swal.fire({
             icon: "error",
             title: "Email has not been sent!",
-            text: error.error.message,
+            text: errorMsg,
             confirmButtonText: "OK",
           });
         }

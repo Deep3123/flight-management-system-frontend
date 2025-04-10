@@ -28,7 +28,8 @@
                     <h1 class="page-title">Complete your booking</h1>
                     <p *ngIf="selectedFlight">{{ selectedFlight.departureAirport }} to {{ selectedFlight.arrivalAirport
                         }} •
-                        {{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }} •<span><a class="link" routerLink="/flight-booking">Change search</a></span></p>
+                        {{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }} •<span><a
+                                class="link" routerLink="/flight-booking">Change search</a></span></p>
                 </div>
 
                 <!-- Flight details summary -->
@@ -266,4 +267,9 @@
             </div>
         </div>
     </div>
+    <!-- Add a simple loading spinner -->
+    <div class="spinner-overlay" *ngIf="isLoading">
+        <div class="spinner"></div>
+    </div>
+
 </div>
