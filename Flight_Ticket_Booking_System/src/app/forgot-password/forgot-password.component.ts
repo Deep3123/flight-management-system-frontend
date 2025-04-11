@@ -11,36 +11,39 @@ import Swal from "sweetalert2";
   styleUrls: ["./forgot-password.component.css"],
 })
 export class ForgotPasswordComponent {
+  isLoading: boolean = false;
+
   constructor(
     private router: Router,
     private userAuthService: UserAuthServiceService
   ) {}
-  // This method will be called when the form is submitted
-  onSubmit(forgotPasswordForm: any) {
+
+  onSubmit(forgotPasswordForm: NgForm) {
     if (forgotPasswordForm.valid) {
       const email = forgotPasswordForm.value.email;
+      this.isLoading = true;
+      console.log("Loading started...");
 
-      // Call the service to save the user data
       this.userAuthService.forgotPassword(email).subscribe(
         (response) => {
-          // Display success pop-up on successful registration
+          this.isLoading = false;
+          console.log("Loading finished");
+
           Swal.fire({
             icon: "success",
             title: "Email Sent Successfully!",
             text: response.message,
             confirmButtonText: "OK",
           }).then(() => {
-            forgotPasswordForm.reset(); // Reset the form after successful registration
+            forgotPasswordForm.reset();
           });
         },
         (error) => {
-          console.log(error);
-          // Display error pop-up if registration fails
-          let errorMsg;
+          this.isLoading = false;
+          console.error("Error occurred:", error);
 
-          if (error.message != null) errorMsg = error.message;
-          else errorMsg = "Something went wrong!";
-          // if (error.error.message != null) errorMsg = error.error.message;
+          const errorMsg =
+            error?.error?.message || error?.message || "Something went wrong!";
 
           Swal.fire({
             icon: "error",
@@ -54,7 +57,7 @@ export class ForgotPasswordComponent {
       Swal.fire({
         icon: "warning",
         title: "Form Invalid",
-        text: "Please fill in all fields correctly.",
+        text: "Please enter a valid email address.",
         confirmButtonText: "OK",
       });
     }
