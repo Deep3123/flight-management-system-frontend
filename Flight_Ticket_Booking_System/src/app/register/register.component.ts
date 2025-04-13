@@ -15,8 +15,23 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private userAuthService: UserAuthServiceService
-  ) {}
+  ) { }
   user = new User();
+
+
+  // Add these properties to control password visibility
+  showPassword: boolean = true;
+  showConfirmPassword: boolean = true;
+
+  // Toggle password visibility
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  // Toggle confirm password visibility
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 
   // This method is called when the form is submitted
   onRegisterSubmit(form: NgForm) {

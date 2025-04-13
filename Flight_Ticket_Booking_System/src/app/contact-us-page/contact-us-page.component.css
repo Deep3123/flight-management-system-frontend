@@ -1,0 +1,9 @@
+.table thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+.table td {
+  vertical-align: middle;
+  font-size: 14px;
+}

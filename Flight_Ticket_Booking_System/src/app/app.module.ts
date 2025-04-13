@@ -43,6 +43,8 @@ import { TimeFormatPipe } from './time-format.pipe';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { FormatDurationPipe } from './format-duration.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { BookingDetailsDialogComponent } from './booking-details-dialog/booking-details-dialog.component';
+import { BookingManagementComponent } from './booking-management/booking-management.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     BookingDetailsComponent,
     FormatDurationPipe,
     SpinnerComponent,
+    BookingDetailsDialogComponent,
+    BookingManagementComponent,
   ],
   imports: [
     BrowserModule,

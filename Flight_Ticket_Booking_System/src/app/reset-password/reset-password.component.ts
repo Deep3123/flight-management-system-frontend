@@ -23,6 +23,20 @@ export class ResetPasswordComponent implements OnInit {
     private route: ActivatedRoute // Inject ActivatedRoute to get the route parameters
   ) { }
 
+  // Add these properties to control password visibility
+  showPassword: boolean = true;
+  showConfirmPassword: boolean = true;
+
+  // Toggle password visibility
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  // Toggle confirm password visibility
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
   ngOnInit(): void {
     // Retrieve the route parameters for username, timestamp, and token
     this.route.paramMap.subscribe((params) => {

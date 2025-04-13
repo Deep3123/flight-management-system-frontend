@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 export class BookingServiceService {
   private apiUrl: string = "http://localhost:8080/bookings"; // Change to your actual API endpoint
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   verifyPayment(bookingData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/verify-payment`, bookingData);
@@ -33,7 +33,15 @@ export class BookingServiceService {
   }
 
   // Get all bookings for a user (assuming user authentication is implemented)
-  getUserBookings(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/user`);
+  getUserBookings(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user`);
+  }
+
+  getAllBookings(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/all-bookings`);
+  }
+
+  deleteBooking(id: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/delete-booking-details`, id);
   }
 }

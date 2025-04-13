@@ -21,6 +21,14 @@ export class LoginComponent {
 
   login = new LoginReq();
 
+  // Add this property to control password visibility
+  showPassword: boolean = true;
+
+  // Toggle password visibility
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   onSubmit(form: any) {
     if (form.valid) {
       console.log(form.value);

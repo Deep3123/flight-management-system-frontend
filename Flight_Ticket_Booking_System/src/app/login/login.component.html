@@ -27,12 +27,18 @@
               </div>
             </div>
 
-            <!-- Password input -->
+            <!-- Password input with toggle visibility -->
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" id="password" class="form-control" name="password" ngModel required minlength="8"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" #password="ngModel"
-                placeholder="Enter password" />
+              <div class="password-input-wrapper">
+                <input [type]="!showPassword ? 'text' : 'password'" id="password" class="form-control" name="password"
+                  ngModel required minlength="8"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" #password="ngModel"
+                  placeholder="Enter password" />
+                <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                  <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                </span>
+              </div>
               <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
                 <div *ngIf="password.errors?.['required']">Password is required.</div>
                 <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long.</div>

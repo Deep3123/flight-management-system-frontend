@@ -15,6 +15,7 @@ import { FlightBookingComponent } from "./flight-booking/flight-booking.componen
 import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.component";
 import { FlightResultsComponent } from "./flight-results/flight-results.component";
 import { BookingDetailsComponent } from "./booking-details/booking-details.component";
+import { BookingManagementComponent } from "./booking-management/booking-management.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -41,6 +42,12 @@ const routes: Routes = [
     component: ContactUsPageComponent,
     canActivate: [authGuard], // Apply the guard to this route
     data: { role: "ADMIN" }, // Specify that the user should be an ADMIN
+  },
+  {
+    path: "all-bookings-data",
+    component: BookingManagementComponent,
+    canActivate: [authGuard],
+    data: { role: "ADMIN" },
   },
   { path: "contact-us", component: ContactComponent, canActivate: [authGuard] },
   {

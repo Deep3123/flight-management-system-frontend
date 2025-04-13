@@ -1,0 +1,68 @@
+.table thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+.table td {
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.table{
+    border-radius: 8px;
+}
+
+/* Enhance table styles */
+#userTable {
+    font-size: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Darken the header row */
+  #userTable thead {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  /* Hover effect for rows */
+  #userTable tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Style for Action buttons */
+  #userTable .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 50px;
+  }
+  
+  #userTable .btn-link {
+    color: #007bff;
+    font-size: 16px;
+  }
+  
+  #userTable .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: white;
+  }
+  
+  #userTable .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+  }
+  
+  #userTable .btn-warning:hover,
+  #userTable .btn-danger:hover {
+    opacity: 0.8;
+  }
+  
+  /* Additional padding for form */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
