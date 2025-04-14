@@ -18,18 +18,31 @@ export class FlightPageComponent implements OnInit {
   constructor(
     private flightService: FlightAuthServiceService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllFlights();
   }
 
   getAllFlights() {
-    this.flightService.getAllFlights().subscribe((response: any) => {
-      console.log(response); // Debugging
-      this.flights = response;
-      this.reinitializeDataTable(); // Ensure DataTable updates correctly
-    });
+    this.flightService.getAllFlights().subscribe(
+      (response: any) => {
+        console.log(response); // Debugging
+        this.flights = response;
+        this.reinitializeDataTable(); // Ensure DataTable updates correctly
+      },
+      (error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text:
+            error.message ||
+            error.error.message ||
+            "Error while fetching data!",
+          confirmButtonText: "OK",
+        });
+      }
+    );
   }
 
   openForm(): void {
@@ -91,7 +104,7 @@ export class FlightPageComponent implements OnInit {
           title: "Deletion Cancelled",
           text: "The flight details have not been deleted.",
           confirmButtonText: "OK",
-        });        
+        });
       }
     });
   }

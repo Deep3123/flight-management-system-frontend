@@ -19,18 +19,31 @@ export class AdminPageComponent implements OnInit {
   constructor(
     private userService: UserAuthServiceService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
   }
 
   getAllUsers() {
-    this.userService.getAllUsers().subscribe((response: any) => {
-      console.log(response); // Debugging
-      this.users = response;
-      this.reinitializeDataTable(); // Ensure DataTable updates correctly
-    });
+    this.userService.getAllUsers().subscribe(
+      (response: any) => {
+        // console.log(response); // Debugging
+        this.users = response;
+        this.reinitializeDataTable(); // Ensure DataTable updates correctly
+      },
+      (error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text:
+            error.message ||
+            error.error.message ||
+            "Error while fetching data!",
+          confirmButtonText: "OK",
+        });
+      }
+    );
   }
 
   openForm(): void {
