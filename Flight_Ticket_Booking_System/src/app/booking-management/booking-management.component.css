@@ -8,61 +8,98 @@
   font-size: 14px;
 }
 
-.table{
-    border-radius: 8px;
+.table {
+  border-radius: 8px;
 }
 
 /* Enhance table styles */
 #userTable {
-    font-size: 14px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Darken the header row */
+#userTable thead {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Hover effect for rows */
+#userTable tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style for Action buttons */
+#userTable .btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 50px;
+}
+
+#userTable .btn-link {
+  color: #007bff;
+  font-size: 16px;
+}
+
+#userTable .btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: white;
+}
+
+#userTable .btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+}
+
+#userTable .btn-warning:hover,
+#userTable .btn-danger:hover {
+  opacity: 0.8;
+}
+
+/* Additional padding for form */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Spinner overlay and animation */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.animated-dots .dots::after {
+  content: "";
+  display: inline-block;
+  animation: dotsAnim 1.5s infinite;
+}
+
+@keyframes dotsAnim {
+  0% {
+    content: ".";
   }
-  
-  /* Darken the header row */
-  #userTable thead {
-    background-color: #343a40;
-    color: #fff;
+  25% {
+    content: "..";
   }
-  
-  /* Hover effect for rows */
-  #userTable tbody tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
+  50% {
+    content: "...";
   }
-  
-  /* Style for Action buttons */
-  #userTable .btn {
-    padding: 5px 10px;
-    font-size: 14px;
-    border-radius: 50px;
+  75% {
+    content: "..";
   }
-  
-  #userTable .btn-link {
-    color: #007bff;
-    font-size: 16px;
+  100% {
+    content: ".";
   }
-  
-  #userTable .btn-warning {
-    background-color: #ffc107;
-    border: none;
-    color: white;
-  }
-  
-  #userTable .btn-danger {
-    background-color: #dc3545;
-    border: none;
-    color: white;
-  }
-  
-  #userTable .btn-warning:hover,
-  #userTable .btn-danger:hover {
-    opacity: 0.8;
-  }
-  
-  /* Additional padding for form */
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
+}

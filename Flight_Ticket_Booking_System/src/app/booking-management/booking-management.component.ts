@@ -15,6 +15,8 @@ declare var $: any;
 export class BookingManagementComponent implements OnInit {
   bookings: any[] = [];
 
+  isLoading: boolean = false;
+
   constructor(private bookingService: BookingServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -22,12 +24,15 @@ export class BookingManagementComponent implements OnInit {
   }
 
   getAllBookings() {
+    this.isLoading = true;
     this.bookingService.getAllBookings().subscribe(
       (response: any) => {
+        this.isLoading = false;
         this.bookings = response;
         this.reinitializeDataTable();
       },
       (error) => {
+        this.isLoading = false;
         Swal.fire({
           icon: 'error',
           title: 'Error Fetching Bookings',
@@ -59,8 +64,11 @@ export class BookingManagementComponent implements OnInit {
       cancelButtonText: "No, cancel!",
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
+
         this.bookingService.deleteBooking(booking.paymentId).subscribe(
           (response) => {
+            this.isLoading = false;
             Swal.fire({
               icon: "success",
               title: "Deleted Successfully!",
@@ -70,6 +78,7 @@ export class BookingManagementComponent implements OnInit {
             this.getAllBookings();
           },
           (error) => {
+            this.isLoading = false;
             Swal.fire({
               icon: "error",
               title: "Error Deleting Booking",

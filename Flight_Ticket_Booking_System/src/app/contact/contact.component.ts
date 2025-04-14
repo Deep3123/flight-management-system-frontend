@@ -18,6 +18,8 @@ import { UserAuthServiceService } from "../services/user-auth-service.service";
   phoneNumber: string = "";
   message: string = "";
 
+  isLoading: boolean = false;
+
   constructor(
     private service: ContactServiceService,
     // private userAuthService: UserAuthServiceService,
@@ -58,8 +60,12 @@ import { UserAuthServiceService } from "../services/user-auth-service.service";
       message: this.message,
     };
 
+    this.isLoading=true;
+
     this.service.saveContactData(contactRequest).subscribe(
       (response) => {
+
+        this.isLoading=false;
         // Success popup
         Swal.fire({
           icon: "success",
@@ -72,6 +78,7 @@ import { UserAuthServiceService } from "../services/user-auth-service.service";
         });
       },
       (error) => {
+        this.isLoading=false;
         // Error popup
         let errorMessage = "Something went wrong. Please try again later.";
 
