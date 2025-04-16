@@ -14,6 +14,7 @@ declare var $: any; // Declare jQuery for DataTable initialization
 })
 export class ContactUsPageComponent implements OnInit {
   contacts: any[] = [];
+  isLoading: any = false;
 
   constructor(
     private contactService: ContactServiceService, // Contact service
@@ -26,8 +27,10 @@ export class ContactUsPageComponent implements OnInit {
 
   // Fetch all contact queries from the backend
   getAllContacts() {
+    this.isLoading = true
     this.contactService.getAllContactData().subscribe(
       (response: any) => {
+        this.isLoading = false;
         this.contacts = response;
         this.reinitializeDataTable(); // Reinitialize DataTable
       },
@@ -94,13 +97,13 @@ export class ContactUsPageComponent implements OnInit {
           }
         );
       }
-      else{
+      else {
         Swal.fire({
           icon: "info",
           title: "Deletion Cancelled",
           text: "The contact query was not deleted.",
           confirmButtonText: "OK",
-        });        
+        });
       }
     });
   }

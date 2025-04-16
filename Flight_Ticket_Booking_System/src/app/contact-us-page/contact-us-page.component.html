@@ -24,7 +24,7 @@
                     <td>{{ contact.submittedAt | date:'short' }}</td>
                     <td class="text-center" style="justify-items: center;">
                         <!-- View Details Button -->
-                        <button class="btn btn-info"  (click)="viewContact(contact)"
+                        <button class="btn btn-info" (click)="viewContact(contact)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon style="color: white;">visibility</mat-icon>
                         </button>
@@ -39,5 +39,14 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="text-center">
+        <div class="spinner-border text-light mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
     </div>
 </div>

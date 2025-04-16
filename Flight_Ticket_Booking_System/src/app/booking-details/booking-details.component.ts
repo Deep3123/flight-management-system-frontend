@@ -591,7 +591,7 @@ export class BookingDetailsComponent implements OnInit {
 
   // Update your onSubmit method with loading state management
   onSubmit(): void {
-    // this.isLoading = true; // Start loading
+    this.isLoading = true; // Start loading
 
     const totalAmount = this.getTotalPrice() * 100; // Razorpay uses paise
     const options: any = {
@@ -619,6 +619,7 @@ export class BookingDetailsComponent implements OnInit {
 
         this.service.createBooking(bookingPayload).subscribe(
           (res) => {
+            this.isLoading = false;
             const bookingReference = res.message || "N/A";
             // First hide spinner after booking creation completes
             // this.isLoading = false;
