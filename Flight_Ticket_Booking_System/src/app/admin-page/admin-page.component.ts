@@ -15,6 +15,7 @@ declare var $: any; // Declare jQuery for DataTable initialization
 })
 export class AdminPageComponent implements OnInit {
   users: any[] = [];
+  isLoading: any = false;
 
   constructor(
     private userService: UserAuthServiceService,
@@ -26,8 +27,10 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllUsers() {
+    this.isLoading = true;
     this.userService.getAllUsers().subscribe(
       (response: any) => {
+        this.isLoading = false;
         // console.log(response); // Debugging
         this.users = response;
         this.reinitializeDataTable(); // Ensure DataTable updates correctly

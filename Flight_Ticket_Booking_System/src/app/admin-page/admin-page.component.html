@@ -66,3 +66,12 @@
         </table>
     </div>
 </div>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="text-center">
+        <div class="spinner-border text-light mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
+    </div>
+</div>

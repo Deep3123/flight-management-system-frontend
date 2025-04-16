@@ -443,7 +443,6 @@ export class BookingDetailsComponent implements OnInit {
   //   rzp1.open();
   // }
 
-
   // onSubmit(): void {
   //   this.isLoading = false; // Start loader
   //   this.setSpinnerTimeout(); // Add this line
@@ -585,15 +584,14 @@ export class BookingDetailsComponent implements OnInit {
   //   }, 30000); // 30 seconds timeout
   // }
 
-
   // Add this method to your component class
-  setSpinnerTimeout(): void {
-    this.isLoading = true;
-  }
+  // setSpinnerTimeout(): void {
+  //   this.isLoading = true;
+  // }
 
   // Update your onSubmit method with loading state management
   onSubmit(): void {
-    this.isLoading = true; // Start loading
+    // this.isLoading = true; // Start loading
 
     const totalAmount = this.getTotalPrice() * 100; // Razorpay uses paise
     const options: any = {
@@ -622,7 +620,8 @@ export class BookingDetailsComponent implements OnInit {
         this.service.createBooking(bookingPayload).subscribe(
           (res) => {
             const bookingReference = res.message || "N/A";
-            this.isLoading = false; // Hide spinner before showing popup
+            // First hide spinner after booking creation completes
+            // this.isLoading = false;
 
             Swal.fire({
               title: "Success!",
@@ -630,12 +629,12 @@ export class BookingDetailsComponent implements OnInit {
               icon: "success",
               confirmButtonText: "OK",
             }).then(() => {
-              this.isLoading = true; // Show spinner for ticket generation
-
+              // Show spinner right before ticket generation starts
+              this.isLoading = true;
               this.service.generatePdfOfTicket(ticketPayload).subscribe(
                 (res2) => {
-                  this.isLoading = false; // Hide spinner before showing popup
-
+                  // Hide spinner when ticket generation completes
+                  this.isLoading = false;
                   Swal.fire({
                     title: "Ticket Generated!",
                     text: res2.message || "Your ticket has been sent!",
@@ -646,11 +645,16 @@ export class BookingDetailsComponent implements OnInit {
                   });
                 },
                 (error) => {
-                  this.isLoading = false; // Hide spinner on error
+                  // Hide spinner on error during ticket generation
+                  this.isLoading = false;
+                  let errorMsg = error.message || error.error.message;
+
+                  if (errorMsg == null)
+                    errorMsg = "Ticket generation failed. Try again.";
 
                   Swal.fire({
                     title: "Error",
-                    text: "Ticket generation failed. Try again.",
+                    text: errorMsg,
                     icon: "error",
                     confirmButtonText: "OK",
                   });
@@ -659,13 +663,13 @@ export class BookingDetailsComponent implements OnInit {
             });
           },
           (error) => {
-            this.isLoading = false; // Hide spinner on error
-
-            let errorMessage = "Something went wrong during payment verification.";
+            // Hide spinner on error during booking creation
+            this.isLoading = false;
+            let errorMessage =
+              "Something went wrong during payment verification.";
             if (error.error && error.error.message) {
               errorMessage = error.error.message;
             }
-
             Swal.fire({
               title: "Payment Failed",
               text: errorMessage,
@@ -686,14 +690,14 @@ export class BookingDetailsComponent implements OnInit {
       modal: {
         ondismiss: () => {
           this.isLoading = false; // Hide spinner if payment modal is dismissed
-        }
-      }
+        },
+      },
     };
 
     const rzp1 = new Razorpay(options);
 
     try {
-      rzp1.on('ready', () => {
+      rzp1.on("ready", () => {
         this.isLoading = false; // Hide spinner when Razorpay popup opens
       });
 
@@ -709,7 +713,6 @@ export class BookingDetailsComponent implements OnInit {
       });
     }
   }
-
 
   // onSubmit(): void {
   //   const totalAmount = this.getTotalPrice() * 100; // Razorpay accepts paise
