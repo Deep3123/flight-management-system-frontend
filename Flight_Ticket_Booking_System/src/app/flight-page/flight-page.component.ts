@@ -14,6 +14,7 @@ declare var $: any; // Declare jQuery for DataTable initialization
 })
 export class FlightPageComponent implements OnInit {
   flights: any[] = [];
+  isLoading: any = false;
 
   constructor(
     private flightService: FlightAuthServiceService,
@@ -25,13 +26,17 @@ export class FlightPageComponent implements OnInit {
   }
 
   getAllFlights() {
+    this.isLoading = true;
     this.flightService.getAllFlights().subscribe(
       (response: any) => {
-        console.log(response); // Debugging
+        this.isLoading = false;
+
+        // console.log(response); // Debugging
         this.flights = response;
         this.reinitializeDataTable(); // Ensure DataTable updates correctly
       },
       (error) => {
+        this.isLoading = false;
         Swal.fire({
           icon: "error",
           title: "Error!",
