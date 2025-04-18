@@ -47,6 +47,19 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="captcha">Enter the text in the image:</label>
+              <div class="captcha-image-box">
+                <img [src]="captchaUrl" alt="CAPTCHA" class="captcha-image" />
+                <button type="button" class="refresh-captcha" (click)="reloadCaptcha()">↻</button>
+              </div>
+              <input type="text" class="form-control" id="captchaInput" name="captchaInput" ngModel required
+                #captchaInputModel="ngModel" placeholder="Enter CAPTCHA" />
+              <div *ngIf="captchaInputModel.invalid && captchaInputModel.touched" class="error-message">
+                CAPTCHA is required.
+              </div>
+            </div>
+
             <div class="d-flex justify-content-between align-items-center mb-4">
               <div class="remember-me">
                 <input class="form-check-input me-2" type="checkbox" name="rememberMe" ngModel />
@@ -66,3 +79,12 @@
     </div>
   </div>
 </section>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+  <div class="text-center">
+    <div class="spinner-border text-light mb-3" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+/
+/login
+/register
+/forgot-password
+/admin
+/flight
+/contact-data
+/contact-us
+/flight-booking
+/flight-result
+/booking-details

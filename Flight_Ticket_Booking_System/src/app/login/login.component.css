@@ -12,7 +12,8 @@ body {
 }
 
 section.vh-100 {
-  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 200px;
 }
 
 /* Container for login form */
@@ -158,7 +159,7 @@ section.vh-100 {
 /* Responsive styles */
 @media (max-width: 991px) {
   section.vh-100 {
-    margin-bottom: 300px;
+    margin-bottom: 500px;
   }
   /* Adjustments for medium-sized screens like tablets */
   .container-fluid {
@@ -176,8 +177,9 @@ section.vh-100 {
 
 @media (max-width: 560px) {
   section.vh-100 {
-    margin-bottom: 200px;
+    margin-bottom: 400px;
   }
+
   /* Adjustments for smaller screens like mobile */
   .container-fluid {
     padding-bottom: 50px;
@@ -218,7 +220,7 @@ section.vh-100 {
   } */
 
   section.vh-100 {
-    margin-bottom: 200px;
+    margin-bottom: 400px;
   }
 }
 
@@ -253,4 +255,78 @@ section.vh-100 {
 
 .password-toggle-icon:hover {
   color: #0053b3;
+}
+
+.captcha-image-box {
+  display: flex;
+  align-items: center;
+  /* background-color: #f9f9f9;  */
+  padding: 10px;
+  /* border-radius: 8px; */
+  /* border: 1px solid #ddd; */
+  margin-bottom: 10px;
+  max-width: 280px;
+}
+
+.captcha-image {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  border: 1px solid #ccc;
+  background-color: #fff; /* solid background for clarity */
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.refresh-captcha {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  font-size: 18px;
+  margin-left: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.refresh-captcha:hover {
+  background-color: #f0f0f0;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Black with transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.animated-dots .dots::after {
+  content: "";
+  display: inline-block;
+  animation: dotsAnim 1.5s infinite;
+}
+
+@keyframes dotsAnim {
+  0% {
+    content: ".";
+  }
+  25% {
+    content: "..";
+  }
+  50% {
+    content: "...";
+  }
+  75% {
+    content: "..";
+  }
+  100% {
+    content: ".";
+  }
 }

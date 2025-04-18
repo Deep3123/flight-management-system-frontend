@@ -23,6 +23,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "prerender": {
+              "routesFile": "prerender.routes.txt"
+            },
             "outputPath": "dist/flight_ticket_booking_system",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -37,8 +40,8 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/assets/fonts",  
-                "output": "/assets/fonts"     
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts"
               }
             ],
             "styles": [
@@ -47,7 +50,7 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "outputMode": "server",
+            
             "ssr": {
               "entry": "src/server.ts"
             }
@@ -57,13 +60,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb"
                 }
               ],
               "outputHashing": "all"

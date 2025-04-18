@@ -9,7 +9,7 @@ import { AuthService } from "./auth-service.service";
 export class UserAuthServiceService {
   private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
@@ -18,7 +18,9 @@ export class UserAuthServiceService {
 
   // Send login data to backend API (no Authorization needed)
   userLogin(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, params);
+    return this.http.post(`${this.baseUrl}/login`, params, {
+      withCredentials: true,
+    });
   }
 
   // Forgot password (no Authorization needed)
