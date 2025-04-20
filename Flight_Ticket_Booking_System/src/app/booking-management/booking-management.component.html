@@ -1,4 +1,4 @@
-<div class="container mt-5" style="margin-bottom: 80px;">
+<!-- <div class="container mt-5" style="margin-bottom: 80px;">
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered text-center" id="bookingTable">
             <thead class="thead-dark">
@@ -34,14 +34,12 @@
                     <td>{{ booking.countryCode }}</td>
                     <td>{{ booking.mobile }}</td>
 
-                    <!-- View Button -->
                     <td class="text-center">
                         <button class="btn btn-info" (click)="viewBookingDetails(booking)">
                             <mat-icon style="color: white;">visibility</mat-icon>
                         </button>
                     </td>
 
-                    <!-- Delete Button -->
                     <td class="text-center">
                         <button class="btn btn-danger" (click)="deleteBookingDetails(booking)">
                             <mat-icon>delete</mat-icon>
@@ -51,9 +49,171 @@
             </tbody>
         </table>
     </div>
+</div> -->
+
+
+<!-- Enhanced Booking Management Interface -->
+<div class="admin-container">
+    <!-- Streamlined header with improved layout -->
+    <div class="header-container">
+        <div class="title-row">
+            <h1 class="mat-headline-5">Booking Management</h1>
+        </div>
+    </div>
+
+    <!-- Main content card with improved styling -->
+    <mat-card class="mat-elevation-z2 content-card">
+        <mat-card-content>
+            <!-- Search and filter area -->
+            <div class="filter-container">
+                <mat-form-field appearance="outline" class="search-field">
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Search bookings" (keyup)="applyFilter($event)" #input>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <!-- Enhanced table container -->
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSource" matSort #bookingSort="matSort" class="booking-table">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef rowspan="2" class="align-center"> No. </th>
+                        <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
+                    </ng-container>
+
+                    <!-- Flight ID Column -->
+                    <ng-container matColumnDef="flightId">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'flightIdSort'" rowspan="2"
+                            class="align-center">
+                            Flight ID
+                        </th>
+                        <td mat-cell *matCellDef="let booking" class="flight-id-cell"> {{ booking.flightId }} </td>
+                    </ng-container>
+
+                    <!-- Amount Column -->
+                    <ng-container matColumnDef="amount">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'amountSort'" rowspan="2"
+                            class="align-center">
+                            Amount
+                        </th>
+                        <td mat-cell *matCellDef="let booking"> ₹{{ booking.amount }} </td>
+                    </ng-container>
+
+                    <!-- Booking Date Column -->
+                    <ng-container matColumnDef="bookingDate">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'bookingDateSort'" rowspan="2"
+                            class="align-center">
+                            Booking Date
+                        </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.bookingDate | date:'short' }} </td>
+                    </ng-container>
+
+                    <!-- Total Tickets Column -->
+                    <ng-container matColumnDef="count">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'countSort'" rowspan="2"
+                            class="align-center">
+                            Total Tickets
+                        </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.count }} </td>
+                    </ng-container>
+
+                    <!-- Passenger Details Group Header -->
+                    <ng-container matColumnDef="passengerDetailsGroup">
+                        <th mat-header-cell *matHeaderCellDef [attr.colspan]="6" class="group-header">
+                            Passenger Details
+                        </th>
+                    </ng-container>
+
+                    <!-- First Name Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'firstNameSort'"> First Name </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.firstName }} </td>
+                    </ng-container>
+
+                    <!-- Last Name Column -->
+                    <ng-container matColumnDef="lastName">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'lastNameSort'"> Last Name </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.lastName }} </td>
+                    </ng-container>
+
+                    <!-- Age Column -->
+                    <ng-container matColumnDef="age">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'ageSort'"> Age </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.age }} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'emailSort'"> Email </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.email }} </td>
+                    </ng-container>
+
+                    <!-- Country Code Column -->
+                    <ng-container matColumnDef="countryCode">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'countryCodeSort'"> Country Code </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.countryCode }} </td>
+                    </ng-container>
+
+                    <!-- Mobile Column -->
+                    <ng-container matColumnDef="mobile">
+                        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="'mobileSort'"> Mobile </th>
+                        <td mat-cell *matCellDef="let booking"> {{ booking.mobile }} </td>
+                    </ng-container>
+
+                    <!-- Action Group Header -->
+                    <ng-container matColumnDef="actionsGroup">
+                        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" class="group-header actions-header">
+                            Actions
+                        </th>
+                    </ng-container>
+
+                    <!-- View Action Column -->
+                    <ng-container matColumnDef="view">
+                        <th mat-header-cell *matHeaderCellDef class="actions-header"> View </th>
+                        <td mat-cell *matCellDef="let booking" class="actions-cell">
+                            <button mat-icon-button class="view-button" (click)="viewBookingDetails(booking)"
+                                matTooltip="View Details">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <!-- Delete Action Column -->
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef class="actions-header"> Delete </th>
+                        <td mat-cell *matCellDef="let booking" class="actions-cell">
+                            <button mat-icon-button class="delete-button" (click)="deleteBookingDetails(booking)"
+                                matTooltip="Delete Booking">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <!-- Define the header rows -->
+                    <tr mat-header-row *matHeaderRowDef="groupColumns" class="group-header-row"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="booking-row"></tr>
+
+                    <!-- Row shown when no data available -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">
+                            <div class="no-data-container">
+                                <mat-icon class="no-data-icon">flight_off</mat-icon>
+                                <p>No booking data available</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Paginator with improved styling -->
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of bookings"
+                    class="custom-paginator"></mat-paginator>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>
 
-<!-- Fullscreen Spinner Overlay -->
 <div *ngIf="isLoading" class="spinner-overlay">
     <div class="text-center">
         <div class="spinner-border text-light mb-3" role="status">

@@ -1,5 +1,5 @@
-<div class="container mt-5" style="margin-bottom: 80px;">
-    <!-- Add User Button -->
+<!-- <div class="container mt-5" style="margin-bottom: 80px;">
+
     <div class="d-flex justify-content-end mb-2">
         <button class="btn btn-primary" (click)="openForm()"
             style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
@@ -7,12 +7,6 @@
         </button>
     </div>
 
-    <!-- <button mat-raised-button color="primary" class="float-left mb-3" (click)="openForm()"
-        style="display: flex; align-items: center;">
-        <mat-icon>add</mat-icon> Add User
-    </button> -->
-
-    <!-- User DataTable -->
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered text-center" id="userTable">
             <thead class="thead-dark">
@@ -25,7 +19,7 @@
                     <th>Role</th>
                     <th>Created At</th>
                     <th>Updated At</th>
-                    <th colspan="2" class="text-center">Actions</th> <!-- Only colspan for header -->
+                    <th colspan="2" class="text-center">Actions</th> 
                 </tr>
             </thead>
             <tbody>
@@ -39,16 +33,12 @@
                     <td>{{ user.createdAt | date:'short' }}</td>
                     <td>{{ user.updatedAt | date:'short' }}</td>
 
-                    <!-- Actions Column with buttons styled with both Angular Material and custom styles -->
                     <td class="text-center" style="justify-items: center;">
                         <button class="btn btn-success" (click)="editUser(user)"
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <!-- <button mat-raised-button color="warn" (click)="editUser(user)"
-                            style="display: flex; align-items: center;">
-                            <mat-icon>edit</mat-icon> Edit
-                        </button> -->
+                        
                     </td>
 
                     <td class="text-center" style="justify-items: center;">
@@ -56,10 +46,7 @@
                             style="display: flex; align-items: center; gap: 5px;">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <!-- <button mat-raised-button color="accent" (click)="deleteUser(user)"
-                            style="display: flex; align-items: center;">
-                            <mat-icon>delete</mat-icon> Delete
-                        </button> -->
+                        
                     </td>
                 </tr>
             </tbody>
@@ -74,4 +61,144 @@
         </div>
         <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
     </div>
+</div> -->
+
+<div class="admin-container">
+    <!-- Streamlined header with improved layout -->
+    <div class="header-container">
+        <div class="title-row">
+            <h1 class="mat-headline-5">User Management</h1>
+        </div>
+        <div class="d-flex justify-content-end mb-2">
+            <button class="btn btn-primary add-button" (click)="openForm()"
+                style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+                <mat-icon>add</mat-icon> Add User
+            </button>
+        </div>
+        <!-- <div class="button-row">
+            <button mat-raised-button color="primary" (click)="openForm()" class="add-button">
+                <mat-icon>add</mat-icon>
+                Add User
+            </button>
+        </div> -->
+    </div>
+
+    <!-- Main content card with improved styling -->
+    <mat-card class="mat-elevation-z2 content-card">
+        <mat-card-content>
+            <!-- Search filter with improved styling -->
+            <div class="filter-container">
+                <mat-form-field appearance="outline" class="search-field">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search by name, email or role" #input>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <!-- Enhanced table container -->
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSource" matSort class="user-table">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let i = index"> {{ getRowNumber(i) }} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let user" class="name-cell"> {{ user.name }} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.emailId }} </td>
+                    </ng-container>
+
+                    <!-- Username Column -->
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.username }} </td>
+                    </ng-container>
+
+                    <!-- Phone Column -->
+                    <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.mobileNo }} </td>
+                    </ng-container>
+
+                    <!-- Role Column with enhanced styling -->
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                        <td mat-cell *matCellDef="let user">
+                            <span class="role-chip" [ngClass]="user.role === 'ADMIN' ? 'admin-role' : 'user-role'">
+                                {{ user.role }}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Created Date Column -->
+                    <ng-container matColumnDef="createdAt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.createdAt | date:'short' }} </td>
+                    </ng-container>
+
+                    <!-- Updated Date Column -->
+                    <ng-container matColumnDef="updatedAt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.updatedAt | date:'short' }} </td>
+                    </ng-container>
+
+                    <!-- Actions Column with improved button styling -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef class="actions-header"> Actions </th>
+                        <td mat-cell *matCellDef="let user" class="actions-cell">
+                            <button mat-icon-button class="edit-button" (click)="editUser(user)" matTooltip="Edit User">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button class="delete-button" (click)="deleteUser(user)"
+                                matTooltip="Delete User">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="user-row"></tr>
+
+                    <!-- Row shown when no matching data -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell no-data" colspan="9">
+                            <div class="no-data-container">
+                                <mat-icon class="no-data-icon">search_off</mat-icon>
+                                <p>No data matching the filter "{{input.value}}"</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Paginator with improved styling -->
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"
+                    class="custom-paginator"></mat-paginator>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>
+
+<!-- Enhanced loading spinner overlay -->
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="text-center">
+        <div class="spinner-border text-light mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
+    </div>
+</div>
+
+
+<!-- Loading overlay -->
+<!-- <div *ngIf="isLoading" class="loading-overlay">
+    <mat-spinner color="accent"></mat-spinner>
+    <h2 class="loading-text">Loading<span class="loading-dots">...</span></h2>
+</div> -->

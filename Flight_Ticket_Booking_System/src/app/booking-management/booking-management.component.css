@@ -103,3 +103,288 @@
     content: ".";
   }
 }
+
+/* Main container styles with improved spacing */
+.admin-container {
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-bottom: 80px;
+  min-height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+/* Enhanced modern header */
+.header-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.title-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* Modern title styling */
+.header-container h1 {
+  margin: 0;
+  font-weight: 500;
+  color: #3a3a64;
+  font-size: 38px;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.header-container h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #5e60ce, #64dfdf);
+  border-radius: 3px;
+}
+
+/* Card styling with softer shadows */
+.content-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  transition: box-shadow 0.3s ease;
+}
+
+mat-card-content {
+  padding: 0 !important;
+}
+
+/* Search field styling */
+.filter-container {
+  padding: 24px 28px 12px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-field {
+  width: 320px;
+  transition: width 0.3s ease;
+}
+
+.search-field:focus-within {
+  width: 360px;
+}
+
+/* Table container with improved scrolling */
+.table-container {
+  overflow: auto;
+  max-height: calc(100vh - 320px);
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Enhanced column styles */
+th.mat-header-cell {
+  background-color: #f0f4ff;
+  color: #4338ca;
+  font-weight: 600;
+  padding: 18px 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+td.mat-cell {
+  padding: 16px;
+  font-size: 14.5px;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Group header styling */
+.group-header {
+  text-align: center;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.group-header-row {
+  height: 50px;
+}
+
+/* Center align for rowspan cells */
+.align-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Name cell with emphasis */
+.name-cell,
+.flight-id-cell {
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.5px;
+}
+
+/* Improved row styling */
+tr.booking-row {
+  transition: all 0.2s ease;
+}
+
+tr.booking-row:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.mat-column-position {
+  width: 70px;
+  text-align: center;
+}
+
+/* Enhanced actions column */
+.actions-cell {
+  width: 80px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.actions-header {
+  text-align: center;
+}
+
+/* Button styling */
+.view-button {
+  color: #3b82f6 !important;
+  transition: all 0.2s ease;
+}
+
+.delete-button {
+  color: #dc2626 !important;
+  transition: all 0.2s ease;
+}
+
+.view-button:hover,
+.delete-button:hover {
+  transform: scale(1.15);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* No data styling */
+.no-data {
+  padding: 48px 0;
+}
+
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+/* Custom paginator */
+.custom-paginator {
+  border-top: 1px solid #e2e8f0;
+  background-color: #fafbff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .admin-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .booking-table {
+    min-width: 1200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-container {
+    padding: 24px 16px;
+    min-height: 0;
+  }
+
+  .search-field {
+    width: 280px;
+  }
+
+  .booking-table {
+    min-width: 1300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container h1 {
+    font-size: 32px;
+  }
+
+  .filter-container {
+    padding: 20px 16px 12px;
+    display: block;
+  }
+
+  .search-field,
+  .search-field:focus-within {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container h1 {
+    font-size: 28px;
+  }
+}

@@ -45,6 +45,10 @@ import { FormatDurationPipe } from './format-duration.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { BookingDetailsDialogComponent } from './booking-details-dialog/booking-details-dialog.component';
 import { BookingManagementComponent } from './booking-management/booking-management.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -90,6 +94,16 @@ import { BookingManagementComponent } from './booking-management/booking-managem
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   providers: [
     {
