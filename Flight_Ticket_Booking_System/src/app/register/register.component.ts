@@ -17,7 +17,7 @@ export class RegisterComponent {
     private userAuthService: UserAuthServiceService
   ) { }
   user = new User();
-
+  isLoading: any = false;
 
   // Add these properties to control password visibility
   showPassword: boolean = true;
@@ -44,9 +44,11 @@ export class RegisterComponent {
       this.user.username = form.value.username;
       this.user.password = form.value.password;
 
+      this.isLoading = true;
       // Call the service to save the user data
       this.userAuthService.saveUserData(this.user).subscribe(
         (response) => {
+          this.isLoading = false;
           // Display success pop-up on successful registration
           Swal.fire({
             icon: "success",
