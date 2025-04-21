@@ -131,18 +131,16 @@
 //     }, 100);
 //   }
 
-
 //   trackByFn(index: number, booking: any) {
 //     return booking.id;
 //   }
 // }
 
-
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { BookingDetailsDialogComponent } from "../booking-details-dialog/booking-details-dialog.component";
 import { BookingServiceService } from "../services/booking-service.service";
 import Swal from "sweetalert2";
@@ -158,27 +156,18 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
   isLoading = false;
   dataSource = new MatTableDataSource<any>([]);
 
-  // Group row column definitions
-  groupColumns: string[] = [
-    'position', 'flightId', 'amount', 'bookingDate', 'count',
-    'passengerDetailsGroup', 'actionsGroup'
-  ];
-
-  // Regular column definitions
+  // Define displayed columns for the table
   displayedColumns: string[] = [
-    'position',
-    'flightId',
-    'amount',
-    'bookingDate',
-    'count',
-    'firstName',
-    'lastName',
-    'age',
-    'email',
-    'countryCode',
-    'mobile',
-    'view',
-    'delete'
+    "position",
+    "flightId",
+    "amount",
+    "bookingDate",
+    "count",
+    "name",
+    "email",
+    "phone",
+    "view",
+    "delete",
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -187,7 +176,7 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
   constructor(
     private bookingService: BookingServiceService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllBookings();
@@ -213,7 +202,10 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
         Swal.fire({
           icon: "error",
           title: "Error Fetching Bookings",
-          text: error.message || error.error.message || "There was a problem loading bookings data.",
+          text:
+            error.message ||
+            error.error.message ||
+            "There was a problem loading bookings data.",
           confirmButtonText: "OK",
           confirmButtonColor: "#4F46E5",
         });

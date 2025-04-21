@@ -201,7 +201,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         if (this.paginator) {
           const pageIndex = Number(localStorage.getItem('adminPaginatorIndex') || '0');
-          const pageSize = Number(localStorage.getItem('adminPaginatorSize') || '5');
+          const pageSize = Number(localStorage.getItem('adminPaginatorSize') || '10');
 
           // First set the page size
           this.paginator.pageSize = pageSize;

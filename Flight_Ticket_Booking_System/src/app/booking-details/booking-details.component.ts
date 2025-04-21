@@ -600,6 +600,11 @@ export class BookingDetailsComponent implements OnInit {
       currency: "INR",
       name: "JetWayz",
       description: "Flight Booking Payment",
+      prefill: {
+        name: this.passengers[0].firstName + " " + this.passengers[0].lastName,
+        email: this.passengers[0].email,
+        contact: this.passengers[0].mobile,
+      },
       handler: (response: any) => {
         // Keep spinner active during backend processing
         const bookingPayload = {
@@ -680,11 +685,7 @@ export class BookingDetailsComponent implements OnInit {
           }
         );
       },
-      prefill: {
-        name: this.passengers[0].firstName + " " + this.passengers[0].lastName,
-        email: this.passengers[0].email,
-        contact: this.passengers[0].mobile,
-      },
+      
       theme: {
         color: "#0062cc",
       },

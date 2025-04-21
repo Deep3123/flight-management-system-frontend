@@ -327,12 +327,13 @@ body {
 /* Main container styles with improved spacing */
 .admin-container {
   /* padding-top: 32px; */
-  padding-left:32px;
+  padding-left: 32px;
   padding-right: 32px;
   margin-bottom: 80px;
   /* background-color: #f8f9fa; */
   min-height: calc(100vh - 64px);
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
+  position: relative; /* Added position relative */
 }
 
 /* Enhanced modern header */
@@ -406,18 +407,28 @@ body {
 /* Card styling with softer shadows */
 .content-card {
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible !important; /* Changed from hidden to visible */
   background-color: white;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
   transition: box-shadow 0.3s ease;
+  margin-bottom: 30px; /* Add some bottom margin */
 }
 
-/* .content-card:hover {
+.content-card:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
-} */
+}
+
+/* Custom styling for the mat-card to ensure shadow is visible */
+mat-card.content-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px !important;
+  overflow: visible !important; /* This is crucial to show the shadow */
+}
 
 mat-card-content {
   padding: 0 !important;
+  overflow: visible !important; /* Ensure content overflow doesn't hide shadow */
 }
 
 /* Search field styling */
@@ -439,8 +450,10 @@ mat-card-content {
 
 /* Table container with improved scrolling */
 .table-container {
-  overflow: auto;
+  min-height: 200px; /* Minimum height */
   max-height: calc(100vh - 320px);
+  overflow-x: auto; /* Only allow horizontal scrolling if needed */
+  overflow-y: visible; /* Don't auto-scroll vertically */
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
 }
@@ -588,76 +601,11 @@ tr.user-row:hover {
 .custom-paginator {
   border-top: 1px solid #e2e8f0;
   background-color: #fafbff;
+  border-radius: 0 0 16px 16px; /* Round the bottom corners */
+  overflow: visible !important;
 }
 
 /* Enhanced loading spinner */
-/* .spinner-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(2, 2, 2, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1050;
-  backdrop-filter: blur(4px);
-}
-
-.spinner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  border-top-color: #6366f1;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.loading-text {
-  color: white;
-  font-size: 20px;
-  margin-top: 24px;
-  font-weight: 500;
-  position: relative;
-}
-
-.loading-dots {
-  display: inline-block;
-  position: relative;
-}
-
-.loading-dots:after {
-  content: "";
-  animation: dots 1.5s infinite;
-}
-
-@keyframes dots {
-  0%,
-  20% {
-    content: ".";
-  }
-  40% {
-    content: "..";
-  }
-  60%,
-  100% {
-    content: "...";
-  }
-} */
-
 .spinner-overlay {
   position: fixed;
   top: 0;
@@ -699,7 +647,19 @@ tr.user-row:hover {
 @media (max-width: 1024px) {
   .admin-container {
     padding: 24px 16px;
-    min-height: 0;
+    /* min-height: 0; */
+  }
+
+  .content-card {
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    overflow: visible !important;
+  }
+
+  .table-container {
+    max-height: none; /* Remove max-height restriction on smaller screens */
+    overflow-x: auto; /* Only allow horizontal scrolling */
+    overflow-y: visible;
   }
 
   .search-field {
@@ -724,6 +684,11 @@ tr.user-row:hover {
 
   .table-container {
     overflow-x: auto;
+  }
+
+  .content-card {
+    border-radius: 10px !important;
+    margin: 0 -5px 20px -5px; /* Negative margin to extend the card */
   }
 
   th.mat-header-cell,
