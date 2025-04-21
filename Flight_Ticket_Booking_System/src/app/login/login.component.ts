@@ -55,8 +55,8 @@ export class LoginComponent {
       (error) => {
         // ✅ Ensure error message is displayed properly
         const errorMessage =
+          error.message ||
           error.error?.message ||
-          error.error?.error?.message ||
           "Error fetching CAPTCHA image.";
 
         Swal.fire({
