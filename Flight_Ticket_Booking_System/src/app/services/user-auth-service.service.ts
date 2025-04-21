@@ -35,6 +35,7 @@ export class UserAuthServiceService {
       withCredentials: true
     });
   }
+  
   // Forgot password (no Authorization needed)
   forgotPassword(params: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/forgot-password`, params);

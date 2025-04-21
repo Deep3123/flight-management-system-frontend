@@ -72,6 +72,8 @@ export class NavbarComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Yes, log me out!",
       cancelButtonText: "No, stay logged in!",
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6B7280",
     }).then((result) => {
       if (result.isConfirmed) {
         // Proceed with logout if the user confirms
