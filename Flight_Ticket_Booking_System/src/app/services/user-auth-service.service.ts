@@ -17,12 +17,24 @@ export class UserAuthServiceService {
   }
 
   // Send login data to backend API (no Authorization needed)
+  // userLogin(params: any): Observable<any> {
+  //   return this.http.post(`${this.baseUrl}/login`, params, {
+  //     withCredentials: true,
+  //   });
+  // }
+
   userLogin(params: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, params, {
-      withCredentials: true,
+    const headers = new HttpHeaders({
+      // Include the session token if it exists
+      ...(sessionStorage.getItem('X-Auth-Token') ? 
+        { 'X-Auth-Token': sessionStorage.getItem('X-Auth-Token')! } : {})
+    });
+  
+    return this.http.post<any>(`${this.baseUrl}/login`, params, {
+      headers: headers,
+      withCredentials: true
     });
   }
-
   // Forgot password (no Authorization needed)
   forgotPassword(params: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/forgot-password`, params);

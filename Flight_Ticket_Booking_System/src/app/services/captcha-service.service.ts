@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -8,13 +8,47 @@ import { Observable } from "rxjs";
 export class CaptchaServiceService {
   private captchaUrl: string = "http://localhost:8080/captcha";
 
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
+
+  // // Method to fetch a CAPTCHA image (will return a blob)
+  // getCaptchaImage(): Observable<Blob> {
+  //   return this.http.get(this.captchaUrl, {
+  //     responseType: "blob",
+  //     withCredentials: true,
+  //   });
+  // }
+
+  private sessionToken: string | null = null;
+
+  constructor(private http: HttpClient) {
+    // Try to get existing session token from storage
+    this.sessionToken = sessionStorage.getItem("X-Auth-Token");
+  }
 
   // Method to fetch a CAPTCHA image (will return a blob)
   getCaptchaImage(): Observable<Blob> {
-    return this.http.get(this.captchaUrl, {
-      responseType: "blob",
-      withCredentials: true,
+    const headers = new HttpHeaders({
+      // Include the session token if it exists
+      ...(this.sessionToken ? { "X-Auth-Token": this.sessionToken } : {}),
     });
+
+    return this.http
+      .get(this.captchaUrl, {
+        responseType: "blob",
+        withCredentials: true,
+        headers: headers,
+        observe: "response",
+      })
+      .pipe(
+        map((response) => {
+          // Store the session token if it's in the response
+          const authToken = response.headers.get("X-Auth-Token");
+          if (authToken) {
+            this.sessionToken = authToken;
+            sessionStorage.setItem("X-Auth-Token", authToken);
+          }
+          return response.body as Blob;
+        })
+      );
   }
 }
