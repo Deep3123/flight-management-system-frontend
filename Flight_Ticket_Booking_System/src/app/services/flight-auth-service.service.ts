@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FlightAuthServiceService {
-  private apiUrl = 'http://localhost:8080/flight'; // Update this if your backend URL is different
+  // private apiUrl = 'http://localhost:8080/flight'; // Update this if your backend URL is different
+  private apiUrl = 'https://jetwayz-backend.onrender.com/flight';
 
   constructor(private http: HttpClient) { }
 

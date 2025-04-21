@@ -150,12 +150,23 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit, AfterViewInit {
-  // Column definitions
-  displayedColumns: string[] = ['position', 'name', 'email', 'username', 'phone', 'role', 'createdAt', 'updatedAt', 'actions'];
-  dataSource: MatTableDataSource<any>;
   users: any[] = [];
   isLoading = false;
+  dataSource = new MatTableDataSource<any>([]);
   private destroy$ = new Subject<void>();
+
+  // Column definitions
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'email',
+    'username',
+    'phone',
+    'role',
+    'createdAt',
+    'updatedAt',
+    'actions'
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -163,71 +174,18 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
   constructor(
     private userService: UserAuthServiceService,
     public dialog: MatDialog
-  ) {
-    // Initialize an empty data source
-    this.dataSource = new MatTableDataSource();
-  }
+  ) { }
 
   ngOnInit(): void {
-    // Store users in localStorage when page loads or refreshes
-    window.addEventListener('beforeunload', () => {
-      if (this.users && this.users.length > 0) {
-        localStorage.setItem('adminUsers', JSON.stringify(this.users));
-        localStorage.setItem('adminPaginatorIndex', this.paginator?.pageIndex?.toString() || '0');
-        localStorage.setItem('adminPaginatorSize', this.paginator?.pageSize?.toString() || '10');
-      }
-    });
-
-    // Try to load from localStorage first
-    const storedUsers = localStorage.getItem('adminUsers');
-    if (storedUsers) {
-      this.users = JSON.parse(storedUsers);
-      this.dataSource = new MatTableDataSource(this.users);
-      // Don't set paginator here - will do it in ngAfterViewInit
-    }
-
-    // Always get fresh data from server
     this.getAllUsers();
   }
 
   ngAfterViewInit() {
-    // Set paginator and sort after view init
-    if (this.dataSource) {
-      // Initialize paginator
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-      // Now restore the saved pagination state from localStorage
-      setTimeout(() => {
-        if (this.paginator) {
-          const pageIndex = Number(localStorage.getItem('adminPaginatorIndex') || '0');
-          const pageSize = Number(localStorage.getItem('adminPaginatorSize') || '10');
-
-          // First set the page size
-          this.paginator.pageSize = pageSize;
-
-          // Then set the page index
-          this.paginator.pageIndex = pageIndex;
-
-          // Force paginator to update
-          this.paginator.page.emit({
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-            length: this.dataSource.data.length
-          });
-        }
-      });
-
-      // Fix for sequential row numbers across pages
-      this.dataSource.sortingDataAccessor = (item, property) => {
-        switch (property) {
-          case 'position': return 0; // Position is handled specially 
-          default: return item[property];
-        }
-      };
-    }
+    // Connect the sort and paginator to the data source
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-
+  
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -251,45 +209,8 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
       next: (response: any) => {
         this.isLoading = false;
         this.users = response;
-
-        // Store in localStorage for persistence on page refresh
-        localStorage.setItem('adminUsers', JSON.stringify(this.users));
-
-        this.dataSource = new MatTableDataSource(this.users);
-
-        // Always reinitialize the paginator and sort after getting new data
-        if (this.paginator) {
-          this.dataSource.paginator = this.paginator;
-
-          // Restore pagination state if available
-          const pageIndex = Number(localStorage.getItem('adminPaginatorIndex') || '0');
-          const pageSize = Number(localStorage.getItem('adminPaginatorSize') || '5');
-
-          // Apply the saved pagination
-          setTimeout(() => {
-            this.paginator.pageSize = pageSize;
-            this.paginator.pageIndex = pageIndex;
-
-            // Force paginator to update
-            this.paginator.page.emit({
-              pageIndex: pageIndex,
-              pageSize: pageSize,
-              length: this.dataSource.data.length
-            });
-          });
-        }
-
-        if (this.sort) {
-          this.dataSource.sort = this.sort;
-        }
-
-        // Customize the data accessor for calculation of position
-        this.dataSource.sortingDataAccessor = (item, property) => {
-          switch (property) {
-            case 'position': return 0; // Position is calculated in the template
-            default: return item[property];
-          }
-        };
+        // Update the data source with new data
+        this.dataSource.data = this.users;
       },
       error: (error) => {
         this.isLoading = false;
@@ -303,7 +224,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // Get the actual row number across all pages
+  // Get the actual row number
   getRowNumber(i: number): number {
     if (!this.paginator) return i + 1;
     return i + 1 + this.paginator.pageIndex * this.paginator.pageSize;
@@ -318,7 +239,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
-      if (result) { // If dialog returns a result (successful operation)
+      if (result) {
         this.getAllUsers();
       }
     });
@@ -333,7 +254,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
-      if (result) { // If dialog returns a result (successful operation)
+      if (result) {
         this.getAllUsers();
       }
     });
@@ -377,5 +298,10 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
         });
       }
     });
+  }
+
+  // Track function for ngFor performance optimization
+  trackByFn(index: number, user: any) {
+    return user.id || user.username;
   }
 }
