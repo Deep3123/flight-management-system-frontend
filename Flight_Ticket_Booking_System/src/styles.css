@@ -17,21 +17,21 @@
 
 @font-face {
   font-family: "HelveticaNeue_light"; /* Give the font a name */
-  src: url("assets/fonts/HelveticaNeueLight.ttf") format("truetype");
+  src: url("/assets/fonts/HelveticaNeueLight.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "HelveticaNeue_medium"; /* Give the font a name */
-  src: url("assets/fonts/HelveticaNeue-Medium.otf") format("opentype");
+  src: url("/assets/fonts/HelveticaNeue-Medium.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "HelveticaNeue_black"; /* Give the font a name */
-  src: url("assets/fonts/HelveticaNeue-Black.otf") format("opentype");
+  src: url("/assets/fonts/HelveticaNeue-Black.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
