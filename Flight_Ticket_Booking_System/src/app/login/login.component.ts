@@ -76,7 +76,7 @@ export class LoginComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-      console.log(form.value);
+      // console.log(form.value);
 
       this.login.username = form.value.username;
       this.login.password = form.value.password;

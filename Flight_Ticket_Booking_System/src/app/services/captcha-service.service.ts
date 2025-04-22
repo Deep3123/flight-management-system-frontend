@@ -23,9 +23,16 @@ export class CaptchaServiceService {
 
   private sessionToken: string | null = null;
 
+  // constructor(private http: HttpClient) {
+  //   // Try to get existing session token from storage
+  //   this.sessionToken = sessionStorage.getItem("X-Auth-Token");
+  // }
+
   constructor(private http: HttpClient) {
-    // Try to get existing session token from storage
-    this.sessionToken = sessionStorage.getItem("X-Auth-Token");
+    // Check if running in the browser before accessing sessionStorage
+    if (typeof window !== "undefined") {
+      this.sessionToken = sessionStorage.getItem("X-Auth-Token");
+    }
   }
 
   // Method to fetch a CAPTCHA image (will return a blob)
@@ -75,7 +82,7 @@ export class CaptchaServiceService {
           if (authToken) {
             this.sessionToken = authToken;
             sessionStorage.setItem("X-Auth-Token", authToken);
-            console.log("Session token saved:", authToken);
+            // console.log("Session token saved:", authToken);
           }
           return response.body as Blob;
         })
