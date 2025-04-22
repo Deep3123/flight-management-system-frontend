@@ -119,6 +119,10 @@ export class LoginComponent {
             text: errorMessage,
             confirmButtonText: "OK",
           });
+          // .then(() => {
+          //   this.reloadCaptcha();
+          // });
+          this.reloadCaptcha();
         }
       );
     } else {

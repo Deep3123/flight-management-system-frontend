@@ -23,6 +23,8 @@ export class FlightBookingComponent {
   departureTime: any = "";
   arrivalTime: any = "";
 
+  isLoading: any = false;
+
   constructor(
     private service: FlightAuthServiceService,
     private router: Router
@@ -90,7 +92,6 @@ export class FlightBookingComponent {
       // Format to Java-compatible format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
       // return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${sign}${timezoneHours}${timezoneMinutes}`;
       return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}`;
-
     }
     throw new Error("Invalid date");
   }
@@ -108,8 +109,10 @@ export class FlightBookingComponent {
     // console.log(flight);
     console.log("Departure:", this.departureTime, "Arrival:", this.arrivalTime);
 
+    this.isLoading = true;
     this.service.getFlightByAllDetails(flight).subscribe(
       (response) => {
+        this.isLoading = false;
         // Success popup
         Swal.fire({
           icon: "success",
@@ -122,7 +125,7 @@ export class FlightBookingComponent {
           // console.log("Flight search response:", response);
           // You can add logic here to show or navigate to the results
           this.router.navigate(["/flight-result"], {
-            state: { flights: response, count: this.passengerCount },  // Pass count directly
+            state: { flights: response, count: this.passengerCount }, // Pass count directly
           });
         });
       },

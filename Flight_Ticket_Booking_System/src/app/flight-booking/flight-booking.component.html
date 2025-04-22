@@ -25,14 +25,16 @@
                 <!-- First row: 3 fields -->
                 <div class="form-row">
                     <div class="input-group">
-                        <input type="text" class="input-field" placeholder="Departure airport" required [(ngModel)]="departureAirport">
+                        <input type="text" class="input-field" placeholder="Departure airport" required
+                            [(ngModel)]="departureAirport">
                         <!-- <button class="clear-btn"><i class="fa fa-times"></i></button> -->
                         <!-- <div *ngIf="departureAirportField.invalid && departureAirportField.touched" class="error-message">
                             <small>Departure airport is required.</small>
                         </div> -->
                     </div>
                     <div class="input-group">
-                        <input type="text" class="input-field" placeholder="Arrival airport" required [(ngModel)]="arrivalAirport">
+                        <input type="text" class="input-field" placeholder="Arrival airport" required
+                            [(ngModel)]="arrivalAirport">
                         <!-- <button class="clear-btn"><i class="fa fa-times"></i></button> -->
                         <!-- <div *ngIf="arrivalAirportField.invalid && arrivalAirportField.touched" class="error-message">
                             <small>Arrival airport is required.</small>
@@ -41,15 +43,17 @@
                     <div class="input-group date-range">
                         <!-- Departing Date -->
                         <mat-form-field appearance="outline" class="input-field-2 left-field">
-                            <input matInput [matDatepicker]="departingPicker" [min]="minDate" (dateInput)="validateDate($event, 'departure')" placeholder="Departing" required name="departing"
-                                ngModel [(ngModel)]="departureTime">
+                            <input matInput [matDatepicker]="departingPicker" [min]="minDate"
+                                (dateInput)="validateDate($event, 'departure')" placeholder="Departing" required
+                                name="departing" ngModel [(ngModel)]="departureTime">
                             <mat-datepicker-toggle matSuffix [for]="departingPicker"></mat-datepicker-toggle>
                             <mat-datepicker #departingPicker></mat-datepicker>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="input-field-2 right-field">
-                            <input matInput [matDatepicker]="returningPicker" [min]="minDate" (dateInput)="validateDate($event, 'arrival')" placeholder="Returning" required name="returning"
-                                ngModel [(ngModel)]="arrivalTime">
+                            <input matInput [matDatepicker]="returningPicker" [min]="minDate"
+                                (dateInput)="validateDate($event, 'arrival')" placeholder="Returning" required
+                                name="returning" ngModel [(ngModel)]="arrivalTime">
                             <mat-datepicker-toggle matSuffix [for]="returningPicker"></mat-datepicker-toggle>
                             <mat-datepicker #returningPicker></mat-datepicker>
                         </mat-form-field>
@@ -108,8 +112,8 @@
                         <!-- <button class="clear-btn"><i class="fa fa-chevron-down"></i></button> -->
                     </div>
                     <div class="input-group class-group">
-                        <input type="text" class="input-field class-input" required placeholder="Class" [value]="selectedClass"
-                            readonly (click)="toggleClassDropdown()" />
+                        <input type="text" class="input-field class-input" required placeholder="Class"
+                            [value]="selectedClass" readonly (click)="toggleClassDropdown()" />
 
                         <div class="class-dropdown" *ngIf="showClassDropdown">
                             <p class="drop_title">Select class</p>
@@ -153,3 +157,12 @@
             dates. Some fares also offer upgrade options and more Skywards Miles.</p>
     </div>
 </section>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="text-center">
+        <div class="spinner-border text-light mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
+    </div>
+</div>
