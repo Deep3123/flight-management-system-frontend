@@ -98,8 +98,8 @@ export class FlightBookingComponent {
 
   onSubmit() {
     const flight = {
-      departureAirport: this.departureAirport,
-      arrivalAirport: this.arrivalAirport,
+      departureAirport: this.departureAirport.toLowerCase,
+      arrivalAirport: this.arrivalAirport.toLowerCase,
       departureDate: this.formatDateTime(this.departureTime),
       arrivalDate: this.formatDateTime(this.arrivalTime),
       personCount: this.passengerCount,

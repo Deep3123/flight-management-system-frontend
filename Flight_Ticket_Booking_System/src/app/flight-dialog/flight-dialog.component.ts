@@ -27,6 +27,8 @@ export class FlightDialogComponent {
     flightClass: "",
   };
 
+  isLoading = false;
+
   flightClasses: string[] = ["Economy", "Business", "First Class"];
 
   get minDate(): Date {
@@ -132,8 +134,10 @@ export class FlightDialogComponent {
 
     // Now send the combined date-time objects to the backend
     if (this.isEditing) {
+      this.isLoading = true;
       this.flightService.updateFlight(this.selectedFlight).subscribe(
         (response) => {
+          this.isLoading = false;
           this.dialogRef.close(true);
           Swal.fire({
             icon: "success",
@@ -143,6 +147,7 @@ export class FlightDialogComponent {
           });
         },
         (error) => {
+          this.isLoading = false;
           Swal.fire({
             icon: "error",
             title: "Error Updating Flight!",
@@ -152,8 +157,10 @@ export class FlightDialogComponent {
         }
       );
     } else {
+      this.isLoading=true;
       this.flightService.saveFlightData(this.selectedFlight).subscribe(
         (response) => {
+          this.isLoading = false;
           this.dialogRef.close(true);
           Swal.fire({
             icon: "success",
@@ -163,6 +170,7 @@ export class FlightDialogComponent {
           });
         },
         (error) => {
+          this.isLoading = false;
           Swal.fire({
             icon: "error",
             title: "Error Adding Flight!",
@@ -237,14 +245,14 @@ export class FlightDialogComponent {
   validateDate(event: any, type: 'departure' | 'arrival') {
     const selected = new Date(event.value).setHours(0, 0, 0, 0);
     const today = new Date().setHours(0, 0, 0, 0);
-  
+
     if (selected < today) {
       Swal.fire({
         icon: 'error',
         title: 'Invalid Date!',
         text: `${type === 'departure' ? 'Departure' : 'Arrival'} date cannot be in the past.`,
       });
-  
+
       if (type === 'departure') {
         this.selectedFlight.departureDate = null;
       } else {
@@ -252,5 +260,5 @@ export class FlightDialogComponent {
       }
     }
   }
-  
+
 }
