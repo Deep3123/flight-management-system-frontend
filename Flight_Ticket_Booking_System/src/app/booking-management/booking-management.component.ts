@@ -139,7 +139,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { BookingDetailsDialogComponent } from "../booking-details-dialog/booking-details-dialog.component";
 import { BookingServiceService } from "../services/booking-service.service";
@@ -155,6 +155,8 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
   bookings: any[] = [];
   isLoading = false;
   dataSource = new MatTableDataSource<any>([]);
+  pageSize = 10; // Default page size
+  pageIndex = 0; // Current page index
 
   // Define displayed columns for the table
   displayedColumns: string[] = [
@@ -176,7 +178,7 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
   constructor(
     private bookingService: BookingServiceService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAllBookings();
@@ -186,6 +188,12 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
     // Connect the sort and paginator to the data source
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    // Add listener for page changes to update row numbers
+    this.paginator.page.subscribe((pageEvent: PageEvent) => {
+      this.pageIndex = pageEvent.pageIndex;
+      this.pageSize = pageEvent.pageSize;
+    });
   }
 
   getAllBookings() {
@@ -204,13 +212,18 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
           title: "Error Fetching Bookings",
           text:
             error.message ||
-            error.error.message ||
+            error.error?.message ||
             "There was a problem loading bookings data.",
           confirmButtonText: "OK",
           confirmButtonColor: "#4F46E5",
         });
       }
     );
+  }
+
+  // Method to calculate the row number (continuous across pages)
+  getRowNumber(index: number): number {
+    return this.pageIndex * this.pageSize + index + 1;
   }
 
   // Open dialog with full details of the booking
