@@ -9,9 +9,10 @@ import { AuthService } from "./auth-service.service";
 export class UserAuthServiceService {
   // private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
   // private baseUrl: string = "https://jetwayz-backend.onrender.com/user";
-  private baseUrl: string = "https://jetwayz-backend-production.up.railway.app/user";
+  private baseUrl: string =
+    "https://jetwayz-backend-production.up.railway.app/user";
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // Send the registration data to the backend API (no Authorization needed)
   saveUserData(user: any): Observable<any> {
@@ -25,16 +26,30 @@ export class UserAuthServiceService {
   //   });
   // }
 
+  // userLogin(params: any): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     // Include the session token if it exists
+  //     ...(sessionStorage.getItem('X-Auth-Token') ?
+  //       { 'X-Auth-Token': sessionStorage.getItem('X-Auth-Token')! } : {})
+  //   });
+
+  //   return this.http.post<any>(`${this.baseUrl}/login`, params, {
+  //     headers: headers,
+  //     withCredentials: true
+  //   });
+  // }
+
   userLogin(params: any): Observable<any> {
     const headers = new HttpHeaders({
       // Include the session token if it exists
-      ...(sessionStorage.getItem('X-Auth-Token') ?
-        { 'X-Auth-Token': sessionStorage.getItem('X-Auth-Token')! } : {})
+      ...(sessionStorage.getItem("X-Auth-Token")
+        ? { "X-Auth-Token": sessionStorage.getItem("X-Auth-Token")! }
+        : {}),
     });
 
     return this.http.post<any>(`${this.baseUrl}/login`, params, {
       headers: headers,
-      withCredentials: true
+      withCredentials: true,
     });
   }
 
