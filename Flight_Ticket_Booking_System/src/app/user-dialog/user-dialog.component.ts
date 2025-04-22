@@ -12,6 +12,7 @@ import { NgForm } from "@angular/forms";
 })
 export class UserDialogComponent {
   isEditing = false;
+  isLoading = false;
   selectedUser: any = {};
 
   constructor(
@@ -37,10 +38,12 @@ export class UserDialogComponent {
 
   submitForm(userForm: NgForm): void {
     if (this.isEditing) {
+      this.isLoading = true;
       this.userService
         .updateUser({ ...this.selectedUser, ...userForm.value })
         .subscribe(
           () => {
+            this.isLoading = false;
             this.dialogRef.close();
             Swal.fire({
               icon: "success",
@@ -50,6 +53,7 @@ export class UserDialogComponent {
             });
           },
           (error) => {
+            this.isLoading = false;
             Swal.fire({
               icon: "error",
               title: "Error Updating User!",
@@ -59,8 +63,10 @@ export class UserDialogComponent {
           }
         );
     } else {
+      this.isLoading = true;
       this.userService.saveUserData(userForm.value).subscribe(
         (response) => {
+          this.isLoading = false;
           this.dialogRef.close();
           Swal.fire({
             icon: "success",
@@ -70,6 +76,7 @@ export class UserDialogComponent {
           });
         },
         (error) => {
+          this.isLoading = false;
           Swal.fire({
             icon: "error",
             title: "Error Adding User!",
