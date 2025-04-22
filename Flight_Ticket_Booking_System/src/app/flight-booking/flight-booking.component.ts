@@ -138,6 +138,7 @@ export class FlightBookingComponent {
           errorMessage = error.error.message; // Custom message from backend
         }
 
+        this.isLoading = false;
         Swal.fire({
           icon: "error",
           title: "No Flights Found 😔",
