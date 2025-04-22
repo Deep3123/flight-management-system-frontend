@@ -28,16 +28,15 @@ export class FlightBookingComponent {
   constructor(
     private service: FlightAuthServiceService,
     private router: Router
-  ) {}
+  ) { }
 
   get passengerCount(): number {
     return this.adultCount + this.childCount + this.infantCount;
   }
 
   get passengerCountText(): string {
-    return `${this.passengerCount} Passenger${
-      this.passengerCount > 1 ? "s" : ""
-    }`;
+    return `${this.passengerCount} Passenger${this.passengerCount > 1 ? "s" : ""
+      }`;
   }
 
   toggleCounter(event?: Event): void {
@@ -98,8 +97,8 @@ export class FlightBookingComponent {
 
   onSubmit() {
     const flight = {
-      departureAirport: this.departureAirport.toLowerCase,
-      arrivalAirport: this.arrivalAirport.toLowerCase,
+      departureAirport: this.departureAirport.toLowerCase(),
+      arrivalAirport: this.arrivalAirport.toLowerCase(),
       departureDate: this.formatDateTime(this.departureTime),
       arrivalDate: this.formatDateTime(this.arrivalTime),
       personCount: this.passengerCount,
@@ -167,9 +166,8 @@ export class FlightBookingComponent {
       Swal.fire({
         icon: "error",
         title: "Invalid Date!",
-        text: `${
-          type === "departure" ? "Departure" : "Arrival"
-        } date cannot be in the past.`,
+        text: `${type === "departure" ? "Departure" : "Arrival"
+          } date cannot be in the past.`,
       });
 
       // Reset the selected date if it's invalid
