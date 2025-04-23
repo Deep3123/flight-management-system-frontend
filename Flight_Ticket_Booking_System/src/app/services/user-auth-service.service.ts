@@ -8,9 +8,9 @@ import { AuthService } from "./auth-service.service";
 })
 export class UserAuthServiceService {
   // private baseUrl: string = "http://localhost:8080/user"; // Make sure this is the correct API base URL
-  // private baseUrl: string = "https://jetwayz-backend.onrender.com/user";
-  private baseUrl: string =
-    "https://jetwayz-backend-production.up.railway.app/user";
+  private baseUrl: string = "https://jetwayz-backend.onrender.com/user";
+  // private baseUrl: string =
+  //   "https://jetwayz-backend-production.up.railway.app/user";
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
