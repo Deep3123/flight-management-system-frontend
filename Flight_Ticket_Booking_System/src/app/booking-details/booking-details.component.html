@@ -102,9 +102,10 @@
                                     <!-- <div style="font-size: medium;">{{ flight.airlineName }}</div> -->
                                     <div class="date">{{ selectedFlight.departureDate | date:'EEE dd MMM' }}</div>
                                     <div class="time">{{ selectedFlight.departureTime | timeFormat }}</div>
-                                    <div class="airport-code">{{ getAirportName(selectedFlight.departureAirport | titlecase) }}
+                                    <div class="airport-code">{{ getAirportName(selectedFlight.departureAirport |
+                                        titlecase) }}
                                     </div>
-                                    <div class="airport-name">{{ selectedFlight.departureAirport }}</div>
+                                    <div class="airport-name">{{ selectedFlight.departureAirport | titlecase }}</div>
                                 </div>
 
                                 <div class="flight-duration">
@@ -123,8 +124,9 @@
                                 <div class="arrival-details">
                                     <div class="date">{{ selectedFlight.arrivalDate | date:'EEE dd MMM' }}</div>
                                     <div class="time">{{ selectedFlight.arrivalTime | timeFormat }}</div>
-                                    <div class="airport-code">{{ getAirportName(selectedFlight.arrivalAirport | titlecase) }}</div>
-                                    <div class="airport-name">{{ selectedFlight.arrivalAirport }}</div>
+                                    <div class="airport-code">{{ getAirportName(selectedFlight.arrivalAirport |
+                                        titlecase) }}</div>
+                                    <div class="airport-name">{{ selectedFlight.arrivalAirport | titlecase }}</div>
                                 </div>
                             </div>
 

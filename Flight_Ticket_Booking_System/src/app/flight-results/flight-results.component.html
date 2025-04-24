@@ -30,7 +30,8 @@
     <div class="page-header">
         <div>
             <h1 class="page-title">Choose your outbound flight</h1>
-            <p class="page-small-title">{{ flightResults[0]?.departureAirport | titlecase}} to {{flightResults[0]?.arrivalAirport | titlecase}}
+            <p class="page-small-title">{{ flightResults[0]?.departureAirport | titlecase}} to
+                {{flightResults[0]?.arrivalAirport | titlecase}}
             </p>
         </div>
         <div>
@@ -106,7 +107,7 @@
                             <div class="date">{{ flight.departureDate | date:'EEE dd MMM' }}</div>
                             <div class="time">{{ flight.departureTime | timeFormat }}</div>
                             <div class="airport-code">{{ getAirportName(flight.departureAirport | titlecase) }}</div>
-                            <div class="airport-name">{{ flight.departureAirport }}</div>
+                            <div class="airport-name">{{ flight.departureAirport | titlecase}}</div>
                         </div>
 
                         <div class="flight-duration">
@@ -125,7 +126,7 @@
                             <div class="date">{{ flight.arrivalDate | date:'EEE dd MMM' }}</div>
                             <div class="time">{{ flight.arrivalTime | timeFormat }}</div>
                             <div class="airport-code">{{ getAirportName(flight.arrivalAirport | titlecase) }}</div>
-                            <div class="airport-name">{{ flight.arrivalAirport }}</div>
+                            <div class="airport-name">{{ flight.arrivalAirport | titlecase }}</div>
                         </div>
                     </div>
 
