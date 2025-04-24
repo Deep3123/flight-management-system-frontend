@@ -48,7 +48,8 @@
                 <!-- Booking header -->
                 <div class="booking-header">
                     <h1 class="page-title">Complete your booking</h1>
-                    <p *ngIf="selectedFlight">{{ selectedFlight.departureAirport }} to {{ selectedFlight.arrivalAirport
+                    <p *ngIf="selectedFlight">{{ selectedFlight.departureAirport | titlecase}} to {{
+                        selectedFlight.arrivalAirport | titlecase
                         }} •
                         {{ passengerCount }} {{ passengerCount > 1 ? 'passengers' : 'passenger' }} •<span><a
                                 class="link" routerLink="/flight-booking">Change search</a></span></p>
@@ -101,7 +102,7 @@
                                     <!-- <div style="font-size: medium;">{{ flight.airlineName }}</div> -->
                                     <div class="date">{{ selectedFlight.departureDate | date:'EEE dd MMM' }}</div>
                                     <div class="time">{{ selectedFlight.departureTime | timeFormat }}</div>
-                                    <div class="airport-code">{{ getAirportName(selectedFlight.departureAirport) }}
+                                    <div class="airport-code">{{ getAirportName(selectedFlight.departureAirport | titlecase) }}
                                     </div>
                                     <div class="airport-name">{{ selectedFlight.departureAirport }}</div>
                                 </div>
@@ -122,7 +123,7 @@
                                 <div class="arrival-details">
                                     <div class="date">{{ selectedFlight.arrivalDate | date:'EEE dd MMM' }}</div>
                                     <div class="time">{{ selectedFlight.arrivalTime | timeFormat }}</div>
-                                    <div class="airport-code">{{ getAirportName(selectedFlight.arrivalAirport) }}</div>
+                                    <div class="airport-code">{{ getAirportName(selectedFlight.arrivalAirport | titlecase) }}</div>
                                     <div class="airport-name">{{ selectedFlight.arrivalAirport }}</div>
                                 </div>
                             </div>
