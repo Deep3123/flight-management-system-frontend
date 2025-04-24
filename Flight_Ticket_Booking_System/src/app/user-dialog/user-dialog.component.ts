@@ -42,13 +42,13 @@ export class UserDialogComponent {
       this.userService
         .updateUser({ ...this.selectedUser, ...userForm.value })
         .subscribe(
-          () => {
+          (response) => {
             this.isLoading = false;
             this.dialogRef.close();
             Swal.fire({
               icon: "success",
               title: "User Updated Successfully!",
-              text: "The user information was updated.",
+              text: response.message,
               confirmButtonText: "OK",
             });
           },
@@ -57,7 +57,7 @@ export class UserDialogComponent {
             Swal.fire({
               icon: "error",
               title: "Error Updating User!",
-              text: error.error.message,
+              text: error.message || error.error.message,
               confirmButtonText: "OK",
             });
           }
