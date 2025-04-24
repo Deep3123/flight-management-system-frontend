@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 })
 export class ForgotPasswordComponent {
   isLoading: boolean = false;
+  emailSent: boolean = false; // Track if email has been sent successfully
+  userEmail: string = ""; // Store the email to display in success message
 
   constructor(
     private router: Router,
@@ -21,6 +23,9 @@ export class ForgotPasswordComponent {
   onSubmit(forgotPasswordForm: NgForm) {
     if (forgotPasswordForm.valid) {
       const email = forgotPasswordForm.value.email;
+      // Store email for success message
+      this.userEmail = email;
+
       this.isLoading = true;
       console.log("Loading started...");
 
@@ -29,13 +34,14 @@ export class ForgotPasswordComponent {
           this.isLoading = false;
           console.log("Loading finished");
 
+          // Set emailSent to true to show success view
+          this.emailSent = true;
+
           Swal.fire({
             icon: "success",
             title: "Email Sent Successfully!",
             text: response.message,
             confirmButtonText: "OK",
-          }).then(() => {
-            forgotPasswordForm.reset();
           });
         },
         (error) => {
@@ -61,5 +67,10 @@ export class ForgotPasswordComponent {
         confirmButtonText: "OK",
       });
     }
+  }
+
+  // Go back to login page
+  goToLogin() {
+    this.router.navigate(["/login"]);
   }
 }
