@@ -41,6 +41,8 @@ export class FlightDialogComponent {
   ) {
     if (data.flight) {
       this.isEditing = true;
+      data.flight.arrivalAirport=data.flight.arrivalAirport.toLowerCase().trim()
+      data.flight.departureAirport=data.flight.departureAirport.toLowerCase().trim()
       this.selectedFlight = { ...data.flight };
     }
   }
