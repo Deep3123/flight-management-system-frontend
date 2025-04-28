@@ -1,4 +1,4 @@
-export const environment = {
+export const environment_prod = {
   production: true,
   encryption: {
     secretKey: "${ENCRYPTION_SECRET_KEY}",
