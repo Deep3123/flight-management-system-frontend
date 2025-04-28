@@ -1,14 +1,23 @@
 import { Injectable } from "@angular/core";
 import * as CryptoJS from "crypto-js";
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class EncryptionService {
+  // private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
+  //   process.env["ENCRYPTION_SECRET_KEY"] || ""
+  // );
+
+  // private readonly IV = CryptoJS.enc.Utf8.parse(
+  //   process.env["ENCRYPTION_IV"] || ""
+  // );
+
   private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
-    "x2B7eTf93mQ9cGzYdFk7pLm8XsRjHtNv"
+    environment.encryption.secretKey
   );
-  private readonly IV = CryptoJS.enc.Utf8.parse("7fH1d9Lm3cQ5x7Vz");
+  private readonly IV = CryptoJS.enc.Utf8.parse(environment.encryption.iv);
 
   encrypt(data: string): string {
     const encrypted = CryptoJS.AES.encrypt(data, this.SECRET_KEY, {

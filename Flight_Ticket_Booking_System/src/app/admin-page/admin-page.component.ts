@@ -216,7 +216,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         Swal.fire({
           icon: 'error',
-          title: 'Error!',
+          title: error.status,
           text: error.message || error.error?.message || 'Error while fetching data!',
           confirmButtonText: 'OK'
         });
@@ -290,7 +290,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
             this.isLoading = false;
             Swal.fire({
               icon: 'error',
-              title: 'Error!',
+              title: error.status,
               text: error.error?.message || 'Error deleting user!',
               confirmButtonText: 'OK'
             });

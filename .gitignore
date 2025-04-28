@@ -44,3 +44,8 @@ Thumbs.db
 # Ignore Backend/.project file
 ../Backend/.project
 /Backend/.project/
+
+# Environment files
+.env
+/src/environments/environment.ts
+/src/environments/environment.prod.ts

@@ -301,4 +301,9 @@ export class FlightPageComponent implements OnInit, AfterViewInit {
     }
     return 'economy-class'; // Default
   }
+
+  getRowNumber(i: number): number {
+    if (!this.paginator) return i + 1;
+    return i + 1 + this.paginator.pageIndex * this.paginator.pageSize;
+  }
 }

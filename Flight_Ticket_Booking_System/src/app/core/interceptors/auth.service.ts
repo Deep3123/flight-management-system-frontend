@@ -275,7 +275,12 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
       catchError((error: HttpErrorResponse) => {
         // Special handling for the case where the response is encrypted but Angular tried to parse it as JSON
-        if (error.status === 200 || error.status === 202) {
+        if (
+          error.status === 200 ||
+          error.status === 201 ||
+          error.status === 202 ||
+          error.status === 400
+        ) {
           if (error.error && error.error.text) {
             try {
               const decrypted = this.encryptionService.decrypt(

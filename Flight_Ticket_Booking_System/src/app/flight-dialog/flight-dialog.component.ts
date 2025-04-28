@@ -34,6 +34,7 @@ export class FlightDialogComponent {
   get minDate(): Date {
     return new Date(new Date().setHours(0, 0, 0, 0));
   }
+
   constructor(
     public dialogRef: MatDialogRef<FlightDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,8 +42,13 @@ export class FlightDialogComponent {
   ) {
     if (data.flight) {
       this.isEditing = true;
-      data.flight.arrivalAirport=data.flight.arrivalAirport.toLowerCase().trim()
-      data.flight.departureAirport=data.flight.departureAirport.toLowerCase().trim()
+      // Convert existing flight airport data to lowercase
+      data.flight.arrivalAirport = data.flight.arrivalAirport
+        .toLowerCase()
+        .trim();
+      data.flight.departureAirport = data.flight.departureAirport
+        .toLowerCase()
+        .trim();
       this.selectedFlight = { ...data.flight };
     }
   }
@@ -67,6 +73,14 @@ export class FlightDialogComponent {
       });
       return;
     }
+
+    // Convert airport names to lowercase before submission
+    this.selectedFlight.departureAirport = this.selectedFlight.departureAirport
+      .toLowerCase()
+      .trim();
+    this.selectedFlight.arrivalAirport = this.selectedFlight.arrivalAirport
+      .toLowerCase()
+      .trim();
 
     // Function to extract date in 'yyyy-MM-dd' format
     const formatDate = (date: Date): string => {
@@ -159,7 +173,7 @@ export class FlightDialogComponent {
         }
       );
     } else {
-      this.isLoading=true;
+      this.isLoading = true;
       this.flightService.saveFlightData(this.selectedFlight).subscribe(
         (response) => {
           this.isLoading = false;
@@ -244,23 +258,24 @@ export class FlightDialogComponent {
     console.log("Calculated Duration:", durationMinutes);
   }
 
-  validateDate(event: any, type: 'departure' | 'arrival') {
+  validateDate(event: any, type: "departure" | "arrival") {
     const selected = new Date(event.value).setHours(0, 0, 0, 0);
     const today = new Date().setHours(0, 0, 0, 0);
 
     if (selected < today) {
       Swal.fire({
-        icon: 'error',
-        title: 'Invalid Date!',
-        text: `${type === 'departure' ? 'Departure' : 'Arrival'} date cannot be in the past.`,
+        icon: "error",
+        title: "Invalid Date!",
+        text: `${
+          type === "departure" ? "Departure" : "Arrival"
+        } date cannot be in the past.`,
       });
 
-      if (type === 'departure') {
+      if (type === "departure") {
         this.selectedFlight.departureDate = null;
       } else {
         this.selectedFlight.arrivalDate = null;
       }
     }
   }
-
 }
