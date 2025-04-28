@@ -46,6 +46,6 @@ Thumbs.db
 /Backend/.project/
 
 # Environment files
-.env
-/src/environments/environment.ts
-/src/environments/environment.prod.ts
+/Flight_Ticket_Booking_System/.env
+/Flight_Ticket_Booking_System/src/environments/environment.ts
+/Flight_Ticket_Booking_System/src/environments/environment.prod.ts
