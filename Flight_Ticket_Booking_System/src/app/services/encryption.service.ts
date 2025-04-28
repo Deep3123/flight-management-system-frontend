@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as CryptoJS from "crypto-js";
-import { environment } from "../../environments/environment";
+// import { environment } from "../../environments/environment";
 import { environment_prod } from "../../environments/environment.prod.template";
 
 @Injectable({
