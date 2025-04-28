@@ -18,11 +18,13 @@ export class EncryptionService {
   // private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
   //   environment.encryption.secretKey
   // );
+  
   // private readonly IV = CryptoJS.enc.Utf8.parse(environment.encryption.iv);
 
   private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
     environment_prod.encryption.secretKey
   );
+
   private readonly IV = CryptoJS.enc.Utf8.parse(environment_prod.encryption.iv);
 
   encrypt(data: string): string {
