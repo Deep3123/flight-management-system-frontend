@@ -1,8 +1,17 @@
 const fs = require('fs');
 require('dotenv').config(); // For local development
 
-// Read the template file
+// Read the production template file
 const prodTemplate = fs.readFileSync('./src/environments/environment.prod.template.ts', 'utf8');
+
+// Also create a default environment file
+const defaultEnv = `export const environment = {
+  production: false,
+  encryption: {
+    secretKey: "${process.env.ENCRYPTION_SECRET_KEY || ''}",
+    iv: "${process.env.ENCRYPTION_IV || ''}",
+  },
+};`;
 
 // Get environment variables
 const secretKey = process.env.ENCRYPTION_SECRET_KEY || '';
@@ -22,7 +31,8 @@ if (!fs.existsSync('./src/environments')) {
     fs.mkdirSync('./src/environments', { recursive: true });
 }
 
-// Write to the production environment file only
+// Write both environment files
 fs.writeFileSync('./src/environments/environment.prod.ts', prodOutput);
+fs.writeFileSync('./src/environments/environment.ts', defaultEnv); // Create a default environment file
 
-console.log('Production environment file created successfully');
+console.log('Environment files created successfully');
