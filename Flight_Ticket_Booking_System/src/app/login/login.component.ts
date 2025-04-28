@@ -26,13 +26,6 @@ export class LoginComponent {
   captchaUrl: string = ""; // Will hold the CAPTCHA image URL
   isLoading: any = false;
 
-  // captchaUrl: string = "/api/captcha?" + new Date().getTime(); // prevent caching
-  // captchaInput: string = "";
-
-  // reloadCaptcha() {
-  //   this.captchaUrl = "/api/captcha?" + new Date().getTime();
-  // }
-
   // Add this property to control password visibility
   showPassword: boolean = true;
 
@@ -47,10 +40,16 @@ export class LoginComponent {
   }
 
   loadCaptcha() {
+    // Reset captchaUrl to trigger loading animation
+    this.captchaUrl = "";
+
     this.captchaService.getCaptchaImage().subscribe(
       (response: Blob) => {
-        // Create a URL for the blob image
-        this.captchaUrl = URL.createObjectURL(response);
+        // Small artificial delay to show loading animation (remove in production)
+        setTimeout(() => {
+          // Create a URL for the blob image
+          this.captchaUrl = URL.createObjectURL(response);
+        }, 800);
       },
       (error) => {
         // ✅ Ensure error message is displayed properly
@@ -119,9 +118,6 @@ export class LoginComponent {
             text: errorMessage,
             confirmButtonText: "OK",
           });
-          // .then(() => {
-          //   this.reloadCaptcha();
-          // });
           this.reloadCaptcha();
         }
       );

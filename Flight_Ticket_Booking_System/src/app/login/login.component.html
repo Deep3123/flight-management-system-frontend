@@ -47,10 +47,29 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="captcha">Enter the text in the image:</label>
               <div class="captcha-image-box">
                 <img [src]="captchaUrl" alt="CAPTCHA" class="captcha-image" />
+                <button type="button" class="refresh-captcha" (click)="reloadCaptcha()">↻</button>
+              </div>
+              <input type="text" class="form-control" id="captchaInput" name="captchaInput" ngModel required
+                #captchaInputModel="ngModel" placeholder="Enter CAPTCHA" />
+              <div *ngIf="captchaInputModel.invalid && captchaInputModel.touched" class="error-message">
+                CAPTCHA is required.
+              </div>
+            </div> -->
+
+
+            <!-- First, modify the captcha image section in your HTML -->
+            <div class="form-group">
+              <label for="captcha">Enter the text in the image:</label>
+              <div class="captcha-image-box">
+                <!-- Show loader when captcha is loading, otherwise show the image -->
+                <div *ngIf="!captchaUrl" class="captcha-loading">
+                  <div class="loading-text">Loading captcha<span class="loading-dots"></span></div>
+                </div>
+                <img *ngIf="captchaUrl" [src]="captchaUrl" alt="CAPTCHA" class="captcha-image" />
                 <button type="button" class="refresh-captcha" (click)="reloadCaptcha()">↻</button>
               </div>
               <input type="text" class="form-control" id="captchaInput" name="captchaInput" ngModel required

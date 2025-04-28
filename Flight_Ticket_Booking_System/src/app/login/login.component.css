@@ -330,3 +330,47 @@ section.vh-100 {
     content: ".";
   }
 }
+
+/* CAPTCHA Loading animation */
+.captcha-loading {
+  height: 60px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-text {
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.loading-text .loading-dots::after {
+  content: "";
+  display: inline-block;
+  animation: captchaDotsAnim 1.5s infinite;
+}
+
+@keyframes captchaDotsAnim {
+  0% {
+    content: ".";
+  }
+  25% {
+    content: "..";
+  }
+  50% {
+    content: "...";
+  }
+  75% {
+    content: "....";
+  }
+  100% {
+    content: ".";
+  }
+}
