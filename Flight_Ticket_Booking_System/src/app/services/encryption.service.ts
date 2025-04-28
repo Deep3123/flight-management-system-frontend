@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as CryptoJS from "crypto-js";
-import { environment } from "../../environments/environment";
+// import { environment } from "../../environments/environment";
 import { environment_prod } from "../../environments/environment.prod.template";
 
 @Injectable({
@@ -15,15 +15,15 @@ export class EncryptionService {
   //   process.env["ENCRYPTION_IV"] || ""
   // );
 
-  private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
-    environment.encryption.secretKey
-  );
-  private readonly IV = CryptoJS.enc.Utf8.parse(environment.encryption.iv);
-
   // private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
-  //   environment_prod.encryption.secretKey
+  //   environment.encryption.secretKey
   // );
-  // private readonly IV = CryptoJS.enc.Utf8.parse(environment_prod.encryption.iv);
+  // private readonly IV = CryptoJS.enc.Utf8.parse(environment.encryption.iv);
+
+  private readonly SECRET_KEY = CryptoJS.enc.Utf8.parse(
+    environment_prod.encryption.secretKey
+  );
+  private readonly IV = CryptoJS.enc.Utf8.parse(environment_prod.encryption.iv);
 
   encrypt(data: string): string {
     const encrypted = CryptoJS.AES.encrypt(data, this.SECRET_KEY, {
