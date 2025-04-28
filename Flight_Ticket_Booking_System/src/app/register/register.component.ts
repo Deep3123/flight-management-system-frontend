@@ -61,6 +61,7 @@ export class RegisterComponent {
           });
         },
         (error) => {
+          this.isLoading = false;
           console.log(error);
           // Display error pop-up if registration fails
           Swal.fire({
@@ -72,6 +73,7 @@ export class RegisterComponent {
         }
       );
     } else {
+      this.isLoading = false;
       Swal.fire({
         icon: "warning",
         title: "Form Invalid",
