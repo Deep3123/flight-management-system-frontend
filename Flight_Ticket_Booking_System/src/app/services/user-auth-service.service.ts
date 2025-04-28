@@ -11,7 +11,7 @@ export class UserAuthServiceService {
   private baseUrl: string = "https://jetwayz-backend.onrender.com/user";
   // private baseUrl: string =
   //   "https://jetwayz-backend-production.up.railway.app/user";
-
+  
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   // Send the registration data to the backend API (no Authorization needed)
