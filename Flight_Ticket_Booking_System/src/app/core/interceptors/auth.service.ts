@@ -279,7 +279,8 @@ export class AuthInterceptor implements HttpInterceptor {
           error.status === 200 ||
           error.status === 201 ||
           error.status === 202 ||
-          error.status === 400
+          error.status === 400 ||
+          error.status === 401
         ) {
           if (error.error && error.error.text) {
             try {
