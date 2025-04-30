@@ -295,3 +295,169 @@ section.vh-100 {
     content: ".";
   }
 }
+
+/* Modal Styles for Terms & Conditions and Privacy Policy */
+.custom-modal .modal-dialog {
+  max-width: 700px;
+}
+
+.custom-modal .modal-content {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.custom-modal .modal-header {
+  border-bottom: none;
+  padding: 20px 25px 0;
+}
+
+.modal-title-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.modal-title {
+  color: #0053b3;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.modal-accent {
+  height: 3px;
+  background-color: #ff6b00;
+  width: 70%;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.custom-modal .modal-body {
+  padding: 20px 30px 30px;
+  max-height: 70vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.modal-icon-container {
+  text-align: center;
+  /* margin-bottom: 20px; */
+}
+
+.modal-icon {
+  font-size: 48px;
+  color: #0053b3;
+}
+
+.policy-section {
+  margin-bottom: 25px;
+}
+
+.policy-section h5 {
+  color: #0053b3;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.section-number {
+  display: inline-block;
+  background-color: #0053b3;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.policy-section p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-left: 34px;
+}
+
+.policy-section p strong {
+  font-weight: 600;
+  color: #444;
+}
+
+.custom-modal .modal-footer {
+  border-top: none;
+  padding: 15px 25px 25px;
+  justify-content: center;
+}
+
+.modal-close-btn {
+  background-color: #0053b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.modal-close-btn:hover {
+  background-color: #003d84;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .custom-modal .modal-dialog {
+    max-width: 90%;
+    margin: 30px auto;
+  }
+
+  .custom-modal .modal-body {
+    padding: 15px 20px;
+  }
+
+  .section-number {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+  }
+
+  .policy-section p {
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-modal .modal-body {
+    max-height: 65vh;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .policy-section h5 {
+    font-size: 16px;
+  }
+
+  .policy-section p {
+    font-size: 13px;
+    padding-left: 30px;
+  }
+
+  .section-number {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  .modal-close-btn {
+    padding: 8px 20px;
+    font-size: 15px;
+  }
+}

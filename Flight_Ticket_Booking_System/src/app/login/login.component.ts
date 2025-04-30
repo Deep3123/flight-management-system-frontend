@@ -81,6 +81,9 @@ export class LoginComponent {
       this.login.password = form.value.password;
       this.login.captchaInput = form.value.captchaInput; // ✅ include captcha input
 
+      // Get the remember me value from the form
+      const rememberMe = form.value.rememberMe || false;
+
       this.isLoading = true;
       this.userAuthService.userLogin(this.login).subscribe(
         (response) => {
@@ -92,8 +95,8 @@ export class LoginComponent {
             confirmButtonText: "OK",
           }).then(() => {
             form.reset();
-            // Store token and role in AuthService
-            this.authService.login(response.token, response.role);
+            // Store token and role in AuthService with rememberMe flag
+            this.authService.login(response.token, response.role, rememberMe);
             // Redirect based on role
             if (response.role === "ADMIN") {
               this.router.navigate(["/admin"]);
