@@ -6,8 +6,8 @@ import { map, Observable } from "rxjs";
   providedIn: "root",
 })
 export class CaptchaServiceService {
-  private captchaUrl: string = "http://localhost:8080/captcha";
-  // private captchaUrl: string = "https://jetwayz-backend.onrender.com/captcha";
+  // private captchaUrl: string = "http://localhost:8080/captcha";
+  private captchaUrl: string = "https://jetwayz-backend.onrender.com/captcha";
   // private captchaUrl: string =
   //   "https://jetwayz-backend-production.up.railway.app/captcha";
 
