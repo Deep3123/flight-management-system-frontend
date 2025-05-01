@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { ExtraOptions, RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
@@ -16,6 +16,13 @@ import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.compon
 import { FlightResultsComponent } from "./flight-results/flight-results.component";
 import { BookingDetailsComponent } from "./booking-details/booking-details.component";
 import { BookingManagementComponent } from "./booking-management/booking-management.component";
+
+// const routerOptions: ExtraOptions = {
+//   scrollPositionRestoration: "enabled",
+//   anchorScrolling: "enabled",
+//   scrollOffset: [0, 64], // [x, y] - adjust the y-offset based on your header height
+//   onSameUrlNavigation: "reload",
+// };
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -75,9 +82,9 @@ const routes: Routes = [
       scrollPositionRestoration: "enabled",
       anchorScrolling: "enabled",
       onSameUrlNavigation: "reload",
-      scrollOffset: [0, 50],
+      scrollOffset: [0, 64],
     }),
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
