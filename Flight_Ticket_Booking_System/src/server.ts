@@ -79,6 +79,7 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, "../browser");
 const indexHtml = join(browserDistFolder, "index.html");
 
+
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
