@@ -11,6 +11,11 @@
     "test": "ng test",
     "serve:ssr:flight_ticket_booking_system": "node dist/flight_ticket_booking_system/server/server.mjs"
   },
+  "overrides": {
+    "@abacritt/angularx-social-login": {
+      "@angular/common": "^19.0.0"
+    }
+  },
   "private": true,
   "dependencies": {
     "@abacritt/angularx-social-login": "^2.4.0",
