@@ -6,6 +6,10 @@ import { UserAuthServiceService } from "../services/user-auth-service.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth-service.service";
 import { CaptchaServiceService } from "../services/captcha-service.service";
+import {
+  GoogleLoginProvider,
+  SocialAuthService,
+} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: "app-login",
@@ -18,7 +22,8 @@ export class LoginComponent {
     private router: Router,
     private userAuthService: UserAuthServiceService,
     private authService: AuthService,
-    private captchaService: CaptchaServiceService
+    private captchaService: CaptchaServiceService,
+    private socialAuthService: SocialAuthService
   ) {}
 
   login = new LoginReq();
@@ -32,6 +37,18 @@ export class LoginComponent {
   // Get a fresh CAPTCHA image when the component is initialized
   ngOnInit() {
     this.loadCaptcha();
+
+    // Subscribe to social login events
+    this.socialAuthService.authState.subscribe((user) => {
+      if (user) {
+        console.log("Logged in with:", user.provider);
+        console.log("User data:", user);
+
+        // For Google OAuth, the backend handles the authentication
+        // We don't need to do anything here as the backend will redirect
+        // to the appropriate URL
+      }
+    });
   }
 
   // Toggle password visibility
@@ -132,5 +149,18 @@ export class LoginComponent {
         confirmButtonText: "OK",
       });
     }
+  }
+
+  // Method to initiate Google OAuth login
+  signInWithGoogle(): void {
+    this.isLoading = true;
+
+    // Redirect to backend OAuth endpoint
+    window.location.href = "http://localhost:4200/oauth/complete-profile";
+
+    // window.location.href = "https://jetwayz.vercel.app/oauth/complete-profile";
+
+    // Note: The backend will handle the OAuth flow and redirect back to the frontend
+    // There's no need to use the SocialAuthService signIn method as we're using the backend for OAuth
   }
 }

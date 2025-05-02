@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class BookingServiceService {
-  // private apiUrl: string = "http://localhost:8080/bookings"; // Change to your actual API endpoint
-  private apiUrl: string = "https://jetwayz-backend.onrender.com/bookings";
+  private apiUrl: string = "http://localhost:8080/bookings"; // Change to your actual API endpoint
+  // private apiUrl: string = "https://jetwayz-backend.onrender.com/bookings";
   // private apiUrl: string = "https://jetwayz-backend-production.up.railway.app/bookings";
 
   constructor(private http: HttpClient) {}

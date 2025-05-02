@@ -47,21 +47,7 @@
               </div>
             </div>
 
-            <!-- <div class="form-group">
-              <label for="captcha">Enter the text in the image:</label>
-              <div class="captcha-image-box">
-                <img [src]="captchaUrl" alt="CAPTCHA" class="captcha-image" />
-                <button type="button" class="refresh-captcha" (click)="reloadCaptcha()">↻</button>
-              </div>
-              <input type="text" class="form-control" id="captchaInput" name="captchaInput" ngModel required
-                #captchaInputModel="ngModel" placeholder="Enter CAPTCHA" />
-              <div *ngIf="captchaInputModel.invalid && captchaInputModel.touched" class="error-message">
-                CAPTCHA is required.
-              </div>
-            </div> -->
-
-
-            <!-- First, modify the captcha image section in your HTML -->
+            <!-- CAPTCHA Section -->
             <div class="form-group">
               <label for="captcha">Enter the text in the image:</label>
               <div class="captcha-image-box">
@@ -88,6 +74,20 @@
             </div>
 
             <button type="submit" class="login-button" [disabled]="loginForm.invalid">Log In</button>
+
+            <!-- OAuth Login Section -->
+            <div class="text-center my-4">
+              <div class="divider d-flex align-items-center">
+                <span class="mx-2 text-muted small">OR</span>
+              </div>
+
+              <div class="social-login-buttons">
+                <button type="button" class="btn google-btn mb-2 w-100" (click)="signInWithGoogle()">
+                  <img src="google_logo.png" alt="Google" class="me-2" width="20" height="20">
+                  Sign in with Google
+                </button>
+              </div>
+            </div>
 
             <div class="signup-link">
               Don't have an account? <a routerLink="/register">Register</a>

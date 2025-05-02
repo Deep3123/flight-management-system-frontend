@@ -374,3 +374,77 @@ section.vh-100 {
     content: ".";
   }
 }
+
+/* Add these styles to your login.component.css file */
+
+/* Divider styling for "OR" separator */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.divider::before {
+  margin-right: 10px;
+}
+
+.divider::after {
+  margin-left: 10px;
+}
+
+/* Google button styling */
+.social-login-buttons {
+  margin-top: 15px;
+}
+
+.google-btn {
+  background-color: #ffffff;
+  color: #757575;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.google-btn:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.google-btn:active {
+  background-color: #f1f1f1;
+}
+
+.google-btn img {
+  margin-right: 8px;
+}
+
+/* OAuth Profile Completion Page specific styles */
+/* Add these to your oauth-profile-completion.component.css file */
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    margin: 0 15px;
+  }
+}

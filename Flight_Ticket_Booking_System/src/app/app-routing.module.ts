@@ -16,6 +16,7 @@ import { ContactUsPageComponent } from "./contact-us-page/contact-us-page.compon
 import { FlightResultsComponent } from "./flight-results/flight-results.component";
 import { BookingDetailsComponent } from "./booking-details/booking-details.component";
 import { BookingManagementComponent } from "./booking-management/booking-management.component";
+import { OAuthProfileCompletionComponent } from "./oauth-profile-completion/oauth-profile-completion.component";
 
 // const routerOptions: ExtraOptions = {
 //   scrollPositionRestoration: "enabled",
@@ -72,6 +73,8 @@ const routes: Routes = [
     component: BookingDetailsComponent,
     canActivate: [authGuard],
   },
+  { path: "oauth-callback", component: LoginComponent }, // Just to handle the token, will redirect as needed
+  { path: "complete-profile", component: OAuthProfileCompletionComponent },
   { path: "", component: HomeComponent },
   { path: "**", component: ErrorPageComponent },
 ];

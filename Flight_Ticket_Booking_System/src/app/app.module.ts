@@ -49,6 +49,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OAuthProfileCompletionComponent } from "./oauth-profile-completion/oauth-profile-completion.component";
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -76,6 +80,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SpinnerComponent,
     BookingDetailsDialogComponent,
     BookingManagementComponent,
+    OAuthProfileCompletionComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,12 +109,27 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    SocialLoginModule  // ✅ include this
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.encryption.googleClientId  // 👈 Replace with your actual client ID
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
     },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
