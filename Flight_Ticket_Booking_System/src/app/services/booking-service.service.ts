@@ -10,8 +10,7 @@ export class BookingServiceService {
   private apiUrl: string = "https://jetwayz-backend.onrender.com/bookings";
   // private apiUrl: string = "https://jetwayz-backend-production.up.railway.app/bookings";
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   verifyPayment(bookingData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/verify-payment`, bookingData);
