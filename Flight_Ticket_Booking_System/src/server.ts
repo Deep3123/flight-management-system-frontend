@@ -115,6 +115,8 @@ const browserOnlyRoutes = [
   "/booking-details",
   "/all-bookings-data",
   "/register",
+  "/oauth-callback",
+  "/complete-profile"
 ];
 
 app.get(browserOnlyRoutes, (req, res) => {
