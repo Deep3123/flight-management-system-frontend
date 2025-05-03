@@ -23,9 +23,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "prerender": {
-              "routesFile": "prerender.routes.txt"
-            },
             "outputPath": "dist/flight_ticket_booking_system",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -50,7 +47,6 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            
             "ssr": {
               "entry": "src/server.ts"
             }
@@ -113,6 +109,29 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/flight_ticket_booking_system-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "sourceMap": false
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "browserTarget": "flight_ticket_booking_system:build:production",
+            "serverTarget": "flight_ticket_booking_system:server:production",
+            "routesFile": "prerender.routes.txt",
+            "guessRoutes": false
           }
         }
       }
