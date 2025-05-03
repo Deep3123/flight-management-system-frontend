@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ContactServiceService {
-  private baseUrl: string = "http://localhost:8080/contact"; // Make sure this is the correct API base URL
-  // private baseUrl: string = "https://jetwayz-backend.onrender.com/contact";
+  // private baseUrl: string = "http://localhost:8080/contact"; // Make sure this is the correct API base URL
+  private baseUrl: string = "https://jetwayz-backend.onrender.com/contact";
   // private baseUrl: string = "https://jetwayz-backend-production.up.railway.app/contact";
 
   constructor(private http: HttpClient) {}

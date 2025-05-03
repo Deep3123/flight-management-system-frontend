@@ -125,7 +125,11 @@ import { environment } from "../environments/environment";
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              environment.encryption.googleClientId  // 👈 Replace with your actual client ID
+              environment.encryption.googleClientId,  // 👈 Replace with your actual client ID
+              {
+                oneTapEnabled: false, // Adjust based on your needs
+                // Other options as needed
+              }
             )
           }
         ]

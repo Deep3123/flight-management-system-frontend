@@ -24,7 +24,7 @@ export class LoginComponent {
     private authService: AuthService,
     private captchaService: CaptchaServiceService,
     private socialAuthService: SocialAuthService
-  ) {}
+  ) { }
 
   login = new LoginReq();
   captchaInput: string = "";
@@ -152,15 +152,22 @@ export class LoginComponent {
   }
 
   // Method to initiate Google OAuth login
+  // signInWithGoogle(): void {
+  //   this.isLoading = true;
+
+  //   // Redirect to backend OAuth endpoint
+  //   window.location.href = "http://localhost:4200/oauth/complete-profile";
+
+  //   // window.location.href = "https://jetwayz.vercel.app/oauth/complete-profile";
+
+  //   // Note: The backend will handle the OAuth flow and redirect back to the frontend
+  //   // There's no need to use the SocialAuthService signIn method as we're using the backend for OAuth
+  // }
+
   signInWithGoogle(): void {
     this.isLoading = true;
-
-    // Redirect to backend OAuth endpoint
-    window.location.href = "http://localhost:4200/oauth/complete-profile";
-
-    // window.location.href = "https://jetwayz.vercel.app/oauth/complete-profile";
-
-    // Note: The backend will handle the OAuth flow and redirect back to the frontend
-    // There's no need to use the SocialAuthService signIn method as we're using the backend for OAuth
+    // Redirect to backend OAuth endpoint - choose one based on environment
+    window.location.href = "http://localhost:8080/oauth2/authorization/google"; // Development
+    // window.location.href = "https://jetwayz.vercel.app/oauth2/authorization/google"; // Production
   }
 }

@@ -19,7 +19,7 @@ const secretKey = process.env.ENCRYPTION_SECRET_KEY || '';
 const iv = process.env.ENCRYPTION_IV || '';
 const googleClientId = process.env.SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID || ''
 
-if (!secretKey || !iv) {
+if (!secretKey || !iv || !googleClientId) {
   console.warn('Warning: One or more encryption environment variables are not set.');
 }
 

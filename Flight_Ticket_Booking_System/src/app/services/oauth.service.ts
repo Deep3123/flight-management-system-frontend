@@ -6,9 +6,9 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class OAuthService {
-  private baseUrl: string = "http://localhost:8080/bookings"; // Change to your actual API endpoint
-  // private baseUrl: string = "https://jetwayz-backend.onrender.com/bookings";
-  // private baseUrl: string = "https://jetwayz-backend-production.up.railway.app/bookings";
+  // private baseUrl: string = "http://localhost:8080"; // Change to your actual API endpoint
+  private baseUrl: string = "https://jetwayz-backend.onrender.com";
+  // private baseUrl: string = "https://jetwayz-backend-production.up.railway.app";
 
   constructor(private http: HttpClient) {}
 
