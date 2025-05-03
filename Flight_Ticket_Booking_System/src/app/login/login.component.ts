@@ -168,6 +168,6 @@ export class LoginComponent {
     this.isLoading = true;
     // Redirect to backend OAuth endpoint - choose one based on environment
     // window.location.href = "http://localhost:8080/oauth2/authorization/google"; // Development
-    window.location.href = "https://jetwayz.vercel.app/oauth2/authorization/google"; // Production
+    window.location.href = "https://jetwayz-backend.onrender.com/oauth2/authorization/google"; // Production
   }
 }
