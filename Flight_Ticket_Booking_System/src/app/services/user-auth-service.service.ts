@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { catchError, Observable } from "rxjs";
 import { AuthService } from "./auth-service.service";
 
@@ -76,6 +76,26 @@ export class UserAuthServiceService {
     return this.http.get(`${this.baseUrl}/get-all-user-details`);
   }
 
+  // New method for paginated users
+  getUsersPaginated(page: number, size: number, sortField: string | null, sortDirection: string): Observable<any> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    if (sortField) {
+      params = params.set('sortField', sortField)
+                     .set('sortDirection', sortDirection);
+    }
+    
+    return this.http.get(`${this.baseUrl}/get-users-paginated`, { params });
+  }
+  
+
+  // Method to get total count of users
+  getTotalUsersCount(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/get-total-users-count`);
+  }
+  
   // Delete user (Authorization required)
   deleteUser(username: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/delete-user-by-username/${username}`);

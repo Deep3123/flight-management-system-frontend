@@ -53,6 +53,7 @@ import { OAuthProfileCompletionComponent } from "./oauth-profile-completion/oaut
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from "../environments/environment";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { environment } from "../environments/environment";
     MatCardModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    SocialLoginModule  // ✅ include this
+    SocialLoginModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
