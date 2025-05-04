@@ -167,7 +167,7 @@ export class LoginComponent {
   signInWithGoogle(): void {
     this.isLoading = true;
     // Redirect to backend OAuth endpoint - choose one based on environment
-    window.location.href = "http://localhost:8080/oauth2/authorization/google?env=local"; // Development
-    // window.location.href = "https://jetwayz-backend.onrender.com/oauth2/authorization/google"; // Production
+    // window.location.href = "http://localhost:8080/oauth2/authorization/google?env=local"; // Development
+    window.location.href = "https://jetwayz-backend.onrender.com/oauth2/authorization/google?env=prod"; // Production
   }
 }
