@@ -73,7 +73,7 @@ const routes: Routes = [
     component: BookingDetailsComponent,
     canActivate: [authGuard],
   },
-  { path: "oauth-callback", component: LoginComponent }, // Just to handle the token, will redirect as needed
+  { path: "oauth-callback", component: ErrorPageComponent }, // Just to handle the token, will redirect as needed
   { path: "complete-profile", component: OAuthProfileCompletionComponent },
   { path: "", component: HomeComponent },
   { path: "**", component: ErrorPageComponent },
