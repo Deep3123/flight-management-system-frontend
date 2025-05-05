@@ -12,7 +12,8 @@
   ],
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/complete-profile(.*)",
+      "dest": "/index.html"
     },
     {
       "src": "/assets/(.*)",
