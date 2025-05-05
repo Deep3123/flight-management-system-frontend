@@ -5,8 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "node prepare-env.js && ng build --configuration production",
-    "vercel-build": "node prepare-env.js && ng build --configuration production",
+    "build:ssr": "node prepare-env.js && ng build && ng run flight_ticket_booking_system:server",
+    "build:prod": "node prepare-env.js && ng build --configuration production && ng run flight_ticket_booking_system:server:production",
+    "vercel-build": "npm run build:prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:flight_ticket_booking_system": "node dist/flight_ticket_booking_system/server/server.mjs"

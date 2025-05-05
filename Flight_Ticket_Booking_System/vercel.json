@@ -3,14 +3,13 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/flight_ticket_booking_system/browser",
-        "buildCommand": "npm run build:prod"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "handle": "filesystem"
+    },
     {
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
@@ -21,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/api/server.js"
     }
   ]
 }
