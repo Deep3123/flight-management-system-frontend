@@ -2,26 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/flight_ticket_booking_system-server/server.mjs",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/flight_ticket_booking_system/browser/**/*",
-      "dest": "dist/flight_ticket_booking_system/browser"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/flight_ticket_booking_system/browser",
+        "buildCommand": "npm run build:prod"
+      }
     }
   ],
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/flight_ticket_booking_system/browser/assets/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*\\.(js|css|ico|png|jpg|svg|webp|woff|woff2|ttf|eot|map))$",
-      "dest": "/dist/flight_ticket_booking_system/browser/$1"
+      "dest": "/$1"
     },
     {
-      "src": "/[^.]+$",
-      "dest": "/dist/flight_ticket_booking_system-server/server.mjs"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
