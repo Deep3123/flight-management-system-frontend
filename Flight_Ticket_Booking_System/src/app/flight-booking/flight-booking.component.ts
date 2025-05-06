@@ -107,7 +107,7 @@ export class FlightBookingComponent {
     };
 
     // console.log(flight);
-    console.log("Departure:", this.departureTime, "Arrival:", this.arrivalTime);
+    // console.log("Departure:", this.departureTime, "Arrival:", this.arrivalTime);
 
     this.isLoading = true;
     this.service.getFlightByAllDetails(flight).subscribe(

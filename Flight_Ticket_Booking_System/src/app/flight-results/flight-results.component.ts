@@ -19,7 +19,7 @@ export class FlightResultsComponent implements OnInit {
 
   ngOnInit(): void {
     // You can handle cases like no results here
-    console.log(this.flightResults); // Check the structure of your flightResults array
+    // console.log(this.flightResults); // Check the structure of your flightResults array
 
     // this.sortFlights("lowestPrice");
 

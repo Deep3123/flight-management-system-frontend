@@ -14,7 +14,7 @@ export class OAuthService {
 
   // Complete profile after OAuth login
   completeOAuthProfile(profileData: any, token: string): Observable<any> {
-    console.log("Control is at angular service method.")
+    // console.log("Control is at angular service method.")
     return this.http.post(
       `${this.baseUrl}/oauth/complete-profile`,
       profileData,
