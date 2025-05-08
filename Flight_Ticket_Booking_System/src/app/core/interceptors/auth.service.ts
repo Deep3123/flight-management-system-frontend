@@ -412,6 +412,32 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
       catchError((error: HttpErrorResponse) => {
         // Handle encrypted error responses
+        if (
+          error.status === 200 ||
+          error.status === 201 ||
+          error.status === 202
+        ) {
+          if (error.error && error.error.text) {
+            try {
+              const decrypted = this.encryptionService.decrypt(
+                error.error.text
+              );
+              return new Observable<HttpEvent<any>>((observer) => {
+                observer.next(
+                  new HttpResponse<any>({
+                    body: JSON.parse(decrypted),
+                    status: error.status,
+                    headers: error.headers,
+                    url: error.url || undefined,
+                  })
+                );
+                observer.complete();
+              });
+            } catch (e) {
+              console.error("Failed to decrypt response:", e);
+            }
+          }
+        }
         if (error.error && typeof error.error === "string") {
           // Direct string response
           try {
