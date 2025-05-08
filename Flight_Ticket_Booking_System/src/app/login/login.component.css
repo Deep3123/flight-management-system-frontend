@@ -13,7 +13,7 @@ body {
 
 section.vh-100 {
   margin-top: 50px;
-  margin-bottom: 200px;
+  margin-bottom: 300px;
 }
 
 /* Container for login form */
@@ -159,8 +159,9 @@ section.vh-100 {
 /* Responsive styles */
 @media (max-width: 991px) {
   section.vh-100 {
-    margin-bottom: 500px;
+    margin-bottom: 600px;
   }
+
   /* Adjustments for medium-sized screens like tablets */
   .container-fluid {
     padding-bottom: 40px;
