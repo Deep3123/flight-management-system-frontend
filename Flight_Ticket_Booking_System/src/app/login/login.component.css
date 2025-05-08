@@ -178,7 +178,7 @@ section.vh-100 {
 
 @media (max-width: 560px) {
   section.vh-100 {
-    margin-bottom: 400px;
+    margin-bottom: 500px;
   }
 
   /* Adjustments for smaller screens like mobile */
@@ -221,7 +221,7 @@ section.vh-100 {
   } */
 
   section.vh-100 {
-    margin-bottom: 400px;
+    margin-bottom: 500px;
   }
 }
 
@@ -442,10 +442,4 @@ section.vh-100 {
 .login-container {
   max-width: 500px;
   margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .login-container {
-    margin: 0 15px;
-  }
 }
