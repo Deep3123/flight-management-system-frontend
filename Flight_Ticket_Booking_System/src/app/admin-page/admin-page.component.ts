@@ -142,7 +142,6 @@ import { UserAuthServiceService } from '../services/user-auth-service.service';
 import Swal from 'sweetalert2';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import * as XLSX from 'xlsx';
 import { CommonService } from '../common.service';
 
 @Component({
