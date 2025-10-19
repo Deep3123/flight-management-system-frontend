@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
+import { API_BASE_URL } from '../constats';
 
 @Injectable({
   providedIn: "root",
 })
 export class CaptchaServiceService {
   // private captchaUrl: string = "http://localhost:8080/captcha";
-  private captchaUrl: string = "https://jetwayz-backend.onrender.com/captcha";
+  // private captchaUrl: string = "https://jetwayz-backend.onrender.com/captcha";
   // private captchaUrl: string =
   //   "https://jetwayz-backend-production.up.railway.app/captcha";
 
@@ -69,7 +70,7 @@ export class CaptchaServiceService {
     });
 
     return this.http
-      .get(this.captchaUrl, {
+      .get(`${API_BASE_URL}/captcha`, {
         responseType: "blob",
         withCredentials: true,
         headers: headers,
