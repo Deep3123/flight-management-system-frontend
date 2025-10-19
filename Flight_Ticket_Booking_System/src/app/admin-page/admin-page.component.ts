@@ -142,6 +142,8 @@ import { UserAuthServiceService } from '../services/user-auth-service.service';
 import Swal from 'sweetalert2';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import * as XLSX from 'xlsx';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -152,6 +154,7 @@ import { takeUntil } from 'rxjs/operators';
 export class AdminPageComponent implements OnInit, AfterViewInit {
   users: any[] = [];
   isLoading = false;
+  showDownloadAnimation = false;
   dataSource = new MatTableDataSource<any>([]);
   private destroy$ = new Subject<void>();
 
@@ -173,6 +176,7 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private userService: UserAuthServiceService,
+    private commonService: CommonService,
     public dialog: MatDialog
   ) { }
 
@@ -239,8 +243,14 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
-      if (result) {
+      if (result && result.success) {
         this.getAllUsers();
+        Swal.fire({
+          icon: 'success',
+          title: result.type === 'update' ? 'User Updated Successfully!' : 'User Added Successfully!',
+          text: result.message,
+          confirmButtonText: 'OK'
+        });
       }
     });
   }
@@ -254,8 +264,14 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
-      if (result) {
+      if (result && result.success) {
         this.getAllUsers();
+        Swal.fire({
+          icon: 'success',
+          title: result.type === 'update' ? 'User Updated Successfully!' : 'User Added Successfully!',
+          text: result.message,
+          confirmButtonText: 'OK'
+        });
       }
     });
   }
@@ -299,6 +315,38 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  downloadExcel(): void {
+    this.isLoading = true;
+    this.userService.downloadUsersExcel().subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        const filename = `users_${new Date().toISOString().split('T')[0]}.xlsx`;
+        this.commonService.downloadExcelFromBase64(response?.data, filename);
+        
+        this.showDownloadAnimation = true;
+        setTimeout(() => {
+          this.showDownloadAnimation = false;
+        }, 2000);
+        Swal.fire({
+            icon: 'success',
+            title: 'File Downloaded !',
+            text: response?.message,
+            confirmButtonText: 'OK'
+          });
+      },
+      error: (error) => {
+        this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Download Failed',
+          text: 'Failed to download Excel file',
+          confirmButtonText: 'OK'
+        });
+      }
+    });
+  }
+
 
   // Track function for ngFor performance optimization
   trackByFn(index: number, user: any) {

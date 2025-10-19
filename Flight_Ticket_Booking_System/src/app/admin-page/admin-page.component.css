@@ -775,6 +775,29 @@ body {
   margin-right: 8px;
 }
 
+/* Success button style */
+.success-button {
+  border-radius: 28px;
+  padding: 0 28px;
+  height: 46px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+}
+
+.success-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.success-button mat-icon {
+  margin-right: 8px;
+}
+
 /* Card styling with softer shadows */
 .content-card {
   border-radius: 16px;
@@ -974,6 +997,48 @@ tr.user-row:hover {
   background-color: #fafbff;
   border-radius: 0 0 16px 16px; /* Round the bottom corners */
   overflow: visible !important;
+}
+
+/* Download Animation */
+.download-animation {
+  position: fixed;
+  bottom: -60px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.download-animation.show {
+  opacity: 1;
+  transform: translateY(-150px);
+  animation: downloadComplete 2s ease-out forwards;
+}
+
+@keyframes downloadComplete {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-150px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-300px) scale(0.9);
+  }
 }
 
 /* Enhanced loading spinner */

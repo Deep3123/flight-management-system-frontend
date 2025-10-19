@@ -106,6 +106,11 @@ export class UserAuthServiceService {
     return this.http.post(`${API_BASE_URL}/user/update-user-by-username`, user);
   }
 
+  // Download users Excel file
+  downloadUsersExcel(): Observable<any> {
+    return this.http.get(`${API_BASE_URL}/user/download-all-user-data`);
+  }
+
   // checkAccountExists(): Observable<any> {
   //   return this.http.post(
   //     `${API_BASE_URL}/user/check-account-exists`,

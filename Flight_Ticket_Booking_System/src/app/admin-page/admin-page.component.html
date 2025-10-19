@@ -68,7 +68,11 @@
         <div class="title-row">
             <h1 class="mat-headline-5">User Management</h1>
         </div>
-        <div class="d-flex justify-content-end mb-2">
+        <div class="d-flex justify-content-end mb-2" style="gap: 10px;">
+            <button class="btn btn-success success-button" (click)="downloadExcel()"
+                style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+                <mat-icon>download</mat-icon> Download All User Data
+            </button>
             <button class="btn btn-primary add-button" (click)="openForm()"
                 style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
                 <mat-icon>add</mat-icon> Add User
@@ -180,6 +184,10 @@
     </div>
 </div>
 
+
+<div class="download-animation" [class.show]="showDownloadAnimation">
+    <mat-icon>file_download</mat-icon>
+</div>
 
 <!-- Loading overlay -->
 <!-- <div *ngIf="isLoading" class="loading-overlay">

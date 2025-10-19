@@ -27,13 +27,7 @@ export class UserDialogComponent {
   }
 
   onNoClick(): void {
-    Swal.fire({
-      icon: "info",
-      title: "Update Operation cancelled!",
-      text: "The user information was not updated, as you have cancelled the operation!!",
-      confirmButtonText: "OK",
-    });
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   submitForm(userForm: NgForm): void {
@@ -44,13 +38,7 @@ export class UserDialogComponent {
         .subscribe(
           (response) => {
             this.isLoading = false;
-            this.dialogRef.close();
-            Swal.fire({
-              icon: "success",
-              title: "User Updated Successfully!",
-              text: response.message,
-              confirmButtonText: "OK",
-            });
+            this.dialogRef.close({ success: true, message: response.message, type: 'update' });
           },
           (error) => {
             this.isLoading = false;
@@ -67,13 +55,7 @@ export class UserDialogComponent {
       this.userService.saveUserData(userForm.value).subscribe(
         (response) => {
           this.isLoading = false;
-          this.dialogRef.close();
-          Swal.fire({
-            icon: "success",
-            title: "User Added Successfully!",
-            text: response.message,
-            confirmButtonText: "OK",
-          });
+          this.dialogRef.close({ success: true, message: response.message, type: 'add' });
         },
         (error) => {
           this.isLoading = false;
