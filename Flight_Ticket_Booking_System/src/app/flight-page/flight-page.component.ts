@@ -142,6 +142,7 @@ import { MatSort } from '@angular/material/sort';
 import { FlightDialogComponent } from "../flight-dialog/flight-dialog.component";
 import { FlightAuthServiceService } from "../services/flight-auth-service.service";
 import Swal from "sweetalert2";
+import { CommonService } from "../common.service";
 
 @Component({
   selector: "app-flight-page",
@@ -152,6 +153,7 @@ import Swal from "sweetalert2";
 export class FlightPageComponent implements OnInit, AfterViewInit {
   flights: any[] = [];
   isLoading = false;
+  showDownloadAnimation = false;
   dataSource = new MatTableDataSource<any>([]);
 
   // Define displayed columns for the table
@@ -176,7 +178,8 @@ export class FlightPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private flightService: FlightAuthServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private commonService: CommonService,
   ) { }
 
   ngOnInit(): void {
@@ -306,4 +309,35 @@ export class FlightPageComponent implements OnInit, AfterViewInit {
     if (!this.paginator) return i + 1;
     return i + 1 + this.paginator.pageIndex * this.paginator.pageSize;
   }
+
+  downloadExcel(): void {
+    this.isLoading = true;
+    this.flightService.downloadFlightExcel().subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        const filename = `flights_${new Date().toISOString().split('T')[0]}.xlsx`;
+        this.commonService.downloadExcelFromBase64(response?.data, filename);
+        
+        this.showDownloadAnimation = true;
+        setTimeout(() => {
+          this.showDownloadAnimation = false;
+        }, 2000);
+        Swal.fire({
+            icon: 'success',
+            title: 'File Downloaded !',
+            text: response?.message,
+            confirmButtonText: 'OK'
+          });
+      },
+      error: (error) => {
+        this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Download Failed',
+          text: 'Failed to download Excel file',
+          confirmButtonText: 'OK'
+        });
+      }
+    });
+  }  
 }

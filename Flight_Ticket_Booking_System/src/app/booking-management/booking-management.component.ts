@@ -144,6 +144,7 @@ import { MatSort } from "@angular/material/sort";
 import { BookingDetailsDialogComponent } from "../booking-details-dialog/booking-details-dialog.component";
 import { BookingServiceService } from "../services/booking-service.service";
 import Swal from "sweetalert2";
+import { CommonService } from "../common.service";
 
 @Component({
   selector: "app-booking-management",
@@ -154,6 +155,7 @@ import Swal from "sweetalert2";
 export class BookingManagementComponent implements OnInit, AfterViewInit {
   bookings: any[] = [];
   isLoading = false;
+  showDownloadAnimation = false;
   dataSource = new MatTableDataSource<any>([]);
   pageSize = 10; // Default page size
   pageIndex = 0; // Current page index
@@ -177,7 +179,8 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
 
   constructor(
     private bookingService: BookingServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private commonService: CommonService,
   ) { }
 
   ngOnInit(): void {
@@ -188,6 +191,13 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
     // Connect the sort and paginator to the data source
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
+      if (sortHeaderId === 'name') {
+        return `${data.firstName} ${data.lastName}`.toLowerCase();
+      }
+      return data[sortHeaderId];
+    };
 
     // Add listener for page changes to update row numbers
     this.paginator.page.subscribe((pageEvent: PageEvent) => {
@@ -292,5 +302,36 @@ export class BookingManagementComponent implements OnInit, AfterViewInit {
   // Track function for ngFor performance optimization
   trackByFn(index: number, booking: any) {
     return booking.id;
+  }
+
+  downloadExcel(): void {
+    this.isLoading = true;
+    this.bookingService.downloadBookingExcel().subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        const filename = `bookings_${new Date().toISOString().split('T')[0]}.xlsx`;
+        this.commonService.downloadExcelFromBase64(response?.data, filename);
+        
+        this.showDownloadAnimation = true;
+        setTimeout(() => {
+          this.showDownloadAnimation = false;
+        }, 2000);
+        Swal.fire({
+            icon: 'success',
+            title: 'File Downloaded !',
+            text: response?.message,
+            confirmButtonText: 'OK'
+          });
+      },
+      error: (error) => {
+        this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Download Failed',
+          text: 'Failed to download Excel file',
+          confirmButtonText: 'OK'
+        });
+      }
+    });
   }
 }

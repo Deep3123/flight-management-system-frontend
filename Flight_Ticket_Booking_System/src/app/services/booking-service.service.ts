@@ -47,4 +47,8 @@ export class BookingServiceService {
   deleteBooking(id: any): Observable<any> {
     return this.http.post(`${API_BASE_URL}/bookings/delete-booking-details`, id);
   }
+
+  downloadBookingExcel(): Observable<any> {
+    return this.http.get(`${API_BASE_URL}/bookings/download-all-booking-data`);
+  }
 }

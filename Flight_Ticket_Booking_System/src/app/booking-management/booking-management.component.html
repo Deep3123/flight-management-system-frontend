@@ -59,6 +59,12 @@
         <div class="title-row">
             <h1 class="mat-headline-5">Booking Management</h1>
         </div>
+        <div class="d-flex justify-content-end mb-2" style="gap: 10px;">
+            <button class="btn btn-success success-button" (click)="downloadExcel()"
+                style="display: flex; align-items: center; gap: 5px; border-radius: 20px;">
+                <mat-icon>download</mat-icon> Download All Booking Data
+            </button>
+        </div>
     </div>
 
     <!-- Main content card with improved styling -->
@@ -177,4 +183,8 @@
         </div>
         <div class="text-light fs-4 animated-dots">Loading<span class="dots">.</span></div>
     </div>
+</div>
+
+<div class="download-animation" [class.show]="showDownloadAnimation">
+    <mat-icon>file_download</mat-icon>
 </div>

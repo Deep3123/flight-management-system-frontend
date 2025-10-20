@@ -58,4 +58,8 @@ export class FlightAuthServiceService {
       }
     );
   }
+
+  downloadFlightExcel(): Observable<any> {
+    return this.http.get(`${API_BASE_URL}/flight/download-all-flight-data`);
+  }
 }
