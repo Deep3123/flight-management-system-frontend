@@ -339,5 +339,14 @@ export class FlightPageComponent implements OnInit, AfterViewInit {
         });
       }
     });
-  }  
+  }
+
+  downloadTemplate(): void {
+    const link = document.createElement('a');
+    link.href = 'assets/Flight_Data_Upload_Format.xlsx';
+    link.download = 'Flight_Data_Upload_Format.xlsx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
