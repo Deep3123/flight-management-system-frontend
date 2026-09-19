@@ -163,15 +163,26 @@
   border-color: #3f51b5;
 }
 
-/* Chatbot HTML Content Styles (Tables, etc.) */
 ::ng-deep .bot-message .message-content table {
   display: block;
-  overflow-x: auto;
-  white-space: nowrap;
   width: 100%;
-  border-collapse: collapse;
+  overflow-x: auto;
   margin: 10px 0;
+  border-collapse: collapse;
   font-size: 12px;
+  white-space: nowrap;
+}
+
+::ng-deep .bot-message .message-content table::-webkit-scrollbar {
+  height: 6px;
+}
+::ng-deep .bot-message .message-content table::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+::ng-deep .bot-message .message-content table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
 }
 
 ::ng-deep .bot-message .message-content th,
@@ -194,11 +205,23 @@
 }
 
 ::ng-deep .bot-message .message-content a {
-  color: #3f51b5;
-  text-decoration: underline;
+  display: inline-block;
+  background-color: #3f51b5;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
   font-weight: 500;
-  cursor: pointer;
+  margin-top: 8px;
+  margin-right: 8px;
+  font-size: 13px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: background-color 0.2s, transform 0.1s;
 }
+
 ::ng-deep .bot-message .message-content a:hover {
-  color: #283593;
+  background-color: #283593;
+  color: white;
+  transform: translateY(-1px);
 }
+
