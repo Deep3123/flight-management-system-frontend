@@ -161,3 +161,30 @@
 .chat-input-area input:focus {
   border-color: #3f51b5;
 }
+
+/* Chatbot HTML Content Styles (Tables, etc.) */
+::ng-deep .bot-message .message-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+::ng-deep .bot-message .message-content th,
+::ng-deep .bot-message .message-content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+::ng-deep .bot-message .message-content th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+}
+
+::ng-deep .bot-message .message-content ul,
+::ng-deep .bot-message .message-content ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}

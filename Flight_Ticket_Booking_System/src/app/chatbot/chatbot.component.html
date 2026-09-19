@@ -25,7 +25,8 @@
       <div *ngFor="let msg of messages" 
            [ngClass]="{'bot-message': msg.isBot, 'user-message': !msg.isBot}">
         
-        <div class="message-content" *ngIf="msg.text" [innerText]="msg.text"></div>
+        <div class="message-content" *ngIf="msg.text && !msg.isBot" [innerText]="msg.text"></div>
+        <div class="message-content" *ngIf="msg.text && msg.isBot" [innerHTML]="msg.text"></div>
         
         <div class="message-content typing-dots" *ngIf="!msg.text && msg.isBot">
           <span></span><span></span><span></span>
