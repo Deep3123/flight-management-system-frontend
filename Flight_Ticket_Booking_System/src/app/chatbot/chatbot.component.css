@@ -190,3 +190,13 @@
   margin: 8px 0;
   padding-left: 20px;
 }
+
+::ng-deep .bot-message .message-content a {
+  color: #3f51b5;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+::ng-deep .bot-message .message-content a:hover {
+  color: #283593;
+}

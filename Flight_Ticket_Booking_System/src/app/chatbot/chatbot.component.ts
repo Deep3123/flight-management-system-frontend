@@ -62,6 +62,20 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.isOpen = !this.isOpen;
   }
 
+  handleLinkClick(event: Event) {
+    const target = event.target as HTMLElement;
+    // Check if the clicked element is an anchor tag or inside an anchor tag
+    const anchor = target.closest('a');
+    if (anchor && anchor.getAttribute('href')) {
+      const href = anchor.getAttribute('href');
+      // Only intercept relative links (internal routes)
+      if (href && href.startsWith('/')) {
+        event.preventDefault(); // Prevent full page reload
+        this.router.navigate([href]); // Navigate using Angular router
+      }
+    }
+  }
+
   clearChat() {
     this.messages = [{
       text: 'Hello! I am your JetWayz AI assistant. How can I help you with your flight bookings today?',

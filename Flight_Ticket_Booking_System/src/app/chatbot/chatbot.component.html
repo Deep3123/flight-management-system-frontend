@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="chat-messages" #scrollMe>
+    <div class="chat-messages" #scrollMe (click)="handleLinkClick($event)">
       <div *ngFor="let msg of messages" 
            [ngClass]="{'bot-message': msg.isBot, 'user-message': !msg.isBot}">
         
