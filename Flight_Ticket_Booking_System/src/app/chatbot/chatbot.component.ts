@@ -52,18 +52,38 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.userInput = '';
     this.isLoading = true;
 
-    // Call the backend API
-    this.http.post<{response: string}>(`${environment.apiHost}/api/chat`, { message: userText })
-      .subscribe({
-        next: (res) => {
-          this.messages.push({ text: res.response, isBot: true });
+    // Create a placeholder for the bot's streamed response
+    const botMsgIndex = this.messages.push({ text: '', isBot: true }) - 1;
+
+    // Call the backend API with streaming enabled
+    this.http.post(`${environment.apiHost}/api/chat`, { message: userText }, {
+      responseType: 'text',
+      observe: 'events',
+      reportProgress: true
+    }).subscribe({
+      next: (event: any) => {
+        // HttpEventType.DownloadProgress (3) or HttpEventType.Response (4)
+        if (event.type === 3 || event.type === 4) {
           this.isLoading = false;
-        },
-        error: (err) => {
-          console.error(err);
-          this.messages.push({ text: 'Sorry, I am having trouble connecting to the server right now.', isBot: true });
-          this.isLoading = false;
+          const text = event.type === 4 ? event.body : (event as any).partialText;
+          
+          if (text) {
+            // Spring Web MVC streams SSE as "data:<chunk>\n\n"
+            // We strip out the "data:" and newlines to form the continuous string
+            let cleanedText = text.replace(/data:/g, '').replace(/\n\n/g, '');
+            this.messages[botMsgIndex].text = cleanedText;
+            this.scrollToBottom();
+          }
         }
-      });
+      },
+      error: (err) => {
+        console.error(err);
+        this.messages[botMsgIndex].text = 'Sorry, I am having trouble connecting to the server right now.';
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
   }
 }
