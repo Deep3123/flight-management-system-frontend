@@ -16,12 +16,14 @@
     <div class="chat-messages" #scrollMe>
       <div *ngFor="let msg of messages" 
            [ngClass]="{'bot-message': msg.isBot, 'user-message': !msg.isBot}">
-        <div class="message-content">
+        
+        <div class="message-content" *ngIf="msg.text">
           {{ msg.text }}
         </div>
-      </div>
-      <div *ngIf="isLoading" class="bot-message typing-indicator">
-        <div class="message-content">...</div>
+        
+        <div class="message-content typing-dots" *ngIf="!msg.text && msg.isBot">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
 
