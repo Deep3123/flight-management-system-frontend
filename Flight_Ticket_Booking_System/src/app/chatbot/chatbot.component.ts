@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { API_BASE_URL } from '../constats';
 
 interface ChatMessage {
   text: string;
@@ -10,7 +10,8 @@ interface ChatMessage {
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.css']
+  styleUrls: ['./chatbot.component.css'],
+  standalone: false
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   isOpen = false;
@@ -56,7 +57,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     const botMsgIndex = this.messages.push({ text: '', isBot: true }) - 1;
 
     // Call the backend API with streaming enabled
-    this.http.post(`${environment.apiHost}/api/chat`, { message: userText }, {
+    this.http.post(`${API_BASE_URL}/api/chat`, { message: userText }, {
       responseType: 'text',
       observe: 'events',
       reportProgress: true
