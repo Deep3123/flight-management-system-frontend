@@ -80,33 +80,20 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
     // Create a placeholder for the bot's streamed response
     const botMsgIndex = this.messages.push({ text: '', isBot: true }) - 1;
 
-    // Call the backend API with streaming enabled
+    // Call the backend API with streaming disabled for absolute stability
     this.http.post(`${API_BASE_URL}/api/chat`, { message: userText }, {
-      responseType: 'text',
-      observe: 'events',
-      reportProgress: true
+      responseType: 'text'
     }).subscribe({
-      next: (event: any) => {
-        // HttpEventType.DownloadProgress (3) or HttpEventType.Response (4)
-        if (event.type === 3 || event.type === 4) {
-          this.isLoading = false;
-          const text = event.type === 4 ? event.body : (event as any).partialText;
-          
-          if (text) {
-            // Spring Web MVC streams SSE as "data:<chunk>\n\n"
-            // We strip out the "data:" and newlines to form the continuous string
-            let cleanedText = text.replace(/data:/g, '').replace(/\n\n/g, '');
-            this.messages[botMsgIndex].text = cleanedText;
-            this.scrollToBottom();
-          }
+      next: (text: string) => {
+        this.isLoading = false;
+        if (text) {
+          this.messages[botMsgIndex].text = text;
+          this.scrollToBottom();
         }
       },
       error: (err) => {
         console.error(err);
         this.messages[botMsgIndex].text = 'Sorry, I am having trouble connecting to the server right now.';
-        this.isLoading = false;
-      },
-      complete: () => {
         this.isLoading = false;
       }
     });
