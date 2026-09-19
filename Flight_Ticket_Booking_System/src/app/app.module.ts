@@ -54,6 +54,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from "../environments/environment";
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BookingDetailsDialogComponent,
     BookingManagementComponent,
     OAuthProfileCompletionComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

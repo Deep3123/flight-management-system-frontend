@@ -1,0 +1,38 @@
+<div class="chatbot-container">
+  <!-- Chat Button -->
+  <button class="chat-toggle-btn" (click)="toggleChat()" *ngIf="!isOpen">
+    <mat-icon>chat</mat-icon>
+  </button>
+
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="isOpen">
+    <div class="chat-header">
+      <span>JetWayz Assistant</span>
+      <button mat-icon-button (click)="toggleChat()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="chat-messages" #scrollMe>
+      <div *ngFor="let msg of messages" 
+           [ngClass]="{'bot-message': msg.isBot, 'user-message': !msg.isBot}">
+        <div class="message-content">
+          {{ msg.text }}
+        </div>
+      </div>
+      <div *ngIf="isLoading" class="bot-message typing-indicator">
+        <div class="message-content">...</div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <input type="text" 
+             [(ngModel)]="userInput" 
+             (keyup.enter)="sendMessage()" 
+             placeholder="Type your message..." />
+      <button mat-icon-button (click)="sendMessage()" color="primary" [disabled]="!userInput.trim() || isLoading">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
