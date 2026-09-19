@@ -165,8 +165,10 @@
 
 /* Chatbot HTML Content Styles (Tables, etc.) */
 ::ng-deep .bot-message .message-content table {
-  width: max-content;
-  min-width: 100%;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
   font-size: 12px;
