@@ -7,10 +7,18 @@
   <!-- Chat Window -->
   <div class="chat-window" *ngIf="isOpen">
     <div class="chat-header">
-      <span>JetWayz Assistant</span>
-      <button mat-icon-button (click)="toggleChat()">
-        <mat-icon>close</mat-icon>
-      </button>
+      <div class="chat-title-area">
+        <mat-icon>support_agent</mat-icon>
+        <span>JetWayz Assistant</span>
+      </div>
+      <div class="chat-actions">
+        <button mat-icon-button (click)="clearChat()" title="Clear Chat">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleChat()" title="Close">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
     </div>
 
     <div class="chat-messages" #scrollMe>

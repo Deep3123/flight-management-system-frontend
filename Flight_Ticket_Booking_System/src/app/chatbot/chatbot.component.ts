@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { API_BASE_URL } from '../constats';
 
 interface ChatMessage {
@@ -13,15 +16,29 @@ interface ChatMessage {
   styleUrls: ['./chatbot.component.css'],
   standalone: false
 })
-export class ChatbotComponent implements OnInit, AfterViewChecked {
+export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   isOpen = false;
   messages: ChatMessage[] = [];
   userInput = '';
   isLoading = false;
+  private routerSub: Subscription;
 
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+    // Auto-close chat window on navigation (standard SPA behavior)
+    this.routerSub = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.isOpen = false;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
     // Initial greeting
@@ -43,6 +60,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   toggleChat() {
     this.isOpen = !this.isOpen;
+  }
+
+  clearChat() {
+    this.messages = [{
+      text: 'Hello! I am your JetWayz AI assistant. How can I help you with your flight bookings today?',
+      isBot: true
+    }];
   }
 
   sendMessage() {
