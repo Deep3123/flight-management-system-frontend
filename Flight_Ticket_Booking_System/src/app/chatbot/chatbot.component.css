@@ -95,13 +95,14 @@
 
 .bot-message {
   align-self: flex-start;
-  max-width: 80%;
+  max-width: 90%;
 }
 .bot-message .message-content {
   background-color: #ffffff;
   color: #333;
   border: 1px solid #e0e0e0;
   border-bottom-left-radius: 4px;
+  overflow-x: auto;
 }
 
 .typing-dots {
@@ -164,10 +165,11 @@
 
 /* Chatbot HTML Content Styles (Tables, etc.) */
 ::ng-deep .bot-message .message-content table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 ::ng-deep .bot-message .message-content th,
