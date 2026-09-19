@@ -17,6 +17,7 @@ import { FlightResultsComponent } from "./flight-results/flight-results.componen
 import { BookingDetailsComponent } from "./booking-details/booking-details.component";
 import { BookingManagementComponent } from "./booking-management/booking-management.component";
 import { OAuthProfileCompletionComponent } from "./oauth-profile-completion/oauth-profile-completion.component";
+import { MyBookingsComponent } from "./my-bookings/my-bookings.component";
 
 // const routerOptions: ExtraOptions = {
 //   scrollPositionRestoration: "enabled",
@@ -56,6 +57,11 @@ const routes: Routes = [
     component: BookingManagementComponent,
     canActivate: [authGuard],
     data: { role: "ADMIN" },
+  },
+  {
+    path: "my-bookings",
+    component: MyBookingsComponent,
+    canActivate: [authGuard],
   },
   { path: "contact-us", component: ContactComponent, canActivate: [authGuard] },
   {

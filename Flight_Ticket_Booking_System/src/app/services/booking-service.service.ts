@@ -44,6 +44,11 @@ export class BookingServiceService {
     return this.http.get(`${API_BASE_URL}/bookings/all-bookings`);
   }
 
+  // Get only the logged-in user's bookings
+  getMyBookings(): Observable<any> {
+    return this.http.get(`${API_BASE_URL}/bookings/my-bookings`);
+  }
+
   deleteBooking(id: any): Observable<any> {
     return this.http.post(`${API_BASE_URL}/bookings/delete-booking-details`, id);
   }
