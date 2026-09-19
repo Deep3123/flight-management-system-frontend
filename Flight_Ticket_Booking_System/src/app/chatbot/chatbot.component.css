@@ -58,16 +58,17 @@
 }
 
 .message-content {
-  max-width: 80%;
   padding: 10px 14px;
   border-radius: 18px;
   font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .user-message {
   align-self: flex-end;
+  max-width: 80%;
 }
 .user-message .message-content {
   background-color: #3f51b5;
@@ -77,6 +78,7 @@
 
 .bot-message {
   align-self: flex-start;
+  max-width: 80%;
 }
 .bot-message .message-content {
   background-color: #ffffff;
