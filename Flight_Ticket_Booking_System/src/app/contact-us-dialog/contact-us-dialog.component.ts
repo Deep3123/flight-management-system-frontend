@@ -21,12 +21,12 @@ export class ContactUsDialogComponent {
   }
 
   onNoClick(): void {
-    Swal.fire({
-      icon: "info",
-      title: "Contact Query Closed",
-      text: "You have closed the contact request details.",
-      confirmButtonText: "OK",
-    });
+//    Swal.fire({
+//      icon: "info",
+//      title: "Contact Query Closed",
+//      text: "You have closed the contact request details.",
+//      confirmButtonText: "OK",
+//    });
     this.dialogRef.close();
   }
 

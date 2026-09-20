@@ -101,7 +101,7 @@
         </mat-form-field> -->
 
         <mat-dialog-actions>
-            <button mat-button (click)="onNoClick()">Cancel</button>
+            <button mat-button type="button" (click)="onNoClick()">Cancel</button>
             <button class="btn btn-primary text-light" type="submit">
                 {{ isEditing ? 'Update' : 'Add' }} Flight
             </button>

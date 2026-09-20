@@ -19,12 +19,12 @@ export class BookingDetailsDialogComponent {
   }
 
   onClose(): void {
-    Swal.fire({
-      icon: 'info',
-      title: 'Dialog Closed',
-      text: 'You have closed the booking details view.',
-      confirmButtonText: 'OK'
-    });
+//    Swal.fire({
+//      icon: 'info',
+//      title: 'Dialog Closed',
+//      text: 'You have closed the booking details view.',
+//      confirmButtonText: 'OK'
+//    });
     this.dialogRef.close();
   }
 }

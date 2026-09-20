@@ -54,12 +54,12 @@ export class FlightDialogComponent {
   }
 
   onNoClick(): void {
-    Swal.fire({
-      icon: "info",
-      title: "Operation Cancelled!",
-      text: "The flight details were not updated!",
-      confirmButtonText: "OK",
-    });
+//    Swal.fire({
+//      icon: "info",
+//      title: "Operation Cancelled!",
+//      text: "The flight details were not updated!",
+//      confirmButtonText: "OK",
+//    });
     this.dialogRef.close();
   }
 
