@@ -289,12 +289,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.router.navigate(["/"]); // Navigate to the home page
       } else {
         // Optionally, show a cancellation message if the user cancels
-        Swal.fire({
-          icon: "info",
-          title: "Logout Cancelled",
-          text: "You are still logged in.",
-          confirmButtonText: "OK",
-        });
+//        Swal.fire({
+//          icon: "info",
+//          title: "Logout Cancelled",
+//          text: "You are still logged in.",
+//          confirmButtonText: "OK",
+//        });
       }
     });
   }
