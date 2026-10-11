@@ -26,19 +26,41 @@
                 <div class="form-row">
                     <div class="input-group">
                         <input type="text" class="input-field" placeholder="Departure airport" required
-                            [(ngModel)]="departureAirport">
-                        <!-- <button class="clear-btn"><i class="fa fa-times"></i></button> -->
-                        <!-- <div *ngIf="departureAirportField.invalid && departureAirportField.touched" class="error-message">
-                            <small>Departure airport is required.</small>
-                        </div> -->
+                            [(ngModel)]="departureAirport"
+                            (ngModelChange)="filterDepartureAirports()"
+                            (focus)="filterDepartureAirports()"
+                            [matAutocomplete]="depAuto"
+                            autocomplete="off">
+                        <mat-autocomplete #depAuto="matAutocomplete" (optionSelected)="onDepartureSelected($event.option.value)">
+                            <mat-option *ngFor="let airport of filteredDepartureAirports" [value]="airport">
+                                <div class="airport-option">
+                                    <span class="airport-name"><i class="fa fa-plane-departure me-2 text-primary"></i>{{ airport }}</span>
+                                    <span class="airport-code" *ngIf="getAirportCode(airport)">{{ getAirportCode(airport) }}</span>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngIf="filteredDepartureAirports.length === 0" disabled>
+                                No matching airports
+                            </mat-option>
+                        </mat-autocomplete>
                     </div>
                     <div class="input-group">
                         <input type="text" class="input-field" placeholder="Arrival airport" required
-                            [(ngModel)]="arrivalAirport">
-                        <!-- <button class="clear-btn"><i class="fa fa-times"></i></button> -->
-                        <!-- <div *ngIf="arrivalAirportField.invalid && arrivalAirportField.touched" class="error-message">
-                            <small>Arrival airport is required.</small>
-                        </div> -->
+                            [(ngModel)]="arrivalAirport"
+                            (ngModelChange)="filterArrivalAirports()"
+                            (focus)="filterArrivalAirports()"
+                            [matAutocomplete]="arrAuto"
+                            autocomplete="off">
+                        <mat-autocomplete #arrAuto="matAutocomplete" (optionSelected)="onArrivalSelected($event.option.value)">
+                            <mat-option *ngFor="let airport of filteredArrivalAirports" [value]="airport">
+                                <div class="airport-option">
+                                    <span class="airport-name"><i class="fa fa-plane-arrival me-2 text-primary"></i>{{ airport }}</span>
+                                    <span class="airport-code" *ngIf="getAirportCode(airport)">{{ getAirportCode(airport) }}</span>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngIf="filteredArrivalAirports.length === 0" disabled>
+                                No matching airports
+                            </mat-option>
+                        </mat-autocomplete>
                     </div>
                     <div class="input-group date-range">
                         <!-- Departing Date -->
@@ -52,7 +74,7 @@
 
                         <mat-form-field appearance="outline" class="input-field-2 right-field">
                             <input matInput [matDatepicker]="returningPicker" [min]="minDate"
-                                (dateInput)="validateDate($event, 'arrival')" placeholder="Returning" required
+                                (dateInput)="validateDate($event, 'arrival')" placeholder="Returning (Optional)"
                                 name="returning" ngModel [(ngModel)]="arrivalTime">
                             <mat-datepicker-toggle matSuffix [for]="returningPicker"></mat-datepicker-toggle>
                             <mat-datepicker #returningPicker></mat-datepicker>

@@ -22,6 +22,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { AdminPageComponent } from "./admin-page/admin-page.component";
 import { UserDialogComponent } from "./user-dialog/user-dialog.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
@@ -98,6 +99,7 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,

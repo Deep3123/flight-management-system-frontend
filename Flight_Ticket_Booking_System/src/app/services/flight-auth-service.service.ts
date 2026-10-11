@@ -13,6 +13,11 @@ export class FlightAuthServiceService {
 
   constructor(private http: HttpClient) {}
 
+  // Get all unique airports and routes
+  getAirports(): Observable<any> {
+    return this.http.get(`${API_BASE_URL}/flight/airports`);
+  }
+
   // Get all flights
   getAllFlights(): Observable<any> {
     return this.http.get(`${API_BASE_URL}/flight/get-all-flights-details`);

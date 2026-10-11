@@ -529,3 +529,38 @@ input.ng-invalid.ng-touched {
     content: ".";
   }
 }
+
+/* Autocomplete Airport Dropdown Options */
+.airport-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.airport-name {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.airport-code {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0d6efd;
+  background-color: #e0edff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+::ng-deep .mat-mdc-autocomplete-panel {
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+::ng-deep .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: #f1f5f9 !important;
+}

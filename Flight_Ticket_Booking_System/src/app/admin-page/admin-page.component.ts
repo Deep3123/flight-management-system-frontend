@@ -327,12 +327,12 @@ export class AdminPageComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.showDownloadAnimation = false;
         }, 2000);
-        Swal.fire({
-            icon: 'success',
-            title: 'File Downloaded !',
-            text: response?.message,
-            confirmButtonText: 'OK'
-          });
+//        Swal.fire({
+//            icon: 'success',
+//            title: 'File Downloaded !',
+//            text: response?.message,
+//            confirmButtonText: 'OK'
+//          });
       },
       error: (error) => {
         this.isLoading = false;

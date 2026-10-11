@@ -1,4 +1,4 @@
-import { Component, HostListener } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { FlightAuthServiceService } from "../services/flight-auth-service.service";
 import Swal from "sweetalert2";
 import { Router } from "@angular/router";
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: "./flight-booking.component.html",
   styleUrls: ["./flight-booking.component.css"],
 })
-export class FlightBookingComponent {
+export class FlightBookingComponent implements OnInit {
   adultCount: number = 1;
   childCount: number = 0;
   infantCount: number = 0;
@@ -25,10 +25,126 @@ export class FlightBookingComponent {
 
   isLoading: any = false;
 
+  allAirports: string[] = [];
+  departureAirports: string[] = [];
+  arrivalAirports: string[] = [];
+  routesMap: { [key: string]: string[] } = {};
+
+  filteredDepartureAirports: string[] = [];
+  filteredArrivalAirports: string[] = [];
+
   constructor(
     private service: FlightAuthServiceService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.loadAirports();
+  }
+
+  loadAirports(): void {
+    this.service.getAirports().subscribe({
+      next: (data: any) => {
+        if (data) {
+          this.allAirports = data.airports || [];
+          this.departureAirports = data.departureAirports || this.allAirports;
+          this.arrivalAirports = data.arrivalAirports || this.allAirports;
+          this.routesMap = data.routes || {};
+
+          this.filteredDepartureAirports = [...this.departureAirports];
+          this.filteredArrivalAirports = [...this.arrivalAirports];
+        }
+      },
+      error: (err) => {
+        console.error("Failed to load airports:", err);
+      },
+    });
+  }
+
+  filterDepartureAirports(): void {
+    const query = (this.departureAirport || "").toLowerCase().trim();
+    if (!query) {
+      this.filteredDepartureAirports = [...this.departureAirports];
+    } else {
+      this.filteredDepartureAirports = this.departureAirports.filter((apt) =>
+        apt.toLowerCase().includes(query)
+      );
+    }
+  }
+
+  onDepartureSelected(airport: string): void {
+    this.departureAirport = airport;
+    // Update arrival options based on routes from this departure
+    if (this.routesMap[airport] && this.routesMap[airport].length > 0) {
+      this.filteredArrivalAirports = this.routesMap[airport].filter(
+        (a) => a.toLowerCase() !== airport.toLowerCase()
+      );
+    } else {
+      this.filteredArrivalAirports = this.arrivalAirports.filter(
+        (a) => a.toLowerCase() !== airport.toLowerCase()
+      );
+    }
+
+    // If currently selected arrival is the same as departure, clear it
+    if (
+      this.arrivalAirport &&
+      this.arrivalAirport.toLowerCase() === airport.toLowerCase()
+    ) {
+      this.arrivalAirport = "";
+    }
+  }
+
+  filterArrivalAirports(): void {
+    const query = (this.arrivalAirport || "").toLowerCase().trim();
+    const dep = (this.departureAirport || "").toLowerCase().trim();
+
+    let baseList = this.arrivalAirports;
+    if (this.departureAirport && this.routesMap[this.departureAirport]) {
+      baseList = this.routesMap[this.departureAirport];
+    }
+
+    // Filter out the selected departure airport
+    baseList = baseList.filter((apt) => apt.toLowerCase() !== dep);
+
+    if (!query) {
+      this.filteredArrivalAirports = [...baseList];
+    } else {
+      this.filteredArrivalAirports = baseList.filter((apt) =>
+        apt.toLowerCase().includes(query)
+      );
+    }
+  }
+
+  onArrivalSelected(airport: string): void {
+    this.arrivalAirport = airport;
+  }
+
+  getAirportCode(airport: string): string {
+    const codes: { [key: string]: string } = {
+      Ahmedabad: "AMD",
+      Bangalore: "BLR",
+      Bengaluru: "BLR",
+      Chennai: "MAA",
+      Delhi: "DEL",
+      Hyderabad: "HYD",
+      Kolkata: "CCU",
+      Mumbai: "BOM",
+      Pune: "PNQ",
+      Jaipur: "JAI",
+      Kochi: "COK",
+      Lucknow: "LKO",
+      Chandigarh: "IXC",
+      Surat: "STV",
+      Goa: "GOI",
+      Indore: "IDR",
+      Bhopal: "BHO",
+      Amritsar: "ATQ",
+      Patna: "PAT",
+      Kanpur: "KNU",
+      Varanasi: "VNS",
+    };
+    return codes[airport] || "";
+  }
 
   get passengerCount(): number {
     return this.adultCount + this.childCount + this.infantCount;
@@ -97,14 +213,73 @@ export class FlightBookingComponent {
   }
 
   onSubmit() {
-    const flight = {
+    if (!this.departureAirport || !this.departureAirport.trim()) {
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Departure Airport",
+        text: "Please select or enter a departure airport.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    if (!this.arrivalAirport || !this.arrivalAirport.trim()) {
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Arrival Airport",
+        text: "Please select or enter an arrival airport.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    if (
+      this.departureAirport.trim().toLowerCase() ===
+      this.arrivalAirport.trim().toLowerCase()
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Route",
+        text: "Departure and arrival airports cannot be the same.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    if (!this.departureTime) {
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Departure Date",
+        text: "Please select a departing date.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    // If departing today, make sure current time is attached to departure date
+    const depDate = new Date(this.departureTime);
+    const today = new Date();
+    if (depDate.toDateString() === today.toDateString()) {
+      depDate.setHours(
+        today.getHours(),
+        today.getMinutes(),
+        today.getSeconds(),
+        today.getMilliseconds()
+      );
+      this.departureTime = depDate;
+    }
+
+    const flight: any = {
       departureAirport: this.departureAirport.toLowerCase().trim(),
       arrivalAirport: this.arrivalAirport.toLowerCase().trim(),
       departureDate: this.formatDateTime(this.departureTime),
-      arrivalDate: this.formatDateTime(this.arrivalTime),
       personCount: this.passengerCount,
       flightClass: this.selectedClass,
     };
+
+    if (this.arrivalTime) {
+      flight.arrivalDate = this.formatDateTime(this.arrivalTime);
+    }
 
     // console.log(flight);
     // console.log("Departure:", this.departureTime, "Arrival:", this.arrivalTime);
