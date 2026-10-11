@@ -71,25 +71,983 @@ body {
   font-family: Noto Sans Display, Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Dark Mode Styles */
+/* ==========================================================================
+   COMPREHENSIVE DARK MODE SYSTEM
+   ========================================================================== */
+
+html.dark-mode,
 body.dark-mode {
-  background-color: #121212; /* Dark background */
-  color: white; /* White text */
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
-/* Additional Dark Mode Styling */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode p {
+  color: #cbd5e1;
+}
+
+body.dark-mode hr {
+  border-color: #334155 !important;
+  opacity: 0.3 !important;
+}
+
+body.dark-mode .text-muted {
+  color: #94a3b8 !important;
+}
+
+/* --- 1. NAVBAR --- */
+body.dark-mode #nav.navbar,
 body.dark-mode .navbar {
-  background-color: #333; /* Dark navbar background */
+  background-color: #0b0f19 !important;
+  border-bottom: 1px solid #1e293b;
+}
+
+body.dark-mode .navbar-collapse,
+body.dark-mode #navbarNav {
+  background-color: #0b0f19 !important;
+}
+
+body.dark-mode .navbar .nav-link {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .navbar .nav-link:hover,
+body.dark-mode .navbar .nav-link:focus {
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+body.dark-mode .navbar .dropdown-menu {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .navbar .dropdown-item {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .navbar .dropdown-item:hover,
+body.dark-mode .navbar .dropdown-item:focus {
+  background-color: #334155 !important;
+  color: #60a5fa !important;
 }
 
 body.dark-mode .btn-outline-light {
-  border-color: white; /* Dark mode button */
-  color: white;
+  border-color: #475569 !important;
+  color: #f1f5f9 !important;
+  background-color: transparent !important;
+}
+
+body.dark-mode .btn-outline-light:hover {
+  border-color: #3b82f6 !important;
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
 }
 
 body.dark-mode .btn-light {
-  background-color: #333;
-  color: white;
+  background-color: #334155 !important;
+  border-color: #475569 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .btn-light:hover {
+  background-color: #475569 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .navbar-toggler {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .navbar-toggler i {
+  color: #f1f5f9 !important;
+}
+
+/* --- 2. HOME PAGE --- */
+body.dark-mode .booking-section {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .booking-section h2,
+body.dark-mode .booking-section h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .booking-section p,
+body.dark-mode .booking-section .lead {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .about {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .about .card {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .about .card .card-title {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .about .card .card-text {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .about .contact-info {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .about .bg-white {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* --- 3. FLIGHT BOOKING SEARCH WIDGET --- */
+body.dark-mode .book-header h1 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .book-header .subtitle,
+body.dark-mode .book-header .title {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .booking-container {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.dark-mode .booking-tabs ul {
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .booking-tabs button {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .booking-tabs li.active button {
+  color: #60a5fa !important;
+  border-bottom: 2px solid #60a5fa !important;
+}
+
+body.dark-mode .skywards-login i,
+body.dark-mode .skywards-login a {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .input-field,
+body.dark-mode .input-field-2 {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .input-field::placeholder,
+body.dark-mode .input-field-2::placeholder {
+  color: #64748b !important;
+}
+
+body.dark-mode .input-field:focus,
+body.dark-mode .input-field-2:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.35) !important;
+}
+
+body.dark-mode .date-range {
+  background-color: #0f172a !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .date-range .input-field-2 {
+  background-color: transparent !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .date-range .left-field::after {
+  background-color: #334155 !important;
+}
+
+body.dark-mode .date-range input {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .date-range input::placeholder {
+  color: #64748b !important;
+}
+
+body.dark-mode .passenger-counter {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .passenger-counter .title {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .passenger-info strong {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .passenger-info small {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .counter-row button {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .counter-row button:hover {
+  background-color: #475569 !important;
+}
+
+body.dark-mode .passenger-note {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .class-dropdown {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .class-dropdown li {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .class-dropdown li:hover {
+  background-color: #334155 !important;
+}
+
+body.dark-mode .drop_title {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .info-section {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.dark-mode .info-section h2 {
+  color: #f8fafc !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .clear-btn {
+  color: #94a3b8 !important;
+}
+
+/* --- 4. FLIGHT RESULTS PAGE --- */
+body.dark-mode .flight-search-container {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .flight-details-main {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .flight-list {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .route-header {
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .route-path {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .route-path .route-arrow svg {
+  fill: #94a3b8 !important;
+}
+
+body.dark-mode .trip-details {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .link {
+  color: #60a5fa !important;
+}
+
+body.dark-mode .link:hover {
+  background-color: #1e293b !important;
+}
+
+body.dark-mode .page-title {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .page-small-title {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .price-label,
+body.dark-mode .currency-type {
+  color: #34d399 !important;
+}
+
+body.dark-mode .total-price {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .price-details {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .current-date {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .option {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .flight-card {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.dark-mode .flight-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45) !important;
+  border-color: #475569 !important;
+}
+
+body.dark-mode .time {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .airport-code {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .airport-name {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .duration-text {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .route-line {
+  background-color: #475569 !important;
+}
+
+body.dark-mode .route-line::after {
+  border-left-color: #475569 !important;
+}
+
+body.dark-mode .connection-info {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .cabin-class {
+  color: #34d399 !important;
+}
+
+body.dark-mode .price-prefix {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .price-amount {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .price-tag {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+body.dark-mode .flight-info {
+  background-color: #172033 !important;
+  border-top: 1px solid #334155 !important;
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .aircraft-info {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .sort-button {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .sort-icon,
+body.dark-mode .sort-class {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .sort-text {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .sort-options {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .sort-header {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .option-item {
+  background-color: #0f172a !important;
+  border: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .option-item:hover {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .option-item.active {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  border-color: #3b82f6 !important;
+  color: #60a5fa !important;
+}
+
+/* --- 5. BOOKING DETAILS PAGE --- */
+body.dark-mode .booking-inner-wrapper {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .booking-header .page-title {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .booking-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .summary-header h2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .form-header h2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .form-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .passenger-card {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .passenger-card-header h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .passenger-card-second-header {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .passenger-card .form-control {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .passenger-card .form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3) !important;
+}
+
+body.dark-mode .country-code {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .selected-code {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .country-suggestions {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .country-suggestions li {
+  border-bottom: 1px solid #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .country-suggestions li:hover,
+body.dark-mode .country-suggestions li.highlighted {
+  background-color: #334155 !important;
+}
+
+body.dark-mode .country-code-value {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .mobile-input {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .price-summary-card {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .price-summary-card .summary-header {
+  background-color: #172033 !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .price-summary {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .summary-row {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .summary-row.total {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .summary-note {
+  color: #94a3b8 !important;
+}
+
+/* --- 6. ADMIN & MANAGEMENT PAGES & TABLES --- */
+body.dark-mode .admin-container {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .header-container h1 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .content-card,
+body.dark-mode mat-card.content-card {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.dark-mode .filter-container {
+  background-color: #172033 !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .search-field input {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-table,
+body.dark-mode table {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode th.mat-header-cell,
+body.dark-mode .table thead th,
+body.dark-mode #userTable thead {
+  background-color: #172033 !important;
+  color: #93c5fd !important;
+  border-bottom: 2px solid #334155 !important;
+}
+
+body.dark-mode td.mat-cell,
+body.dark-mode .table td {
+  color: #cbd5e1 !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .name-cell,
+body.dark-mode .flight-id-cell {
+  color: #f8fafc !important;
+}
+
+body.dark-mode tr.booking-row:hover,
+body.dark-mode tr.user-row:hover,
+body.dark-mode #userTable tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+}
+
+body.dark-mode .custom-paginator,
+body.dark-mode .custom-pagination,
+body.dark-mode .mat-mdc-paginator {
+  background-color: #172033 !important;
+  color: #cbd5e1 !important;
+  border-top: 1px solid #334155 !important;
+}
+
+body.dark-mode .mat-mdc-paginator-container,
+body.dark-mode .mat-mdc-paginator-range-label,
+body.dark-mode .mat-mdc-paginator-page-size-label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .page-btn {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .page-btn:hover:not([disabled]) {
+  background-color: #334155 !important;
+  color: #60a5fa !important;
+  border-color: #475569 !important;
+}
+
+body.dark-mode .pagination-info,
+body.dark-mode .size-label {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .no-data-container {
+  color: #64748b !important;
+}
+
+/* --- 7. AUTH PAGES (Login, Register, Forgot Password, Profile) --- */
+body.dark-mode .login-container {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.dark-mode .login-header h2 {
+  color: #60a5fa !important;
+}
+
+body.dark-mode .login-header p,
+body.dark-mode .form-group label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .login-container .form-control {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .login-container .form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3) !important;
+}
+
+body.dark-mode .login-container a {
+  color: #60a5fa !important;
+}
+
+body.dark-mode .login-container hr,
+body.dark-mode .divider {
+  border-color: #334155 !important;
+}
+
+/* --- 8. CONTACT US --- */
+body.dark-mode .contact-form {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.dark-mode .contact-form h3 {
+  color: #60a5fa !important;
+}
+
+body.dark-mode .contact-form .form-control {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .central-message .part2 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .central-message .part3 {
+  color: #94a3b8 !important;
+}
+
+/* --- 9. DIALOGS, MODALS & POPUPS --- */
+body.dark-mode .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.dark-mode .mat-mdc-dialog-container mat-dialog-content,
+body.dark-mode .dialog-content {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-dialog-container [mat-dialog-title],
+body.dark-mode .dialog-title {
+  background-color: #172033 !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .mat-mdc-dialog-container mat-dialog-actions {
+  background-color: #172033 !important;
+  border-top: 1px solid #334155 !important;
+}
+
+body.dark-mode .close-btn {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .close-btn:hover {
+  background-color: #475569 !important;
+}
+
+body.dark-mode .booking-info p,
+body.dark-mode .contact-info p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .message-box {
+  background-color: #0f172a !important;
+  color: #cbd5e1 !important;
+  border-left: 4px solid #3b82f6 !important;
+}
+
+/* Bootstrap modals */
+body.dark-mode .modal-content {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .modal-header {
+  border-bottom: 1px solid #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .modal-footer {
+  border-top: 1px solid #334155 !important;
+}
+
+body.dark-mode .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+}
+
+body.dark-mode .modal-close-btn {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+/* SweetAlert2 */
+body.dark-mode .swal2-popup {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.dark-mode .swal2-title {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .swal2-html-container {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .swal2-input,
+body.dark-mode .swal2-select,
+body.dark-mode .swal2-textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+/* --- 10. ANGULAR MATERIAL OVERLAYS & FORMS --- */
+body.dark-mode .mat-mdc-form-field {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-form-field .mat-mdc-floating-label {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .mat-mdc-text-field-wrapper {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-form-field input.mat-mdc-input-element {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-select-value {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-select-arrow {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .mat-mdc-autocomplete-panel,
+body.dark-mode .mat-mdc-select-panel {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .mat-mdc-option {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-mdc-option:hover,
+body.dark-mode .mat-mdc-option.mdc-list-item--selected {
+  background-color: #334155 !important;
+  color: #60a5fa !important;
+}
+
+body.dark-mode .mat-mdc-option .mdc-list-item__primary-text {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-datepicker-content {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .mat-calendar {
+  background-color: #1e293b !important;
+}
+
+body.dark-mode .mat-calendar-body-label,
+body.dark-mode .mat-calendar-period-button,
+body.dark-mode .mat-calendar-arrow {
+  color: #f8fafc !important;
+  fill: #f8fafc !important;
+}
+
+body.dark-mode .mat-calendar-table-header th {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .mat-calendar-body-cell-content {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mat-calendar-body-cell-content:hover {
+  background-color: #334155 !important;
+}
+
+body.dark-mode .mat-calendar-body-selected {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #3b82f6 !important;
+}
+
+body.dark-mode .mat-calendar-next-button,
+body.dark-mode .mat-calendar-previous-button {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .timepicker__header {
+  background-color: #172033 !important;
+}
+
+body.dark-mode .timepicker__body {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .timepicker__actions {
+  background-color: #172033 !important;
+}
+
+body.dark-mode .clock-face {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .clock-face__number span {
+  color: #f8fafc !important;
+}
+
+/* --- 11. CHATBOT --- */
+body.dark-mode .chat-window {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .chat-header {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .chat-messages {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .bot-message .message-content {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .user-message .message-content {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .chat-input-area {
+  background-color: #1e293b !important;
+  border-top: 1px solid #334155 !important;
+}
+
+body.dark-mode .chat-input-area input {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .chat-input-area input::placeholder {
+  color: #64748b !important;
 }
 
 /* .custom-dialog-container {

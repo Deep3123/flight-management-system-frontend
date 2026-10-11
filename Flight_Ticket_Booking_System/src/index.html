@@ -19,6 +19,23 @@
   <!-- AOS Library (for Scroll Animations) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
+  <!-- Early Theme Restoration to prevent white flash on reload -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+          if (document.body) {
+            document.body.classList.add('dark-mode');
+          } else {
+            document.addEventListener('DOMContentLoaded', function () {
+              document.body.classList.add('dark-mode');
+            });
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="mat-typography">

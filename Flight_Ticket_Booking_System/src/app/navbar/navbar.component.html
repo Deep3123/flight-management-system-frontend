@@ -6,11 +6,16 @@
             <img src="JetWayz_6.png" alt="JetWayz Mobile Logo" class="navbar-logo mobile-logo" />
         </a>
 
-        <!-- Toggler Button for Mobile View -->
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Toggler Button and Mobile Theme Toggle for Mobile View -->
+        <div class="d-flex align-items-center d-xl-none ms-auto">
+            <button (click)="toggleTheme()" class="btn btn-outline-light rounded-pill p-1 px-2 me-2" aria-label="Toggle dark mode">
+                <mat-icon style="vertical-align: middle;">{{ darkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
+            </button>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
 
         <!-- Navbar Content -->
         <div class="collapse navbar-collapse" id="navbarNav">
